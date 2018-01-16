@@ -1,0 +1,15 @@
+<mat-toolbar class="navbar navbar-shadow" color="primary">
+  <img src="assets/logo.png" style="height: 80%;margin-bottom: 0">
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="button.click()" *ngFor="let button of buttons">
+    <mat-icon>{{ button.icon }}</mat-icon>
+  </button>
+  <button mat-button (click)="login()" *ngIf="!auth.isLoggedIn()">
+    <mat-icon>input</mat-icon>&nbsp;
+    <span i18n>Register/Sign-in</span>
+  </button>
+  <button mat-button (click)="logout()" *ngIf="auth.isLoggedIn()">
+    <mat-icon>power_settings_new</mat-icon>&nbsp;
+    <span i18n>Logout</span>
+  </button>
+</mat-toolbar>

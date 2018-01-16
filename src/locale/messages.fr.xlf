@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="b265181e1f2b6abff2ddf12e34a0274f590321de" datatype="html">
+        <source>copyright</source>
+        <target>2018 &copy; cracrayol</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="76b8339d5b6a70b6871600727ac3a9510e59d26f" datatype="html">
+        <source>Source Code</source>
+        <target>Code Source</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source>
+        <target>Rechercher</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/search/search.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f3cf8c938d96b18e76d3be07feffb2d57dedc37f" datatype="html">
+        <source>Movies</source>
+        <target>Clips</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/search/search.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="47546e45bbb476baaaad38244db444c427ddc502" datatype="html">
+        <source>Playlists</source>
+        <target>Listes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/search/search.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3ab400410a2bf97e669c0d1cc2199fa996904123" datatype="html">
+        <source>Pibui</source>
+        <target>Pibui</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/containers/index/index.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e4825b5d86d89ae0f4c797ba256f66fd8abd4ee6" datatype="html">
+        <source>My account</source>
+        <target>Mon compte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/containers/index/index.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f732c304c7433e5a83ffcd862c3dce709a0f4982" datatype="html">
+        <source>Next</source>
+        <target>Suivant</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/containers/index/index.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e27fcad8acd2af3737110c2c067ba4cd12fe1eb6" datatype="html">
+        <source>CD Japan</source>
+        <target>CD Japan</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/containers/index/index.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="99cb827741e93125476a0f5b676372d85d15b5fc" datatype="html">
+        <source>Twitter</source>
+        <target>Twitter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/containers/index/index.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cafc87479686947e2590b9f588a88040aeaf660b" datatype="html">
+        <source>Tags</source>
+        <target>Mots-clés</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/containers/index/index.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

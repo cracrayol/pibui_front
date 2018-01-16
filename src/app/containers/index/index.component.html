@@ -1,0 +1,32 @@
+<pbi-navbar [buttons]="headerButtons"></pbi-navbar>
+<mat-sidenav-container>
+  <mat-sidenav #tagspanel [mode]="isMobile ? 'over' : 'side'" style="width: 300px" class="navbar-shadow" [opened]="!isMobile" [disableClose]="!isMobile">
+    <pbi-tags [tags]="movie?.tag"></pbi-tags>
+  </mat-sidenav>
+  <mat-sidenav #searchpanel position="end" mode="over" style="width: 340px">
+    <pbi-search (itemSelected)="playSearchedItem($event)" selectionIcon="play_circle_outline"></pbi-search>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div fxLayout="column" fxLayoutAlign="center">
+      <header fxLayout="column" fxLayoutAlign="center center">
+        <h2 class="alt" id='movieTitle'>{{ movieTitle }}</h2>
+        <h4 class="alt" id='movieSubtitle' *ngIf="movieSubtitle">{{ movieSubtitle }}</h4>
+      </header>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <div fxFlex.gt-lg="1220px" fxFlex="80%" class="embed-responsive embed-responsive-16by9">
+          <div  id="ytplayer"></div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
+      <a mat-raised-button i18n-matTooltip matTooltip="Next" mdTooltipPosition="left" (click)='playNextVideo()'>
+        <mat-icon>skip_next</mat-icon>
+      </a>
+      &nbsp;
+      <a mat-raised-button i18n-matTooltip matTooltip="Tags" (click)='tagspanel.toggle()' *ngIf="isMobile">
+        <mat-icon>bookmark</mat-icon>
+      </a>
+    </div>
+    <br>
+  </mat-sidenav-content>
+</mat-sidenav-container>
