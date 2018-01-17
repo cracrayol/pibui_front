@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiAddr: 'http://127.0.0.1/pibui/api'
+  apiAddr: 'http://127.0.0.1:4300'
 };

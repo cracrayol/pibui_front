@@ -16,12 +16,12 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<User> {
-    return this.http.post<User>(environment.apiAddr + '/auth/login', { email, password })
+    return this.http.post<User>(environment.apiAddr + '/login', { email, password })
       .pipe(tap(res => this.setSession(res), map((res: any) => res.user)), shareReplay());
   }
 
   register(email: string, password: string) {
-    return this.http.post<User>(environment.apiAddr + '/auth/register', { email, password })
+    return this.http.post<User>(environment.apiAddr + '/register', { email, password })
       // this is just the HTTP call,
       // we still need to handle the reception of the token
       .pipe(shareReplay());

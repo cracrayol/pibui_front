@@ -3,8 +3,8 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import "~normalize.css/normalize.css";
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../node_modules/normalize.css/normalize.css";
 
 /* From w3.css */
 html,body{font-family:Roboto,Arial,sans-serif;font-size:15px;line-height:1.5;font-weight: 300;background-color: #fafafa}

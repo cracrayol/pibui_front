@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { MatSelectChange } from '@angular/material';
+import { Tag } from '../../model/tag';
 
 @Component({
   selector: 'pbi-tags',
@@ -12,7 +13,7 @@ import { MatSelectChange } from '@angular/material';
 })
 export class TagsComponent implements OnInit {
 
-  @Input() tags: any[];
+  @Input() tags: Tag[];
   selected: Playlist;
   $playlist: Observable<Playlist[]>;
 

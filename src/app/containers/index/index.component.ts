@@ -78,7 +78,7 @@ export class IndexComponent implements AfterViewInit {
     this.movieService.get(id).subscribe(
       movie => {
         this.movie = movie;
-        this.player.loadVideoById(movie.link_id);
+        this.player.loadVideoById(movie.linkId);
         this.player.playVideo().then(() => {
           this.spinner.stop();
         });
@@ -96,8 +96,8 @@ export class IndexComponent implements AfterViewInit {
           this.movieSubtitle = movie.author.subname + ' - ' + movie.subtitle;
         }
 
-        if (!this.location.isCurrentPathEqualTo('/play/' + movie._id)) {
-          this.location.go('/play/' + movie._id);
+        if (!this.location.isCurrentPathEqualTo('/play/' + movie.id)) {
+          this.location.go('/play/' + movie.id);
         }
       });
   }

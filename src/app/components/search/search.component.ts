@@ -29,7 +29,7 @@ export class SearchComponent implements AfterViewInit {
     });
 
     // Load latest movies
-    this.$data = this.http.get(environment.apiAddr + '/latest/movie').pipe(tap(() => {
+    this.$data = this.http.get(environment.apiAddr + '/movie/latest').pipe(tap(() => {
       this.showLatest = true;
     }));
   }
@@ -41,9 +41,9 @@ export class SearchComponent implements AfterViewInit {
     if (search.length >= 3 || search.length === 0) {
       this.showLatest = false;
       this.searching = true;
-      let url = '/latest/movie';
+      let url = '/movie/latest';
       if (search.length >= 3) {
-        url = '/search/movie/' + search;
+        url = '/search/' + search;
       }
       this.$data = this.http.get(environment.apiAddr + url).pipe(tap(() => {
         this.showLatest = search.length === 0;
