@@ -17,7 +17,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<User> {
     return this.http.post<User>(environment.apiAddr + '/login', { email, password })
-      .pipe(tap(res => this.setSession(res), map((res: any) => res.user)), shareReplay());
+      .pipe(tap(res => this.setSession(res)), map((res: any) => res.user), shareReplay());
   }
 
   register(email: string, password: string) {
@@ -30,7 +30,7 @@ export class AuthService {
   private setSession(authResult) {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 
-    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('id_token', authResult.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     localStorage.setItem('user', JSON.stringify(authResult.user));
   }
