@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { PlaylistService } from './services/playlist.service';
+import { CredentialInterceptor } from './interceptors/credential.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PlaylistService } from './services/playlist.service';
     FlexLayoutModule
   ],
   providers: [MovieService, SpinnerService, AuthService, PlaylistService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CredentialInterceptor, multi: true }],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent]
 })
