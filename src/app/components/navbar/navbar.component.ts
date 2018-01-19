@@ -20,7 +20,9 @@ export class NavBarComponent {
 
   logout() {
     this.auth.logout();
-    this.snack.open('Logged out !!');
+    this.snack.open('Logged out !!', null, {
+      duration: 5000
+    });
   }
 
 }
