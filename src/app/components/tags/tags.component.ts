@@ -44,7 +44,7 @@ export class TagsComponent implements OnInit {
         }
       } else {
         currentPlaylist.playlistTag.push({
-          playlist: currentPlaylist._id,
+          playlist: currentPlaylist.id,
           state: state,
           tag: id
         });

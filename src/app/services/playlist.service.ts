@@ -22,6 +22,6 @@ export class PlaylistService {
   }
 
   public post(playlist: Playlist): Observable<Playlist> {
-    return this.http.post<Playlist>(environment.apiAddr + '/playlist/' + playlist._id, playlist);
+    return this.http.post<Playlist>(environment.apiAddr + '/playlist/' + playlist.id, playlist);
   }
 }

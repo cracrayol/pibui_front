@@ -1,7 +1,7 @@
 import { PlaylistTag } from './playlistTag';
 
 export interface Playlist {
-    _id?: number;
+    id?: number;
     name?: string;
     current?: boolean;
     playlistTag?: PlaylistTag[];
