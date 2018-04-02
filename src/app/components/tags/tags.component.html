@@ -1,4 +1,4 @@
-<mat-form-field style="width:94%;padding-left:3%; margin-top: 8px" *ngIf="auth.isLoggedIn()">
+<mat-form-field style="width:80%;padding-left:3%; margin-top: 8px" *ngIf="auth.isLoggedIn()">
   <mat-select placeholder="Playlist" [value]="selected" (selectionChange)="selectPlaylist($event)">
     <mat-option>None</mat-option>
     <mat-option *ngFor="let pl of $playlist | async" [value]="pl">
@@ -6,16 +6,25 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item (click)="editPlaylistDialog(true)">Add</button>
+  <button mat-menu-item (click)="editPlaylistDialog(false)" *ngIf="selected">Edit</button>
+  <button mat-menu-item (click)="deletePlaylist()">Remove</button>
+</mat-menu>
+
+<button mat-icon-button [matMenuTriggerFor]="appMenu" *ngIf="auth.isLoggedIn()">
+  <mat-icon>more_vert</mat-icon>
+</button>
 <mat-list style="flex-grow: 1; overflow: auto">
   <mat-list-item *ngFor="let tag of tags">
     <h3 matLine> {{tag.name}} </h3>
-    <button mat-icon-button [color]="isTagSet(tag._id, 2) ? 'accent' : ''" (click)="set(tag._id, 2)">
+    <button mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 2) ? 'accent' : ''" (click)="set(tag.id, 2)">
       <mat-icon>favorite</mat-icon>
     </button>
-    <button mat-icon-button [color]="isTagSet(tag._id, 1) ? 'accent' : ''" (click)="set(tag._id, 1)">
+    <button mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 1) ? 'accent' : ''" (click)="set(tag.id, 1)">
       <mat-icon>help</mat-icon>
     </button>
-    <button mat-icon-button [color]="isTagSet(tag._id, 0) ? 'accent' : ''" (click)="set(tag._id, 0)">
+    <button mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 0) ? 'accent' : ''" (click)="set(tag.id, 0)">
       <mat-icon>block</mat-icon>
     </button>
   </mat-list-item>

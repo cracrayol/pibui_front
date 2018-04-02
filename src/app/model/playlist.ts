@@ -1,8 +1,10 @@
-import { PlaylistTag } from './playlistTag';
+import { Tag } from './tag';
 
 export interface Playlist {
     id?: number;
     name?: string;
     current?: boolean;
-    playlistTag?: PlaylistTag[];
+    mandatoryTags?: Tag[];
+    allowedTags?: Tag[];
+    forbiddenTags?: Tag[];
 }

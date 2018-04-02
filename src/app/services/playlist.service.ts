@@ -21,7 +21,11 @@ export class PlaylistService {
     return this.http.get<Playlist>(environment.apiAddr + '/playlist/' + id);
   }
 
+  public put(playlist: Playlist): Observable<Playlist> {
+    return this.http.put<Playlist>(environment.apiAddr + '/playlist/' + playlist.id, playlist);
+  }
+
   public post(playlist: Playlist): Observable<Playlist> {
-    return this.http.post<Playlist>(environment.apiAddr + '/playlist/' + playlist.id, playlist);
+    return this.http.post<Playlist>(environment.apiAddr + '/playlist', playlist);
   }
 }

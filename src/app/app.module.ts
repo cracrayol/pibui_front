@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { PlaylistService } from './services/playlist.service';
 import { CredentialInterceptor } from './interceptors/credential.interceptor';
+import { EditPlaylistComponent } from './components/editplaylist/editplaylist.component';
 
 @NgModule({
   declarations: [
@@ -31,18 +32,19 @@ import { CredentialInterceptor } from './interceptors/credential.interceptor';
     IndexComponent,
     SpinnerComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    EditPlaylistComponent
   ],
   imports: [
     AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,
     MatSidenavModule, MatButtonModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatButtonModule,
     MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
-    FlexLayoutModule
+    FlexLayoutModule, MatMenuModule
   ],
   providers: [MovieService, SpinnerService, AuthService, PlaylistService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CredentialInterceptor, multi: true }],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent]
+  entryComponents: [LoginComponent, EditPlaylistComponent]
 })
 export class AppModule { }

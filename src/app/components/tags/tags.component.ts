@@ -4,8 +4,9 @@ import { PlaylistService } from '../../services/playlist.service';
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
-import { MatSelectChange } from '@angular/material';
+import { MatSelectChange, MatDialog } from '@angular/material';
 import { Tag } from '../../model/tag';
+import { EditPlaylistComponent } from '../editplaylist/editplaylist.component';
 
 @Component({
   selector: 'pbi-tags',
@@ -17,7 +18,7 @@ export class TagsComponent implements OnInit {
   selected: Playlist;
   $playlist: Observable<Playlist[]>;
 
-  constructor(public playlist: PlaylistService, public auth: AuthService) { }
+  constructor(public playlist: PlaylistService, public auth: AuthService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.$playlist = this.playlist.getAll().pipe(tap((playlists: Playlist[]) => {
@@ -32,33 +33,66 @@ export class TagsComponent implements OnInit {
   set(id: number, state: number) {
     const currentPlaylist = Object.assign(<Playlist>{}, this.selected);
     if (currentPlaylist) {
-      if (!currentPlaylist.playlistTag) {
-        currentPlaylist.playlistTag = [];
+      if (!currentPlaylist.forbiddenTags) {
+        currentPlaylist.forbiddenTags = [];
       }
-      const playlistTag = currentPlaylist.playlistTag.find(tag => tag.tag === id);
-      if (playlistTag) {
-        if (playlistTag.state === state) {
-          currentPlaylist.playlistTag = currentPlaylist.playlistTag.filter(tag => tag.tag !== id);
-        } else {
-          playlistTag.state = state;
+      if (!currentPlaylist.allowedTags) {
+        currentPlaylist.allowedTags = [];
+      }
+      if (!currentPlaylist.mandatoryTags) {
+        currentPlaylist.mandatoryTags = [];
+      }
+
+      const forbidden = currentPlaylist.forbiddenTags.findIndex(tag => tag.id === id);
+      const allowed = currentPlaylist.allowedTags.findIndex(tag => tag.id === id);
+      const mandatory = currentPlaylist.mandatoryTags.findIndex(tag => tag.id === id);
+
+      let insert = true;
+      if (forbidden > -1) {
+        if (state === 0) { insert = false; }
+        currentPlaylist.forbiddenTags.splice(forbidden, 1);
+      }
+      if (allowed > -1) {
+        if (state === 1) { insert = false; }
+        currentPlaylist.allowedTags.splice(allowed, 1);
+      }
+      if (mandatory > -1) {
+        if (state === 2) { insert = false; }
+        currentPlaylist.mandatoryTags.splice(mandatory, 1);
+      }
+
+      if (insert) {
+        switch (state) {
+          case 0:
+            currentPlaylist.forbiddenTags.push({ id: id });
+            break;
+          case 1:
+            currentPlaylist.allowedTags.push({ id: id });
+            break;
+          case 2:
+            currentPlaylist.mandatoryTags.push({ id: id });
+            break;
         }
-      } else {
-        currentPlaylist.playlistTag.push({
-          playlist: currentPlaylist.id,
-          state: state,
-          tag: id
-        });
       }
     }
-    this.playlist.post(currentPlaylist).subscribe(() => {
-      this.selected.playlistTag = currentPlaylist.playlistTag;
+    this.playlist.put(currentPlaylist).subscribe(() => {
+      this.selected.forbiddenTags = currentPlaylist.forbiddenTags;
+      this.selected.allowedTags = currentPlaylist.allowedTags;
+      this.selected.mandatoryTags = currentPlaylist.mandatoryTags;
     });
   }
 
   isTagSet(id: number, state: number): boolean {
     const currentPlaylist = this.selected;
-    if (currentPlaylist && currentPlaylist.playlistTag) {
-      return currentPlaylist.playlistTag.findIndex(tag => tag.tag === id && tag.state === state) > -1;
+    if (currentPlaylist) {
+      switch (state) {
+        case 0:
+          return currentPlaylist.forbiddenTags.findIndex(tag => tag.id === id) > -1;
+        case 1:
+          return currentPlaylist.allowedTags.findIndex(tag => tag.id === id) > -1;
+        case 2:
+          return currentPlaylist.mandatoryTags.findIndex(tag => tag.id === id) > -1;
+      }
     }
     return false;
   }
@@ -66,16 +100,39 @@ export class TagsComponent implements OnInit {
   selectPlaylist(change: MatSelectChange) {
     if (this.selected) {
       this.selected.current = false;
-      this.playlist.post(this.selected).subscribe();
+      this.playlist.put(this.selected).subscribe();
     }
     if (change.value) {
       change.value.current = true;
-      this.playlist.post(change.value).subscribe(() => {
+      this.playlist.put(change.value).subscribe(() => {
         this.selected = change.value;
       });
     } else {
       this.selected = null;
     }
+  }
+
+  editPlaylistDialog(newPlaylist: boolean): void {
+    const dialogRef = this.dialog.open(EditPlaylistComponent, {
+      width: '250px',
+      data: newPlaylist ? null : this.selected
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (newPlaylist && result != null) {
+        this.$playlist = this.playlist.getAll().pipe(tap((playlists: Playlist[]) => {
+          playlists.forEach((pl: Playlist) => {
+            if (pl.current) {
+              this.selected = pl;
+            }
+          });
+        }));
+      }
+    });
+  }
+
+  deletePlaylist(): void {
+
   }
 
 }
