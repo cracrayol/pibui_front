@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatInputModule, MatTooltipModule,
-  MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule
+  MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +40,7 @@ import { EditPlaylistComponent } from './components/editplaylist/editplaylist.co
     AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,
     MatSidenavModule, MatButtonModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatButtonModule,
     MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
-    FlexLayoutModule, MatMenuModule
+    FlexLayoutModule, MatMenuModule, MatCheckboxModule
   ],
   providers: [MovieService, SpinnerService, AuthService, PlaylistService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

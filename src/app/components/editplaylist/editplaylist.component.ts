@@ -21,14 +21,16 @@ export class EditPlaylistComponent implements AfterViewChecked {
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.playlistForm = this.fb.group({
-      name: ['', Validators.required]
+      name: ['', Validators.required],
+      public: ''
     });
 
     this.playlist = data;
 
     if (this.playlist) {
       this.playlistForm.setValue({
-        name: this.playlist.name
+        name: this.playlist.name,
+        public: this.playlist.public
       });
     }
   }
@@ -36,6 +38,8 @@ export class EditPlaylistComponent implements AfterViewChecked {
   save() {
     if (this.playlist) {
       this.playlist.name = this.playlistForm.value.name;
+      this.playlist.public = this.playlistForm.value.public;
+
       this.playlists.put(this.playlist).subscribe(() => {
         this.dialogRef.close();
         this.snack.open('Updated !!', '', {
@@ -44,8 +48,10 @@ export class EditPlaylistComponent implements AfterViewChecked {
       });
     } else {
       this.playlist = {
-        name: this.playlistForm.value.name
+        name: this.playlistForm.value.name,
+        public: this.playlistForm.value.public
       };
+
       this.playlists.post(this.playlist).subscribe(result => {
         this.dialogRef.close(result);
         this.snack.open('Created !!', '', {

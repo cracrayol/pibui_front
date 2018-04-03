@@ -1,7 +1,10 @@
 <form [formGroup]="playlistForm">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Playlist name" formControlName="name">
-  </mat-form-field>
+  <div fxLayout="column" fxLayoutAlign="center">
+    <mat-form-field>
+      <input matInput placeholder="Playlist name" formControlName="name">
+    </mat-form-field>
+    <mat-checkbox formControlName="public" i18n>Playlist is Public</mat-checkbox>
+  </div>
 </form>
 
 <mat-dialog-actions>
