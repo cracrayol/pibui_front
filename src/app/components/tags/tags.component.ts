@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { MatSelectChange, MatDialog } from '@angular/material';
 import { Tag } from '../../model/tag';
 import { EditPlaylistComponent } from '../editplaylist/editplaylist.component';
+import { ConfirmDialogComponent } from '../confirmDialog/confirmDialog.component';
 
 @Component({
   selector: 'pbi-tags',
@@ -132,7 +133,17 @@ export class TagsComponent implements OnInit {
   }
 
   deletePlaylist(): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '300px',
+      data: 'Delete playlist ?'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      this.playlist.delete(this.selected).subscribe(_ => {
+        this.selected = null;
+        this.$playlist = this.playlist.getAll();
+      });
+    });
   }
 
 }

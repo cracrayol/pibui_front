@@ -28,4 +28,8 @@ export class PlaylistService {
   public post(playlist: Playlist): Observable<Playlist> {
     return this.http.post<Playlist>(environment.apiAddr + '/playlist', playlist);
   }
+
+  public delete(playlist: Playlist): Observable<Playlist> {
+    return this.http.delete<Playlist>(environment.apiAddr + '/playlist/' + playlist.id);
+  }
 }
