@@ -14,8 +14,6 @@ import { SearchComponent } from './components/search/search.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TagsComponent } from './components/tags/tags.component';
 import { IndexComponent } from './containers/index/index.component';
-import { SpinnerService } from './services/spinner.service';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NavBarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -32,7 +30,6 @@ import { ConfirmDialogComponent } from './components/confirmDialog/confirmDialog
     SearchComponent,
     TagsComponent,
     IndexComponent,
-    SpinnerComponent,
     NavBarComponent,
     LoginComponent,
     EditPlaylistComponent,
@@ -44,7 +41,7 @@ import { ConfirmDialogComponent } from './components/confirmDialog/confirmDialog
     MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
     FlexLayoutModule, MatMenuModule, MatCheckboxModule
   ],
-  providers: [MovieService, SpinnerService, AuthService, PlaylistService,
+  providers: [MovieService, AuthService, PlaylistService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CredentialInterceptor, multi: true }],
   bootstrap: [AppComponent],

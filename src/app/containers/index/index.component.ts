@@ -7,7 +7,6 @@ import { MovieService } from '../../services/movie.service';
 import { Title } from '@angular/platform-browser';
 import * as yt from 'youtube-player';
 import { ParamMap } from '@angular/router/src/shared';
-import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'pbi-index',
@@ -33,7 +32,7 @@ export class IndexComponent implements AfterViewInit {
   }];
 
   constructor(private movieService: MovieService, private title: Title, private location: Location,
-    private route: ActivatedRoute, private spinner: SpinnerService) {
+    private route: ActivatedRoute) {
   }
 
   ngAfterViewInit() {
@@ -74,13 +73,11 @@ export class IndexComponent implements AfterViewInit {
   }
 
   playNextVideo(id: number = -1) {
-    this.spinner.start();
     this.movieService.get(id).subscribe(
       movie => {
         this.movie = movie;
         this.player.loadVideoById(movie.linkId);
         this.player.playVideo().then(() => {
-          this.spinner.stop();
         });
 
         this.movieTitle = movie.author.name + ' - ' + movie.title;
