@@ -24,7 +24,7 @@ export class TagsComponent implements OnInit {
   ngOnInit() {
     this.$playlist = this.playlist.getAll().pipe(tap((playlists: Playlist[]) => {
       playlists.forEach((pl: Playlist) => {
-        if (pl.current) {
+        if (this.auth.getUser().currentPlaylistId && this.auth.getUser().currentPlaylistId === pl.id) {
           this.selected = pl;
         }
       });
@@ -99,18 +99,13 @@ export class TagsComponent implements OnInit {
   }
 
   selectPlaylist(change: MatSelectChange) {
-    if (this.selected) {
-      this.selected.current = false;
-      this.playlist.put(this.selected).subscribe();
-    }
     if (change.value) {
-      change.value.current = true;
-      this.playlist.put(change.value).subscribe(() => {
-        this.selected = change.value;
-      });
+      this.auth.getUser().currentPlaylistId = change.value.id;
+      this.selected = change.value;
     } else {
-      this.selected = null;
+      this.auth.getUser().currentPlaylistId = null;
     }
+    this.auth.saveUser();
   }
 
   editPlaylistDialog(newPlaylist: boolean): void {
@@ -123,7 +118,7 @@ export class TagsComponent implements OnInit {
       if (newPlaylist && result != null) {
         this.$playlist = this.playlist.getAll().pipe(tap((playlists: Playlist[]) => {
           playlists.forEach((pl: Playlist) => {
-            if (pl.current) {
+            if (this.auth.getUser().currentPlaylistId && this.auth.getUser().currentPlaylistId === pl.id) {
               this.selected = pl;
             }
           });

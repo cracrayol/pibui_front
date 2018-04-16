@@ -1,9 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { shareReplay, tap } from 'rxjs/operators';
-import { User } from '../model/user';
 import { environment } from '../../environments/environment';
-import * as moment from 'moment';
 import { Observable } from 'rxjs/Observable';
 import { Playlist } from '../model/playlist';
 

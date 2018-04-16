@@ -23,6 +23,7 @@ import { PlaylistService } from './services/playlist.service';
 import { CredentialInterceptor } from './interceptors/credential.interceptor';
 import { EditPlaylistComponent } from './components/editplaylist/editplaylist.component';
 import { ConfirmDialogComponent } from './components/confirmDialog/confirmDialog.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { ConfirmDialogComponent } from './components/confirmDialog/confirmDialog
     MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
     FlexLayoutModule, MatMenuModule, MatCheckboxModule
   ],
-  providers: [MovieService, AuthService, PlaylistService,
+  providers: [MovieService, AuthService, PlaylistService, UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CredentialInterceptor, multi: true }],
   bootstrap: [AppComponent],

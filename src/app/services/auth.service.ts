@@ -5,14 +5,14 @@ import { User } from '../model/user';
 import { environment } from '../../environments/environment';
 import * as moment from 'moment';
 import { Observable } from 'rxjs/Observable';
-import { PlaylistService } from './playlist.service';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {
 
   private user: User;
 
-  constructor(private http: HttpClient, private playlist: PlaylistService) {
+  constructor(private http: HttpClient, private userService: UserService) {
   }
 
   login(email: string, password: string): Observable<User> {
@@ -62,5 +62,10 @@ export class AuthService {
       this.user = JSON.parse(localStorage.getItem('user'));
     }
     return this.user;
+  }
+
+  saveUser() {
+    localStorage.setItem('user', JSON.stringify(this.user));
+    this.userService.put(this.user).subscribe();
   }
 }
