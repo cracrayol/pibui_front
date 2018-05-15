@@ -4,10 +4,12 @@ import { shareReplay, tap, map } from 'rxjs/operators';
 import { User } from '../model/user';
 import { environment } from '../../environments/environment';
 import * as moment from 'moment';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { UserService } from './user.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
   private user: User;

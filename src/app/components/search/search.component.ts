@@ -3,8 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { debounceTime, tap } from 'rxjs/operators';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { Observable } from 'rxjs/Observable';
+import { Observable, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'pbi-search',
@@ -17,7 +16,7 @@ export class SearchComponent implements AfterViewInit {
   $data: Observable<any>;
   showLatest = false;
   searching = false;
-  @ViewChild('searchValue') searchField: ElementRef;
+  @ViewChild('searchValue') searchField: ElementRef<HTMLInputElement>;
   @Input() selectionIcon: string;
   @Output() itemSelected = new EventEmitter<number>();
 

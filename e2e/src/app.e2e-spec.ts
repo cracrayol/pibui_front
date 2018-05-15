@@ -1,10 +1,10 @@
-import { PibuiPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('pibui App', () => {
-  let page: PibuiPage;
+describe('workspace-project App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new PibuiPage();
+    page = new AppPage();
   });
 
   it('should display welcome message', () => {

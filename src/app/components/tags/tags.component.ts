@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Playlist } from '../../model/playlist';
 import { PlaylistService } from '../../services/playlist.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { MatSelectChange, MatDialog } from '@angular/material';

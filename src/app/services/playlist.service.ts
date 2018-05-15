@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Playlist } from '../model/playlist';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PlaylistService {
 
   constructor(private http: HttpClient) {
