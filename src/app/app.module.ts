@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SearchComponent } from './components/search/search.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TagsComponent } from './components/tags/tags.component';
-import { IndexComponent } from './containers/index/index.component';
+import { MainPageComponent } from './containers/mainPage/mainPage.component';
 import { NavBarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +26,7 @@ import { ConfirmDialogComponent } from './components/confirmDialog/confirmDialog
     AppComponent,
     SearchComponent,
     TagsComponent,
-    IndexComponent,
+    MainPageComponent,
     NavBarComponent,
     LoginComponent,
     EditPlaylistComponent,

@@ -10,9 +10,9 @@ import { ParamMap } from '@angular/router/src/shared';
 
 @Component({
   selector: 'pbi-index',
-  templateUrl: './index.component.html'
+  templateUrl: './mainPage.component.html'
 })
-export class IndexComponent implements AfterViewInit {
+export class MainPageComponent implements AfterViewInit {
 
   @ViewChild('searchpanel') searchPanel: MatSidenav;
   @ViewChild(SearchComponent) searchCmp: SearchComponent;
