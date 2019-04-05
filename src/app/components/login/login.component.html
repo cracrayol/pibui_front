@@ -3,13 +3,15 @@
     <p i18n>
       In order to connect, please enter your email and password.
     </p>
-    <form [formGroup]="loginForm">
-      <mat-form-field>
-        <input matInput placeholder="Email" formControlName="email">
+    <form [formGroup]="loginForm" fxLayout="column">
+      <mat-form-field fxFlex="1" appearance="standard">
+        <mat-label i18n>Email</mat-label>
+        <input matInput formControlName="email">
       </mat-form-field>
       <br>
-      <mat-form-field>
-        <input matInput placeholder="Password" type="password" formControlName="password">
+      <mat-form-field fxFlex="1" appearance="standard">
+          <mat-label i18n>Password</mat-label>
+        <input matInput type="password" formControlName="password">
       </mat-form-field>
     </form>
   </mat-tab>
@@ -17,23 +19,26 @@
     <p i18n>
       In order to connect, please enter your email and password.
     </p>
-    <form [formGroup]="registerForm">
-      <mat-form-field>
-        <input matInput placeholder="Email" formControlName="email">
+    <form [formGroup]="registerForm" fxLayout="column">
+      <mat-form-field fxFlex="1" appearance="standard">
+          <mat-label i18n>Email</mat-label>
+        <input matInput formControlName="email">
       </mat-form-field>
       <br>
-      <mat-form-field>
-        <input matInput placeholder="Password" type="password" formControlName="password">
+      <mat-form-field fxFlex="1" appearance="standard">
+          <mat-label i18n>Password</mat-label>
+        <input matInput type="password" formControlName="password">
       </mat-form-field>
       <br>
-      <mat-form-field>
-        <input matInput placeholder="Repeat password" type="password" formControlName="passwordCheck">
+      <mat-form-field fxFlex="1" appearance="standard">
+          <mat-label i18n>Repeat password</mat-label>
+        <input matInput type="password" formControlName="passwordCheck">
       </mat-form-field>
     </form>
   </mat-tab>
 </mat-tab-group>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close i18n>Cancel</button>
-  <button mat-button (click)="login()" i18n *ngIf="loginTab.isActive">Login</button>
-  <button mat-button (click)="register()" i18n *ngIf="registerTab.isActive">Register</button>
+  <button mat-raised-button mat-dialog-close i18n>Cancel</button>
+  <button mat-raised-button color="primary" (click)="login()" i18n *ngIf="loginTab.isActive">Login</button>
+  <button mat-raised-buttonn color="primary" (click)="register()" i18n *ngIf="registerTab.isActive">Register</button>
 </mat-dialog-actions>

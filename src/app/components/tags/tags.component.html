@@ -1,15 +1,15 @@
 <mat-form-field style="width:80%;padding-left:3%; margin-top: 8px" *ngIf="auth.isLoggedIn()">
-  <mat-select placeholder="Playlist" [value]="selected" (selectionChange)="selectPlaylist($event)">
-    <mat-option>None</mat-option>
+  <mat-select i18n-placeholder placeholder="Playlist" [value]="selected" (selectionChange)="selectPlaylist($event)">
+    <mat-option i18n>None</mat-option>
     <mat-option *ngFor="let pl of $playlist | async" [value]="pl">
       {{ pl.name }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 <mat-menu #appMenu="matMenu">
-  <button mat-menu-item (click)="editPlaylistDialog(true)">Add</button>
-  <button mat-menu-item (click)="editPlaylistDialog(false)" *ngIf="selected">Edit</button>
-  <button mat-menu-item (click)="deletePlaylist()" *ngIf="selected">Remove</button>
+  <button mat-menu-item (click)="editPlaylistDialog(true)" i18n>Create</button>
+  <button mat-menu-item (click)="editPlaylistDialog(false)" *ngIf="selected" i18n>Edit</button>
+  <button mat-menu-item (click)="deletePlaylist()" *ngIf="selected" i18n>Remove</button>
 </mat-menu>
 
 <button mat-icon-button [matMenuTriggerFor]="appMenu" *ngIf="auth.isLoggedIn()">

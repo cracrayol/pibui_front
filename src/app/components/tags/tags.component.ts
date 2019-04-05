@@ -110,7 +110,7 @@ export class TagsComponent implements OnInit {
 
   editPlaylistDialog(newPlaylist: boolean): void {
     const dialogRef = this.dialog.open(EditPlaylistComponent, {
-      width: '300px',
+      width: '400px',
       data: newPlaylist ? null : this.selected
     });
 

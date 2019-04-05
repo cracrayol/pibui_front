@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar, MatDialogRef } from '@angular/material';
-import { PlaylistService } from '../../services/playlist.service';
 
 @Component({
   selector: 'pbi-login',
@@ -16,8 +15,7 @@ export class LoginComponent implements AfterViewChecked {
   registerForm: FormGroup;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
-    private snack: MatSnackBar, public dialogRef: MatDialogRef<LoginComponent>, private playlists: PlaylistService) {
-
+    private snack: MatSnackBar, public dialogRef: MatDialogRef<LoginComponent>) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
