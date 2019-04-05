@@ -9,8 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "i18n": "ng-xi18n --i18nFormat=xlf --outFile=src/locale/messages.xlf",
-    "build-prod-fr": "ng build --i18n-file=src/locale/messages.fr.xlf --i18n-format=xlf --i18n-locale=fr"
+    "i18n": "ng xi18n --i18nFormat=xlf --outFile=locale/messages.xlf",
+    "build-prod-en": "ng build --prod",
+    "build-prod-fr": "ng build --i18nFile=src/locale/messages.fr.xlf --i18nFormat=xlf --i18nLocale=fr --prod"
   },
   "private": true,
   "dependencies": {
