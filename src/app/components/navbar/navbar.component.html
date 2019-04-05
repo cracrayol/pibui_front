@@ -1,6 +1,6 @@
 <mat-toolbar class="navbar navbar-shadow" color="primary">
   PIBUI&nbsp;&nbsp;
-  <a mat-button href="https://forum.pibui.org" target="_blank">Forum</a>
+  <a mat-button href="https://forum.pibui.org" target="_blank" i18n>Forum</a>
   <span class="spacer"></span>
   <button mat-icon-button (click)="button.click()" *ngFor="let button of buttons">
     <mat-icon>{{ button.icon }}</mat-icon>
@@ -14,7 +14,7 @@
   </button>
 </mat-toolbar>
 <mat-menu #appMenu="matMenu">
-  <button mat-menu-item disabled>
+  <button mat-menu-item (click)="openSettings()">
     <mat-icon>settings</mat-icon>&nbsp;
     <span i18n>Settings</span>
   </button>

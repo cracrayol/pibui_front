@@ -1,0 +1,36 @@
+<mat-tab-group [dynamicHeight]="true">
+    <mat-tab i18n-label label="Change Password" #changePasswordTab>
+      <p i18n>
+        You can change your password here.
+      </p>
+      <form [formGroup]="passwordForm" fxLayout="column">
+        <mat-form-field fxFlex="1" appearance="standard">
+          <mat-label i18n>Current password</mat-label>
+          <input matInput type="password" formControlName="currentPassword">
+        </mat-form-field>
+        <br>
+        <mat-form-field fxFlex="1" appearance="standard">
+            <mat-label i18n>New Password</mat-label>
+          <input matInput type="password" formControlName="newPassword">
+        </mat-form-field>
+        <br>
+        <mat-form-field fxFlex="1" appearance="standard">
+            <mat-label i18n>Repeat password</mat-label>
+            <input matInput type="password" formControlName="newPasswordCheck">
+        </mat-form-field>
+      </form>
+    </mat-tab>
+    <mat-tab i18n-label label="Delete Account" #deletionTab>
+      <p i18n>
+        You can choose to delete your account. By deleting your account, all your informations will be deleted and will not be recoverable.
+      </p>
+      <form [formGroup]="deletionForm" fxLayout="column">
+          <mat-checkbox fxFlex="1" color="warn" formControlName="validDeletion" #confirmDelete i18n>I confirm the deletion of my account!</mat-checkbox>
+        </form>
+    </mat-tab>
+  </mat-tab-group>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close i18n>Cancel</button>
+    <button mat-raised-button color="primary" i18n *ngIf="changePasswordTab.isActive" (click)="changePassword()">Change password</button>
+    <button mat-raised-button color="warn" i18n *ngIf="deletionTab.isActive" [disabled]="!confirmDelete.checked" (click)="deleteAccount()">Delete</button>
+  </mat-dialog-actions>
