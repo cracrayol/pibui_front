@@ -15,4 +15,8 @@ export class UserService {
   public put(user: User): Observable<User> {
     return this.http.put<User>(environment.apiAddr + '/user/' + user.id, user);
   }
+
+  public delete(user: User): Observable<User> {
+    return this.http.delete<User>(environment.apiAddr + '/user/' + user.id);
+  }
 }
