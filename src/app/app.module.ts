@@ -21,6 +21,7 @@ import { CredentialInterceptor } from './interceptors/credential.interceptor';
 import { EditPlaylistComponent } from './components/editplaylist/editplaylist.component';
 import { ConfirmDialogComponent } from './components/confirmDialog/confirmDialog.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     LoginComponent,
     EditPlaylistComponent,
     ConfirmDialogComponent,
-    SettingsComponent
+    SettingsComponent,
+    LegalNoticeComponent
   ],
   imports: [
     AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,
@@ -43,6 +45,6 @@ import { SettingsComponent } from './components/settings/settings.component';
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CredentialInterceptor, multi: true }],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent, EditPlaylistComponent, ConfirmDialogComponent, SettingsComponent]
+  entryComponents: [LoginComponent, EditPlaylistComponent, ConfirmDialogComponent, SettingsComponent, LegalNoticeComponent]
 })
 export class AppModule { }

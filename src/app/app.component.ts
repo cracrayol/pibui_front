@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'pbi-root',
@@ -9,5 +11,11 @@ export class AppComponent {
 
   currentDate = new Date();
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
+
+  openLegalNotice() {
+    this.dialog.open(LegalNoticeComponent, {
+      width: '800px',
+    });
+  }
 }
