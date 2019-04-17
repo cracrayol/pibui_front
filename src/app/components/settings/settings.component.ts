@@ -33,8 +33,17 @@ export class SettingsComponent implements AfterViewChecked, OnInit {
     const val = this.passwordForm.value;
     const user = this.auth.getUser();
 
-    if (user!== null && val.currentPassword && val.newPassword && val.newPasswordCheck && val.newPassword === val.newPasswordCheck) {
-      // TODO changing password
+    if (user !== null && val.currentPassword && val.newPassword && val.newPasswordCheck && val.newPassword === val.newPasswordCheck) {
+      this.userService.changePassword(user, val.currentPassword, val.newPassword).subscribe(() => {
+        this.snack.open('Password updated', null, {
+          duration: 5000
+        });
+      }, (error) => {
+        // TODO Better error handling
+        this.snack.open('Error during changing password !!', null, {
+          duration: 5000
+        });
+      })
     }
   }
 
