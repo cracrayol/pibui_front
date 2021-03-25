@@ -36,12 +36,12 @@ export class SettingsComponent implements AfterViewChecked, OnInit {
 
     if (user !== null && val.currentPassword && val.newPassword && val.newPasswordCheck && val.newPassword === val.newPasswordCheck) {
       this.userService.changePassword(user, val.currentPassword, val.newPassword).subscribe(() => {
-        this.snack.open('Password updated', null, {
+        this.snack.open($localize`Password updated`, null, {
           duration: 5000
         });
       }, (error) => {
         // TODO Better error handling
-        this.snack.open('Error during changing password !!', null, {
+        this.snack.open($localize`Error during changing password !!`, null, {
           duration: 5000
         });
       })
@@ -54,12 +54,12 @@ export class SettingsComponent implements AfterViewChecked, OnInit {
       this.userService.delete(user).subscribe(() => {
         this.auth.logout();
         this.dialogRef.close();
-        this.snack.open('Account deleted !!', null, {
+        this.snack.open($localize`Account deleted !!`, null, {
           duration: 5000
         });
       }, (error) => {
         // TODO Better error handling
-        this.snack.open('Error during deletion !!', null, {
+        this.snack.open($localize`Error during deletion !!`, null, {
           duration: 5000
         });
       })

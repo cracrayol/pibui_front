@@ -131,7 +131,7 @@ export class TagsComponent implements OnInit {
   deletePlaylist(): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
-      data: 'Delete playlist ?'
+      data: $localize`Delete playlist ?`
     });
 
     dialogRef.afterClosed().subscribe(result => {

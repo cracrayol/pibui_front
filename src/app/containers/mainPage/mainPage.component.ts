@@ -18,7 +18,7 @@ export class MainPageComponent implements AfterViewInit, OnInit {
   @ViewChild(YouTubePlayer, { static: true }) player: YouTubePlayer;
 
   movie: any;
-  movieTitle = 'Loading';
+  movieTitle = $localize`Loading`;
   movieSubtitle: string;
   cdJapanLink: string;
   isMobile = window.innerWidth < 1024;

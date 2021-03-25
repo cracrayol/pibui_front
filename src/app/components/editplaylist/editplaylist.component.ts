@@ -43,7 +43,7 @@ export class EditPlaylistComponent implements AfterViewChecked {
 
       this.playlists.put(this.playlist).subscribe(() => {
         this.dialogRef.close();
-        this.snack.open('Updated !!', '', {
+        this.snack.open($localize`Updated !!`, '', {
           duration: 5000
         });
       });
@@ -55,7 +55,7 @@ export class EditPlaylistComponent implements AfterViewChecked {
 
       this.playlists.post(this.playlist).subscribe(result => {
         this.dialogRef.close(result);
-        this.snack.open('Created !!', '', {
+        this.snack.open($localize`Created !!`, '', {
           duration: 5000
         });
       });

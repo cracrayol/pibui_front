@@ -37,7 +37,7 @@ export class LoginComponent implements AfterViewChecked {
         .subscribe(
         () => {
           this.dialogRef.close();
-          this.snack.open('Logged in !!', '', {
+          this.snack.open($localize`Logged in !!`, '', {
             duration: 5000
           });
         }
@@ -53,7 +53,7 @@ export class LoginComponent implements AfterViewChecked {
         .subscribe(
         () => {
           this.dialogRef.close();
-          this.snack.open('Registered !!', '', {
+          this.snack.open($localize`Registered !!`, '', {
             duration: 5000
           });
         }

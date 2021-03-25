@@ -28,7 +28,7 @@ export class NavBarComponent {
 
   logout() {
     this.auth.logout();
-    this.snack.open('Logged out !!', null, {
+    this.snack.open($localize`Logged out !!`, null, {
       duration: 5000
     });
   }
