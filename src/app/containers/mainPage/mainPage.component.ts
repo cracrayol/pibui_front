@@ -1,5 +1,5 @@
 import { Component, ViewChild, AfterViewInit, HostListener } from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import { SearchComponent } from '../../components/search/search.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'pbi-root',

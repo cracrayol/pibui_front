@@ -2,7 +2,8 @@ import { Component, AfterViewChecked, ChangeDetectorRef, Inject } from '@angular
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PlaylistService } from '../../services/playlist.service';
 import { Playlist } from '../../model/playlist';
 
