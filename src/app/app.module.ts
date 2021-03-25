@@ -32,6 +32,7 @@ import { EditPlaylistComponent } from './components/editplaylist/editplaylist.co
 import { ConfirmDialogComponent } from './components/confirmDialog/confirmDialog.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { LegalNoticeComponent } from './components/legal-notice/legal-notice.com
     AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,
     MatSidenavModule, MatButtonModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatButtonModule,
     MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
-    FlexLayoutModule, MatMenuModule, MatCheckboxModule
+    FlexLayoutModule, MatMenuModule, MatCheckboxModule, YouTubePlayerModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: CredentialInterceptor, multi: true }],

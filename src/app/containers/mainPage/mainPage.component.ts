@@ -1,27 +1,34 @@
-import { Component, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, HostListener, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { SearchComponent } from '../../components/search/search.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { Title } from '@angular/platform-browser';
-import * as yt from 'youtube-player';
+import { YouTubePlayer } from '@angular/youtube-player';
 
 @Component({
   selector: 'pbi-index',
   templateUrl: './mainPage.component.html'
 })
-export class MainPageComponent implements AfterViewInit {
+export class MainPageComponent implements AfterViewInit, OnInit {
 
   @ViewChild('searchpanel', { static: true }) searchPanel: MatSidenav;
   @ViewChild(SearchComponent, { static: true }) searchCmp: SearchComponent;
+  @ViewChild(YouTubePlayer, { static: true }) player: YouTubePlayer;
 
   movie: any;
-  player: any;
   movieTitle = 'Loading';
   movieSubtitle: string;
   cdJapanLink: string;
   isMobile = window.innerWidth < 1024;
+  apiLoaded = false;
+  playerVars: YT.PlayerVars = {
+    rel: 0,
+    showinfo: 0,
+    modestbranding: 1,
+    iv_load_policy: 3
+  }
 
   headerButtons = [{
     icon: 'search',
@@ -34,28 +41,16 @@ export class MainPageComponent implements AfterViewInit {
     private route: ActivatedRoute) {
   }
 
+  ngOnInit() {
+    if (!this.apiLoaded) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(tag);
+      this.apiLoaded = true;
+    }
+  }
+
   ngAfterViewInit() {
-    this.player = yt('ytplayer', {
-      playerVars: {
-        rel: 0,
-        showinfo: 0,
-        modestbranding: 1,
-        iv_load_policy: 3,
-        suggestedQuality: 'default'
-      }
-    });
-
-    this.player.on('stateChange', (event) => {
-      if (event.data === 0) {
-        this.playNextVideo();
-      }
-    });
-
-    this.player.on('error', (event) => {
-      // TODO log error
-      this.playNextVideo();
-    });
-
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (params.has('id')) {
         this.playNextVideo(parseInt(params.get('id'), 10));
@@ -63,6 +58,17 @@ export class MainPageComponent implements AfterViewInit {
         this.playNextVideo();
       }
     });
+  }
+
+  onStateChange(event: YT.OnStateChangeEvent) {
+    if (event.data === 0) {
+      this.playNextVideo();
+    }
+  }
+
+  onError(event: YT.OnErrorEvent) {
+    // TODO log error
+    this.playNextVideo();
   }
 
   playSearchedItem(id: number) {
@@ -75,9 +81,8 @@ export class MainPageComponent implements AfterViewInit {
     this.movieService.get(id).subscribe(
       movie => {
         this.movie = movie;
-        this.player.loadVideoById(movie.linkId);
-        this.player.playVideo().then(() => {
-        });
+        this.player.videoId = movie.linkId;
+        this.player.playVideo();
 
         this.movieTitle = movie.author.name + ' - ' + movie.title;
         this.movieSubtitle = '';
