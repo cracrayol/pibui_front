@@ -1,12 +1,11 @@
 import { Component, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { SearchComponent } from '../../components/search/search.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { Title } from '@angular/platform-browser';
 import * as yt from 'youtube-player';
-import { ParamMap } from '@angular/router/src/shared';
 
 @Component({
   selector: 'pbi-index',
@@ -14,8 +13,8 @@ import { ParamMap } from '@angular/router/src/shared';
 })
 export class MainPageComponent implements AfterViewInit {
 
-  @ViewChild('searchpanel') searchPanel: MatSidenav;
-  @ViewChild(SearchComponent) searchCmp: SearchComponent;
+  @ViewChild('searchpanel', { static: true }) searchPanel: MatSidenav;
+  @ViewChild(SearchComponent, { static: true }) searchCmp: SearchComponent;
 
   movie: any;
   player: any;

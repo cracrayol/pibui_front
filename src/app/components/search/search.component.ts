@@ -16,7 +16,7 @@ export class SearchComponent implements AfterViewInit {
   $data: Observable<any>;
   showLatest = false;
   searching = false;
-  @ViewChild('searchValue') searchField: ElementRef<HTMLInputElement>;
+  @ViewChild('searchValue', { static: true }) searchField: ElementRef<HTMLInputElement>;
   @Input() selectionIcon: string;
   @Output() itemSelected = new EventEmitter<number>();
 
