@@ -1,0 +1,28 @@
+<h1 mat-dialog-title *ngIf="movie === null; else editMovie" i18n>Add movie</h1>
+<ng-template #editMovie><h1 mat-dialog-title i18n>Edit movie</h1></ng-template>
+<form [formGroup]="movieForm">
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
+    <mat-form-field fxFlex="1 1 50%">
+      <input matInput i18n-placeholder placeholder="Title" formControlName="title">
+    </mat-form-field>
+    <mat-form-field fxFlex="1 1 50%">
+      <input matInput i18n-placeholder placeholder="Subtitle" formControlName="subtitle">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
+    <mat-form-field fxFlex="1 1 50%">
+      <input matInput i18n-placeholder placeholder="Author" formControlName="author">
+    </mat-form-field>
+    <mat-form-field fxFlex="1 1 50%">
+      <input matInput i18n-placeholder placeholder="Link ID" formControlName="linkId">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start">
+    <mat-checkbox formControlName="valid" i18n>The movie is valid/visible</mat-checkbox>
+  </div>
+</form>
+
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close i18n>Cancel</button>&nbsp;
+  <button mat-raised-button color="primary" (click)="save()" i18n>Save</button>
+</mat-dialog-actions>

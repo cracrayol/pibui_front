@@ -33,6 +33,8 @@ import { ConfirmDialogComponent } from './components/confirmDialog/confirmDialog
 import { SettingsComponent } from './components/settings/settings.component';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { MovieDialogComponent } from './components/moviedialog/moviedialog.component';
+import { AuthorDialogComponent } from './components/authordialog/authordialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     EditPlaylistComponent,
     ConfirmDialogComponent,
     SettingsComponent,
-    LegalNoticeComponent
+    LegalNoticeComponent,
+    MovieDialogComponent,
+    AuthorDialogComponent
   ],
   imports: [
     AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,

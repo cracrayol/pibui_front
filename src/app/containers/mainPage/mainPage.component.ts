@@ -6,6 +6,11 @@ import { Location } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { Title } from '@angular/platform-browser';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { AuthService } from 'src/app/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MovieDialogComponent } from 'src/app/components/moviedialog/moviedialog.component';
+import { Movie } from 'src/app/model/movie';
+import { AuthorDialogComponent } from 'src/app/components/authordialog/authordialog.component';
 
 @Component({
   selector: 'pbi-index',
@@ -17,8 +22,7 @@ export class MainPageComponent implements AfterViewInit, OnInit {
   @ViewChild(SearchComponent, { static: true }) searchCmp: SearchComponent;
   @ViewChild(YouTubePlayer, { static: true }) player: YouTubePlayer;
 
-  movie: any;
-  movieTitle = $localize`Loading`;
+  movie: Movie;
   movieSubtitle: string;
   cdJapanLink: string;
   isMobile = window.innerWidth < 1024;
@@ -38,10 +42,11 @@ export class MainPageComponent implements AfterViewInit, OnInit {
   }];
 
   constructor(private movieService: MovieService, private title: Title, private location: Location,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, public auth: AuthService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
+    // Load the Youtube API
     if (!this.apiLoaded) {
       const tag = document.createElement('script');
       tag.src = 'https://www.youtube.com/iframe_api';
@@ -51,6 +56,7 @@ export class MainPageComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
+    // Load a specific movie if there's an ID in the URL
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (params.has('id')) {
         this.playNextVideo(parseInt(params.get('id'), 10));
@@ -61,6 +67,7 @@ export class MainPageComponent implements AfterViewInit, OnInit {
   }
 
   onStateChange(event: YT.OnStateChangeEvent) {
+    // When video ends, play next one
     if (event.data === 0) {
       this.playNextVideo();
     }
@@ -77,6 +84,17 @@ export class MainPageComponent implements AfterViewInit, OnInit {
     scrollTo(0, 0);
   }
 
+  searchAuthor() {
+    this.searchPanel.open();
+    const search = '"' + this.movie.author.name + '"';
+    this.searchCmp.searchField.nativeElement.value = search;
+    this.searchCmp.search(search);
+  }
+
+  /**
+   * Load a movie from the given id. If id is -1, take a movie randomly, based on selected playlist.
+   * @param id Id of a movie
+   */
   playNextVideo(id: number = -1) {
     this.movieService.get(id).subscribe(
       movie => {
@@ -84,11 +102,9 @@ export class MainPageComponent implements AfterViewInit, OnInit {
         this.player.videoId = movie.linkId;
         this.player.playVideo();
 
-        this.movieTitle = movie.author.name + ' - ' + movie.title;
+        this.title.setTitle(movie.author.name + ' - ' + this.movie.title + ' - ' + 'Pibui');
+
         this.movieSubtitle = '';
-
-        this.title.setTitle(this.movieTitle + ' - ' + 'Pibui');
-
         if (movie.author.subname !== '' && movie.subtitle === '') {
           this.movieSubtitle = movie.author.subname + ' - ' + movie.title;
         } else if (movie.author.subname === '' && movie.subtitle !== '') {
@@ -101,6 +117,52 @@ export class MainPageComponent implements AfterViewInit, OnInit {
           this.location.go('/play/' + movie.id);
         }
       });
+  }
+
+  /**
+   * Open the "Edit movie" dialog for the current movie
+   */
+  editMovie() {
+    // Pause the movie (avoid problem if movie change during update)
+    this.player.pauseVideo();
+
+    const dialogRef = this.dialog.open(MovieDialogComponent, {
+      width: '800px',
+      data: this.movie
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        // If updated, then reload this movie
+        this.playNextVideo(this.movie.id);
+      } else {
+        // Else resume
+        this.player.playVideo();
+      }
+    });
+  }
+
+  /**
+   * Open the "Edit author" dialog for the author of the current movie
+   */
+   editAuthor() {
+    // Pause the movie (avoid problem if movie change during update)
+    this.player.pauseVideo();
+
+    const dialogRef = this.dialog.open(AuthorDialogComponent, {
+      width: '400px',
+      data: this.movie.author
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        // If updated, then reload this movie
+        this.playNextVideo(this.movie.id);
+      } else {
+        // Else resume
+        this.player.playVideo();
+      }
+    });
   }
 
   @HostListener('window:resize', ['$event'])

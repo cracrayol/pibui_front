@@ -15,4 +15,8 @@ export class MovieService {
     return this.http.get<Movie>(environment.apiAddr + '/movie/' + id);
   }
 
+  public put(movie: Movie): Observable<Movie> {
+    return this.http.put<Movie>(environment.apiAddr + '/movie/' + movie.id, movie);
+  }
+
 }

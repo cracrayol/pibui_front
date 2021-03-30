@@ -9,4 +9,5 @@ export interface Movie {
   linkId?: string;
   author?: Author;
   tags?: Tag[];
+  valid: boolean;
 }
