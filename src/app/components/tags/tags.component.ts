@@ -105,6 +105,7 @@ export class TagsComponent implements OnInit {
       this.selected = change.value;
     } else {
       this.auth.getUser().currentPlaylistId = null;
+      this.selected = null;
     }
     this.auth.saveUser();
   }
