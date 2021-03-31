@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { shareReplay, tap, map } from 'rxjs/operators';
 import { User } from '../model/user';
 import { environment } from '../../environments/environment';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
 
@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   private setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresIn, 'second');
+    const expiresAt = dayjs().add(authResult.expiresIn, 'second');
 
     localStorage.setItem('id_token', authResult.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
@@ -43,13 +43,13 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+    return dayjs().isBefore(this.getExpiration());
   }
 
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+    return dayjs(expiresAt);
   }
 
   getUser(): User {
