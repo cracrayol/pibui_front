@@ -15,4 +15,8 @@ export class AuthorService {
     return this.http.put<Author>(environment.apiAddr + '/author/' + author.id, author);
   }
 
+  public get(name: string): Observable<Author[]> {
+    return this.http.get<Author[]>(environment.apiAddr + '/author/search/' + name);
+  }
+
 }

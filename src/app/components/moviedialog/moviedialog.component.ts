@@ -6,6 +6,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Movie } from 'src/app/model/movie';
 import { MovieService } from 'src/app/services/movie.service';
+import { Author } from 'src/app/model/author';
+import { debounceTime, finalize, switchMap, tap } from 'rxjs/operators';
+import { AuthorService } from 'src/app/services/author.service';
 
 @Component({
   selector: 'pbi-moviedialog',
@@ -16,9 +19,11 @@ export class MovieDialogComponent {
 
   movieForm: FormGroup;
   movie: Movie;
+  filteredAuthors: Author[] = [];
+  isLoading = false;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
-    private snack: MatSnackBar, public dialogRef: MatDialogRef<MovieDialogComponent>, private movies: MovieService,
+    private snack: MatSnackBar, public dialogRef: MatDialogRef<MovieDialogComponent>, private movies: MovieService, private authors: AuthorService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.movieForm = this.fb.group({
@@ -29,13 +34,31 @@ export class MovieDialogComponent {
       valid: ''
     });
 
+    this.movieForm
+      .get('author')
+      .valueChanges
+      .pipe(
+        debounceTime(300),
+        tap(() => this.isLoading = true),
+        switchMap(value => {
+          if ((<string>value).length >= 3) {
+            return this.authors.get(value)
+              .pipe(
+                finalize(() => this.isLoading = false),
+              )
+          }
+          this.isLoading = false;
+          return [];
+        })
+      ).subscribe(authors => this.filteredAuthors = authors);
+
     this.movie = data;
 
     if (this.movie) {
       this.movieForm.setValue({
         title: this.movie.title,
         subtitle: this.movie.subtitle,
-        author: this.movie.author.name,
+        author: this.movie.author,
         linkId: this.movie.linkId,
         valid: this.movie.valid
       });
@@ -48,6 +71,12 @@ export class MovieDialogComponent {
       this.movie.subtitle = this.movieForm.value.subtitle;
       this.movie.linkId = this.movieForm.value.linkId;
       this.movie.valid = this.movieForm.value.valid;
+
+      if (typeof this.movieForm.value.author === 'string' || this.movieForm.value.author instanceof String) {
+        // TODO Create author
+      } else {
+        this.movie.author = this.movieForm.value.author;
+      }
 
       this.movies.put(this.movie).subscribe(() => {
         this.dialogRef.close(true);
@@ -68,6 +97,10 @@ export class MovieDialogComponent {
         });
       });
     }*/
+  }
+
+  displayAuthor(author: Author) {
+    if (author) { return author.name; }
   }
 
 }

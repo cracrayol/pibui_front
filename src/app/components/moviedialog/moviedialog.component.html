@@ -11,7 +11,7 @@
   </div>
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
     <mat-form-field fxFlex="1 1 50%">
-      <input matInput i18n-placeholder placeholder="Author" formControlName="author">
+      <input matInput i18n-placeholder placeholder="Author" formControlName="author" [matAutocomplete]="auto">
     </mat-form-field>
     <mat-form-field fxFlex="1 1 50%">
       <input matInput i18n-placeholder placeholder="Link ID" formControlName="linkId">
@@ -21,6 +21,17 @@
     <mat-checkbox formControlName="valid" i18n>The movie is valid/visible</mat-checkbox>
   </div>
 </form>
+
+<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAuthor">
+  <mat-option *ngIf="isLoading" class="is-loading">
+    <mat-spinner diameter="30"></mat-spinner>
+  </mat-option>
+  <ng-container *ngIf="!isLoading">
+    <mat-option *ngFor="let author of filteredAuthors" [value]="author">
+      <span>{{ author.name }}</span>
+    </mat-option>
+  </ng-container>
+</mat-autocomplete>
 
 <mat-dialog-actions>
   <button mat-raised-button mat-dialog-close i18n>Cancel</button>&nbsp;
