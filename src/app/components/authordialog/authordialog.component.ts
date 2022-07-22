@@ -1,5 +1,5 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -14,10 +14,10 @@ import { AuthorService } from 'src/app/services/author.service';
 })
 export class AuthorDialogComponent {
 
-  authorForm: FormGroup;
+  authorForm: UntypedFormGroup;
   author: Author;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
+  constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
     private snack: MatSnackBar, public dialogRef: MatDialogRef<AuthorDialogComponent>, private authors: AuthorService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 

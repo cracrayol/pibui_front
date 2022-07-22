@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -6,11 +6,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './legal-notice.component.html',
   styleUrls: ['./legal-notice.component.scss']
 })
-export class LegalNoticeComponent implements OnInit {
+export class LegalNoticeComponent {
 
   constructor(public dialogRef: MatDialogRef<LegalNoticeComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  ngOnInit() {
-  }
 
 }

@@ -2,7 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="fe6c32e3307924c773aaf001e1bc3d5910359f59" datatype="html">
+      <trans-unit id="7657641795821591142" datatype="html">
         <source>© cracrayol / 2012-<x id="INTERPOLATION" equiv-text="{{ currentDate | date:'yyyy'}}"/></source>
         <target>© cracrayol / 2012-<x id="INTERPOLATION" equiv-text="{{ currentDate | date:'yyyy'}}"/></target>
         <context-group purpose="location">
@@ -10,7 +10,7 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="76b8339d5b6a70b6871600727ac3a9510e59d26f" datatype="html">
+      <trans-unit id="4352526755847379280" datatype="html">
         <source>Source Code</source>
         <target>Code Source</target>
         <context-group purpose="location">
@@ -18,7 +18,7 @@
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+      <trans-unit id="4580988005648117665" datatype="html">
         <source>Search</source>
         <target>Rechercher</target>
         <context-group purpose="location">
@@ -26,7 +26,7 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="92b92f7d3c5981fab0c91745d72c2e07a780150a" datatype="html">
+      <trans-unit id="394728905915322561" datatype="html">
         <source>Movies newly added:</source>
         <target>Clips récemment ajoutés :</target>
         <context-group purpose="location">
@@ -34,7 +34,7 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d062683b7daa5c2a906cae1476771f87473aa8dd" datatype="html">
+      <trans-unit id="8162787379579842000" datatype="html">
         <source>Searching...</source>
         <target>Recherche...</target>
         <context-group purpose="location">
@@ -42,7 +42,7 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f3cf8c938d96b18e76d3be07feffb2d57dedc37f" datatype="html">
+      <trans-unit id="8436385934277401930" datatype="html">
         <source>Movies</source>
         <target>Clips</target>
         <context-group purpose="location">
@@ -50,7 +50,7 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="47546e45bbb476baaaad38244db444c427ddc502" datatype="html">
+      <trans-unit id="1823843876735462104" datatype="html">
         <source>Playlists</source>
         <target>Listes</target>
         <context-group purpose="location">
@@ -58,7 +58,7 @@
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2ee1ab30a4346645feecb8f062484fb68de3d1cf" datatype="html">
+      <trans-unit id="5123397280103607848" datatype="html">
         <source>Add playlist</source>
         <target>Ajouter une liste</target>
         <context-group purpose="location">
@@ -66,7 +66,7 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="c633452808dcc435924718182ff72332a281d75b" datatype="html">
+      <trans-unit id="8473179749546646244" datatype="html">
         <source>Edit playlist</source>
         <target>Modifier la liste</target>
         <context-group purpose="location">
@@ -74,7 +74,7 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+      <trans-unit id="8953033926734869941" datatype="html">
         <source>Name</source>
         <target>Nom</target>
         <context-group purpose="location">
@@ -82,7 +82,7 @@
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="af43a7531419ec8a295d714d762e0cd460d0afa2" datatype="html">
+      <trans-unit id="7281336317873334394" datatype="html">
         <source>The playlist is public</source>
         <target>!</target>Las liste est publique
         <context-group purpose="location">
@@ -90,7 +90,7 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+      <trans-unit id="2159130950882492111" datatype="html">
         <source>Cancel</source>
         <target>Annuler</target>
         <context-group purpose="location">
@@ -110,7 +110,7 @@
           <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
+      <trans-unit id="3768927257183755959" datatype="html">
         <source>Save</source>
         <target>Sauvegarder</target>
         <context-group purpose="location">
@@ -118,7 +118,7 @@
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7e6c975ebea8b5f8b120905ca7acf9f8edf59d8e" datatype="html">
+      <trans-unit id="8998179362936748717" datatype="html">
         <source>OK</source>
         <target>OK</target>
         <context-group purpose="location">
@@ -126,7 +126,7 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a2f14a73f7a6e94479f67423cc51102da8d6f524" datatype="html">
+      <trans-unit id="6252070156626006029" datatype="html">
         <source>None</source>
         <target>Aucune</target>
         <context-group purpose="location">
@@ -134,7 +134,7 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="da6a43edf755c2aba8d6dab1cd2e6edf1d6ecf70" datatype="html">
+      <trans-unit id="5344791164491756179" datatype="html">
         <source>Playlist</source>
         <target>Listes</target>
         <context-group purpose="location">
@@ -142,7 +142,7 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="70a67e04629f6d412db0a12d51820b480788d795" datatype="html">
+      <trans-unit id="5674286808255988565" datatype="html">
         <source>Create</source>
         <target>Créer</target>
         <context-group purpose="location">
@@ -150,7 +150,7 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+      <trans-unit id="7585826646011739428" datatype="html">
         <source>Edit</source>
         <target>Modifier</target>
         <context-group purpose="location">
@@ -158,7 +158,7 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="019d4bd6a5690f0cfa0ecf346a4e6bf7f0d8debb" datatype="html">
+      <trans-unit id="4814285799071780083" datatype="html">
         <source>Remove</source>
         <target>Supprimer</target>
         <context-group purpose="location">
@@ -166,7 +166,7 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f732c304c7433e5a83ffcd862c3dce709a0f4982" datatype="html">
+      <trans-unit id="3885497195825665706" datatype="html">
         <source>Next</source>
         <target>Suivant</target>
         <context-group purpose="location">
@@ -174,7 +174,7 @@
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="cafc87479686947e2590b9f588a88040aeaf660b" datatype="html">
+      <trans-unit id="7886570921510760899" datatype="html">
         <source>Tags</source>
         <target>Mots-clés</target>
         <context-group purpose="location">
@@ -182,7 +182,7 @@
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a4e7ef5d9b5a4c48bd1bf7e86a85d650527128db" datatype="html">
+      <trans-unit id="9190718060732835172" datatype="html">
         <source>
       In order to connect, please enter your email and password.
     </source>
@@ -196,7 +196,7 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+      <trans-unit id="4768749765465246664" datatype="html">
         <source>Email</source>
         <target>Email</target>
         <context-group purpose="location">
@@ -208,7 +208,7 @@
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+      <trans-unit id="1431416938026210429" datatype="html">
         <source>Password</source>
         <target>Mot de passe</target>
         <context-group purpose="location">
@@ -220,7 +220,7 @@
           <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+      <trans-unit id="2454050363478003966" datatype="html">
         <source>Login</source>
         <target>Connexion</target>
         <context-group purpose="location">
@@ -232,7 +232,7 @@
           <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d78d6fc5e90c093605d4e4f166bf074cdef1acc8" datatype="html">
+      <trans-unit id="5373727393387841282" datatype="html">
         <source>Repeat password</source>
         <target>Saisir à nouveau le mot de passe</target>
         <context-group purpose="location">
@@ -244,7 +244,7 @@
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="cb98ab3d0c16695cc01e412be02fa2069e9d9bf2" datatype="html">
+      <trans-unit id="8216754988033539634" datatype="html">
         <source>Sign-up</source>
         <target>S'enregistrer</target>
         <context-group purpose="location">
@@ -252,7 +252,7 @@
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="cfc2f436ec2beffb042e7511a73c89c372e86a6c" datatype="html">
+      <trans-unit id="3301086086650990787" datatype="html">
         <source>Register</source>
         <target>S'enregistrer</target>
         <context-group purpose="location">
@@ -260,7 +260,7 @@
           <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="cee8f6c4e0bd0fe7393c852583c810a8063f1c8b" datatype="html">
+      <trans-unit id="3061471285810367349" datatype="html">
         <source>
         You can change your password here.
       </source>
@@ -270,7 +270,7 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="0dd390d056411e1709ec97ec51c46d78600e3f7b" datatype="html">
+      <trans-unit id="5340498030552368470" datatype="html">
         <source>Current password</source>
         <target>Mot de passe actuel</target>
         <context-group purpose="location">
@@ -278,7 +278,7 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="c7014c6360e94b236286b869c3fe0ea9911c0387" datatype="html">
+      <trans-unit id="1221596867309460035" datatype="html">
         <source>New Password</source>
         <target>Nouveau mot de passe</target>
         <context-group purpose="location">
@@ -286,7 +286,7 @@
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5edf054f14aa57bc25a28cb7db01956fee53dac8" datatype="html">
+      <trans-unit id="6582573664846559511" datatype="html">
         <source>Change Password</source>
         <target>Changer le mot de passe</target>
         <context-group purpose="location">
@@ -294,7 +294,7 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="be23d811e5a128dda1005c64b20a35c038dcf0f1" datatype="html">
+      <trans-unit id="6238409395897107169" datatype="html">
         <source>
         You can choose to delete your account. By deleting your account, all your informations will be deleted and will not be recoverable.
       </source>
@@ -304,7 +304,7 @@
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="aacf3530acbd864be0e9cada37b5ab2891925d2a" datatype="html">
+      <trans-unit id="6039175766458938104" datatype="html">
         <source>I confirm the deletion of my account!</source>
         <target>Je confirme la suppression de mon compte !</target>
         <context-group purpose="location">
@@ -312,7 +312,7 @@
           <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="66b777a6c0fdac1cc5538f2cbd28b38c71783abb" datatype="html">
+      <trans-unit id="7705508697330810763" datatype="html">
         <source>Delete Account</source>
         <target>Supprimer le compte</target>
         <context-group purpose="location">
@@ -320,7 +320,7 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="739516c2ca75843d5aec9cf0e6b3e4335c4227b9" datatype="html">
+      <trans-unit id="6309828574111583895" datatype="html">
         <source>Change password</source>
         <target>Modifier</target>
         <context-group purpose="location">
@@ -328,7 +328,7 @@
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+      <trans-unit id="7022070615528435141" datatype="html">
         <source>Delete</source>
         <target>Supprimer</target>
         <context-group purpose="location">
@@ -336,7 +336,7 @@
           <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="0013035b47edd8c920a76d0d5d2a18afacc336d8" datatype="html">
+      <trans-unit id="1961103453220395122" datatype="html">
         <source>Forum</source>
         <target>Forum</target>
         <context-group purpose="location">
@@ -344,7 +344,7 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="82ae6efcc7df87ba418a50ef0bc9657a7239311e" datatype="html">
+      <trans-unit id="1341396210789150207" datatype="html">
         <source>Register/Sign-in</source>
         <target>Connexion</target>
         <context-group purpose="location">
@@ -352,7 +352,7 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
+      <trans-unit id="4930506384627295710" datatype="html">
         <source>Settings</source>
         <target>Paramètres</target>
         <context-group purpose="location">
@@ -360,7 +360,7 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
+      <trans-unit id="3797778920049399855" datatype="html">
         <source>Logout</source>
         <target>Déconnexion</target>
         <context-group purpose="location">

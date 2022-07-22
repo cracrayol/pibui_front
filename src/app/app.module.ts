@@ -38,29 +38,28 @@ import { MovieDialogComponent } from './components/moviedialog/moviedialog.compo
 import { AuthorDialogComponent } from './components/authordialog/authordialog.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SearchComponent,
-    TagsComponent,
-    MainPageComponent,
-    NavBarComponent,
-    LoginComponent,
-    EditPlaylistComponent,
-    ConfirmDialogComponent,
-    SettingsComponent,
-    LegalNoticeComponent,
-    MovieDialogComponent,
-    AuthorDialogComponent
-  ],
-  imports: [
-    AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,
-    MatSidenavModule, MatButtonModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatButtonModule,
-    MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
-    MatAutocompleteModule, FlexLayoutModule, MatMenuModule, MatCheckboxModule, YouTubePlayerModule
-  ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: CredentialInterceptor, multi: true }],
-  bootstrap: [AppComponent],
-  entryComponents: [LoginComponent, EditPlaylistComponent, ConfirmDialogComponent, SettingsComponent, LegalNoticeComponent]
+    declarations: [
+        AppComponent,
+        SearchComponent,
+        TagsComponent,
+        MainPageComponent,
+        NavBarComponent,
+        LoginComponent,
+        EditPlaylistComponent,
+        ConfirmDialogComponent,
+        SettingsComponent,
+        LegalNoticeComponent,
+        MovieDialogComponent,
+        AuthorDialogComponent
+    ],
+    imports: [
+        AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,
+        MatSidenavModule, MatButtonModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatButtonModule,
+        MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
+        MatAutocompleteModule, FlexLayoutModule, MatMenuModule, MatCheckboxModule, YouTubePlayerModule
+    ],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: CredentialInterceptor, multi: true }],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

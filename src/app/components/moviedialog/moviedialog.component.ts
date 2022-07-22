@@ -1,5 +1,5 @@
 import { Component, AfterViewChecked, ChangeDetectorRef, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -17,12 +17,12 @@ import { AuthorService } from 'src/app/services/author.service';
 })
 export class MovieDialogComponent {
 
-  movieForm: FormGroup;
+  movieForm: UntypedFormGroup;
   movie: Movie;
   filteredAuthors: Author[] = [];
   isLoading = false;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
+  constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
     private snack: MatSnackBar, public dialogRef: MatDialogRef<MovieDialogComponent>, private movies: MovieService, private authors: AuthorService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 

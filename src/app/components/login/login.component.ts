@@ -1,5 +1,5 @@
 import { Component, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -12,10 +12,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements AfterViewChecked {
 
-  loginForm: FormGroup;
-  registerForm: FormGroup;
+  loginForm: UntypedFormGroup;
+  registerForm: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
+  constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
     private snack: MatSnackBar, public dialogRef: MatDialogRef<LoginComponent>) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
