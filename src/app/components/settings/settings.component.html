@@ -3,18 +3,18 @@
       <p i18n>
         You can change your password here.
       </p>
-      <form [formGroup]="passwordForm" fxLayout="column">
-        <mat-form-field fxFlex="1" appearance="standard">
+      <form [formGroup]="passwordForm" class="flex flex-col">
+        <mat-form-field class="basis-4" appearance="standard">
           <mat-label i18n>Current password</mat-label>
           <input matInput type="password" formControlName="currentPassword">
         </mat-form-field>
         <br>
-        <mat-form-field fxFlex="1" appearance="standard">
+        <mat-form-field class="basis-4" appearance="standard">
             <mat-label i18n>New Password</mat-label>
           <input matInput type="password" formControlName="newPassword">
         </mat-form-field>
         <br>
-        <mat-form-field fxFlex="1" appearance="standard">
+        <mat-form-field class="basis-4" appearance="standard">
             <mat-label i18n>Repeat password</mat-label>
             <input matInput type="password" formControlName="newPasswordCheck">
         </mat-form-field>
@@ -24,8 +24,8 @@
       <p i18n>
         You can choose to delete your account. By deleting your account, all your informations will be deleted and will not be recoverable.
       </p>
-      <form [formGroup]="deletionForm" fxLayout="column">
-          <mat-checkbox fxFlex="1" color="warn" formControlName="validDeletion" #confirmDelete i18n>I confirm the deletion of my account!</mat-checkbox>
+      <form [formGroup]="deletionForm" class="flex flex-col">
+          <mat-checkbox class="basis-4" color="warn" formControlName="validDeletion" #confirmDelete i18n>I confirm the deletion of my account!</mat-checkbox>
         </form>
     </mat-tab>
   </mat-tab-group>

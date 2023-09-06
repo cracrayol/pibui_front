@@ -1,7 +1,7 @@
 <h1 mat-dialog-title *ngIf="playlist === null; else editTitle" i18n>Add playlist</h1>
 <ng-template #editTitle><h1 mat-dialog-title i18n>Edit playlist</h1></ng-template>
 <form [formGroup]="playlistForm">
-  <div fxLayout="column" fxLayoutAlign="center">
+  <div class="flex flex-col justify-center">
     <mat-form-field>
       <input matInput i18n-placeholder placeholder="Name" formControlName="name">
     </mat-form-field>

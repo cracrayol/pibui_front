@@ -8,12 +8,12 @@
     <pbi-search (itemSelected)="playSearchedItem($event)" selectionIcon="play_circle_outline"></pbi-search>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div fxLayout="column" fxLayoutAlign="center">
+    <div class="flex flex-col justify-center">
       <header>
-        <div *ngIf="!movie" fxLayout="row" fxLayoutAlign="center center">
+        <div *ngIf="!movie" class="flex flex-row justify-center content-center">
           <h2 class="alt" id='movieTitle' i18n>Loading...</h2>
         </div>
-        <div *ngIf="movie" fxLayout="row" fxLayoutAlign="center center">
+        <div *ngIf="movie" class="flex flex-row justify-center content-center">
           <h2 class="alt" id='movieTitle'><a (click)='searchAuthor()'>{{ movie.author.name }}</a></h2>
           <a mat-icon-button i18n-matTooltip matTooltip="Edit author" (click)='editAuthor()'
             *ngIf="this.auth.getUser() && this.auth.getUser().isAdmin" color="primary">
@@ -25,17 +25,17 @@
             <mat-icon>edit</mat-icon>
           </a>
         </div>
-        <div fxLayout="row" fxLayoutAlign="center center">
+        <div class="flex flex-row justify-center content-center">
           <h4 class="alt" id='movieSubtitle' *ngIf="movieSubtitle">{{ movieSubtitle }}</h4>
         </div>
       </header>
-      <div fxLayout="row" fxLayoutAlign="center">
-        <div fxFlex.gt-lg="1220px" fxFlex="80%" class="embed-responsive embed-responsive-16by9">
+      <div class="flex flex-row justify-center">
+        <div class="embed-responsive embed-responsive-16by9 basis-4/5">
           <youtube-player (stateChange)="onStateChange($event)" (error)="onError($event)"></youtube-player>
         </div>
       </div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 10px">
+    <div class="flex flex-row justify-center" style="margin-top: 10px">
       <a mat-raised-button i18n-matTooltip matTooltip="Next" mdTooltipPosition="left" (click)='playNextVideo()'>
         <mat-icon>skip_next</mat-icon>
       </a>

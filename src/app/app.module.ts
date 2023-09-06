@@ -21,7 +21,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SearchComponent } from './components/search/search.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { TagsComponent } from './components/tags/tags.component';
 import { MainPageComponent } from './containers/mainPage/mainPage.component';
 import { NavBarComponent } from './components/navbar/navbar.component';
@@ -56,7 +55,7 @@ import { AuthorDialogComponent } from './components/authordialog/authordialog.co
         AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,
         MatSidenavModule, MatButtonModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatButtonModule,
         MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
-        MatAutocompleteModule, FlexLayoutModule, MatMenuModule, MatCheckboxModule, YouTubePlayerModule
+        MatAutocompleteModule, MatMenuModule, MatCheckboxModule, MatPaginatorModule, MatTableModule, YouTubePlayerModule
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: CredentialInterceptor, multi: true }],

@@ -1,7 +1,7 @@
 <h1 mat-dialog-title *ngIf="author === null; else editAuthor" i18n>Add author</h1>
 <ng-template #editAuthor><h1 mat-dialog-title i18n>Edit author</h1></ng-template>
 <form [formGroup]="authorForm">
-  <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+  <div class="flex flex-col justify-center gap-2.5">
     <mat-form-field>
       <input matInput i18n-placeholder placeholder="Name" formControlName="name">
     </mat-form-field>
