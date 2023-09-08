@@ -14,7 +14,7 @@
           <h2 class="alt" id='movieTitle' i18n>Loading...</h2>
         </div>
         <div *ngIf="movie" class="flex flex-row justify-center content-center">
-          <h2 class="alt" id='movieTitle'><a (click)='searchAuthor()'>{{ movie.author.name }}</a></h2>
+          <h2 class="alt" id='movieTitle'><a class="cursor-pointer" (click)='searchAuthor()' i18n-matTooltip matTooltip="Search this author">{{ movie.author.name }}</a></h2>
           <a mat-icon-button i18n-matTooltip matTooltip="Edit author" (click)='editAuthor()'
             *ngIf="this.auth.getUser() && this.auth.getUser().isAdmin" color="primary">
             <mat-icon>edit</mat-icon>

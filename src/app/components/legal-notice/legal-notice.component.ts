@@ -3,8 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'pbi-legal-notice',
-  templateUrl: './legal-notice.component.html',
-  styleUrls: ['./legal-notice.component.scss']
+  templateUrl: './legal-notice.component.html'
 })
 export class LegalNoticeComponent {
 

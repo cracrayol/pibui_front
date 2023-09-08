@@ -1,6 +1,5 @@
 <mat-toolbar class="navbar navbar-shadow" color="primary">
-  PIBUI&nbsp;&nbsp;
-  <a mat-button href="https://forum.pibui.org" target="_blank" i18n>Forum</a>
+  <a mat-button routerLink="/">PIBUI</a>&nbsp;&nbsp;
   <span class="spacer"></span>
   <button mat-icon-button (click)="button.click()" *ngFor="let button of buttons">
     <mat-icon>{{ button.icon }}</mat-icon>
@@ -17,6 +16,10 @@
   <button mat-menu-item (click)="openSettings()">
     <mat-icon>settings</mat-icon>&nbsp;
     <span i18n>Settings</span>
+  </button>
+  <button mat-menu-item routerLink="/admin" *ngIf="auth.isLoggedIn() && auth.getUser().isAdmin">
+    <mat-icon>settings_applications</mat-icon>&nbsp;
+    <span i18n>Admin</span>
   </button>
   <button mat-menu-item (click)="logout()">
     <mat-icon>power_settings_new</mat-icon>&nbsp;

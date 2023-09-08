@@ -5,14 +5,15 @@ import { AuthService } from '../../services/auth.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PlaylistService } from '../../services/playlist.service';
-import { Playlist } from '../../model/playlist';
+import { Playlist, TagType } from '../../model/playlist';
 
 @Component({
   selector: 'pbi-editplaylist',
   templateUrl: './editplaylist.component.html',
-  styleUrls: ['./editplaylist.component.scss']
 })
 export class EditPlaylistComponent implements AfterViewChecked {
+
+  readonly TagType = TagType;
 
   playlistForm: UntypedFormGroup;
   playlist: Playlist;
@@ -26,7 +27,7 @@ export class EditPlaylistComponent implements AfterViewChecked {
       public: ''
     });
 
-    this.playlist = data;
+    this.playlist = structuredClone(data);
 
     if (this.playlist) {
       this.playlistForm.setValue({
@@ -41,8 +42,8 @@ export class EditPlaylistComponent implements AfterViewChecked {
       this.playlist.name = this.playlistForm.value.name;
       this.playlist.public = this.playlistForm.value.public;
 
-      this.playlists.put(this.playlist).subscribe(() => {
-        this.dialogRef.close();
+      this.playlists.put(this.playlist).subscribe((result) => {
+        this.dialogRef.close(result);
         this.snack.open($localize`Updated !!`, '', {
           duration: 5000
         });
@@ -59,6 +60,20 @@ export class EditPlaylistComponent implements AfterViewChecked {
           duration: 5000
         });
       });
+    }
+  }
+
+  removeTag(tagId: number, state: TagType) {
+    switch(state) {
+      case TagType.MANDATORY :
+        this.playlist.mandatoryTags.splice(this.playlist.mandatoryTags.findIndex(tag => tag.id === tagId), 1);
+        break;
+      case TagType.ALLOWED :
+        this.playlist.allowedTags.splice(this.playlist.allowedTags.findIndex(tag => tag.id === tagId), 1);
+        break;
+      case TagType.FORBIDDEN :
+        this.playlist.forbiddenTags.splice(this.playlist.forbiddenTags.findIndex(tag => tag.id === tagId), 1);
+        break;
     }
   }
 

@@ -7,8 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'pbi-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  templateUrl: './settings.component.html'
 })
 export class SettingsComponent implements AfterViewChecked, OnInit {
 

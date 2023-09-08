@@ -12,8 +12,7 @@ import { AuthorService } from 'src/app/services/author.service';
 
 @Component({
   selector: 'pbi-moviedialog',
-  templateUrl: './moviedialog.component.html',
-  styleUrls: ['./moviedialog.component.scss']
+  templateUrl: './moviedialog.component.html'
 })
 export class MovieDialogComponent {
 

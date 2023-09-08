@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Playlist } from '../../model/playlist';
+import { Playlist, TagType } from '../../model/playlist';
 import { PlaylistService } from '../../services/playlist.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -32,8 +32,10 @@ export class TagsComponent implements OnInit {
     }));
   }
 
-  set(id: number, state: number) {
+  set(tag: Tag, state: TagType) {
     const currentPlaylist = Object.assign(<Playlist>{}, this.selected);
+    const id = tag.id;
+    
     if (currentPlaylist) {
       if (!currentPlaylist.forbiddenTags) {
         currentPlaylist.forbiddenTags = [];
@@ -51,28 +53,28 @@ export class TagsComponent implements OnInit {
 
       let insert = true;
       if (forbidden > -1) {
-        if (state === 0) { insert = false; }
+        if (state === TagType.FORBIDDEN) { insert = false; }
         currentPlaylist.forbiddenTags.splice(forbidden, 1);
       }
       if (allowed > -1) {
-        if (state === 1) { insert = false; }
+        if (state === TagType.ALLOWED) { insert = false; }
         currentPlaylist.allowedTags.splice(allowed, 1);
       }
       if (mandatory > -1) {
-        if (state === 2) { insert = false; }
+        if (state === TagType.MANDATORY) { insert = false; }
         currentPlaylist.mandatoryTags.splice(mandatory, 1);
       }
 
       if (insert) {
         switch (state) {
-          case 0:
-            currentPlaylist.forbiddenTags.push({ id: id });
+          case TagType.FORBIDDEN:
+            currentPlaylist.forbiddenTags.push(tag);
             break;
-          case 1:
-            currentPlaylist.allowedTags.push({ id: id });
+          case TagType.ALLOWED:
+            currentPlaylist.allowedTags.push(tag);
             break;
-          case 2:
-            currentPlaylist.mandatoryTags.push({ id: id });
+          case TagType.MANDATORY:
+            currentPlaylist.mandatoryTags.push(tag);
             break;
         }
       }
@@ -84,15 +86,15 @@ export class TagsComponent implements OnInit {
     });
   }
 
-  isTagSet(id: number, state: number): boolean {
+  isTagSet(id: number, state: TagType): boolean {
     const currentPlaylist = this.selected;
     if (currentPlaylist) {
       switch (state) {
-        case 0:
+        case TagType.FORBIDDEN:
           return currentPlaylist.forbiddenTags.findIndex(tag => tag.id === id) > -1;
-        case 1:
+        case TagType.ALLOWED:
           return currentPlaylist.allowedTags.findIndex(tag => tag.id === id) > -1;
-        case 2:
+        case TagType.MANDATORY:
           return currentPlaylist.mandatoryTags.findIndex(tag => tag.id === id) > -1;
       }
     }
@@ -112,12 +114,12 @@ export class TagsComponent implements OnInit {
 
   editPlaylistDialog(newPlaylist: boolean): void {
     const dialogRef = this.dialog.open(EditPlaylistComponent, {
-      width: '400px',
+      width: '500px',
       data: newPlaylist ? null : this.selected
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (newPlaylist && result != null) {
+      if(result != null) {
         this.$playlist = this.playlist.getAll().pipe(tap((playlists: Playlist[]) => {
           playlists.forEach((pl: Playlist) => {
             if (this.auth.getUser().currentPlaylistId && this.auth.getUser().currentPlaylistId === pl.id) {
