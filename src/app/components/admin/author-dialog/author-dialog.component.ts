@@ -8,8 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AuthorService } from 'src/app/services/author.service';
 
 @Component({
-  selector: 'pbi-authordialog',
-  templateUrl: './authordialog.component.html'
+  selector: 'pbi-author-dialog',
+  templateUrl: './author-dialog.component.html'
 })
 export class AuthorDialogComponent {
 

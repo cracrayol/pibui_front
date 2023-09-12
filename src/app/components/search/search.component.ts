@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { debounceTime, tap } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'pbi-search',
@@ -20,7 +21,7 @@ export class SearchComponent implements AfterViewInit {
   @Input() selectionIcon: string;
   @Output() itemSelected = new EventEmitter<number>();
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private movies: MovieService) { }
 
   ngAfterViewInit() {
     fromEvent(this.searchField.nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
@@ -28,26 +29,23 @@ export class SearchComponent implements AfterViewInit {
     });
 
     // Load latest movies
-    this.$data = this.http.get(environment.apiAddr + '/movie/latest').pipe(tap(() => {
-      this.showLatest = true;
-    }));
+    this.$data = this.movies.getList(0, 30);
   }
 
   /**
    * Run the search
    */
   search(search) {
-    if (search.length >= 3 || search.length === 0) {
+    if (search.length >= 3) {
       this.showLatest = false;
       this.searching = true;
-      let url = '/movie/latest';
-      if (search.length >= 3) {
-        url = '/search/' + search;
-      }
+      let url = '/search/' + search;
       this.$data = this.http.get(environment.apiAddr + url).pipe(tap(() => {
         this.showLatest = search.length === 0;
         this.searching = false;
       }));
+    } else if(search.length === 0) {
+      this.$data = this.movies.getList(0, 30);
     }
   }
 

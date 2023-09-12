@@ -19,4 +19,12 @@ export class AuthorService {
     return this.http.get<Author[]>(environment.apiAddr + '/author/search/' + name);
   }
 
+  getList(start: number, take: number, sort?: string, order?: string): Observable<Author[]> {
+    return this.http.get<Author[]>(environment.apiAddr + '/author/', {params: {start, take, sort, order}});
+  }
+
+  public delete(movie: Author): Observable<Author> {
+    return this.http.delete<Author>(environment.apiAddr + '/author/' + movie.id);
+  }
+
 }

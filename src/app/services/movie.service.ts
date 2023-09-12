@@ -15,8 +15,16 @@ export class MovieService {
     return this.http.get<Movie>(environment.apiAddr + '/movie/' + id);
   }
 
+  getList(start: number, take: number, sort?: string, order?: string): Observable<Movie[]> {
+    return this.http.get<Movie[]>(environment.apiAddr + '/movie/', {params: {start, take, sort, order}});
+  }
+
   public put(movie: Movie): Observable<Movie> {
     return this.http.put<Movie>(environment.apiAddr + '/movie/' + movie.id, movie);
+  }
+
+  public delete(movie: Movie): Observable<Movie> {
+    return this.http.delete<Movie>(environment.apiAddr + '/movie/' + movie.id);
   }
 
 }

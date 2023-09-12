@@ -8,9 +8,7 @@ import { Title } from '@angular/platform-browser';
 import { YouTubePlayer } from '@angular/youtube-player';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { MovieDialogComponent } from 'src/app/components/moviedialog/moviedialog.component';
 import { Movie } from 'src/app/model/movie';
-import { AuthorDialogComponent } from 'src/app/components/authordialog/authordialog.component';
 
 @Component({
   selector: 'pbi-index',
@@ -117,52 +115,6 @@ export class MainPageComponent implements AfterViewInit, OnInit {
           this.location.go('/play/' + movie.id);
         }
       });
-  }
-
-  /**
-   * Open the "Edit movie" dialog for the current movie
-   */
-  editMovie() {
-    // Pause the movie (avoid problem if movie change during update)
-    this.player.pauseVideo();
-
-    const dialogRef = this.dialog.open(MovieDialogComponent, {
-      width: '800px',
-      data: this.movie
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        // If updated, then reload this movie
-        this.playNextVideo(this.movie.id);
-      } else {
-        // Else resume
-        this.player.playVideo();
-      }
-    });
-  }
-
-  /**
-   * Open the "Edit author" dialog for the author of the current movie
-   */
-   editAuthor() {
-    // Pause the movie (avoid problem if movie change during update)
-    this.player.pauseVideo();
-
-    const dialogRef = this.dialog.open(AuthorDialogComponent, {
-      width: '400px',
-      data: this.movie.author
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        // If updated, then reload this movie
-        this.playNextVideo(this.movie.id);
-      } else {
-        // Else resume
-        this.player.playVideo();
-      }
-    });
   }
 
   @HostListener('window:resize', ['$event'])

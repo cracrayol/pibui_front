@@ -1,18 +1,21 @@
 import { Component, AfterViewChecked, ChangeDetectorRef, Inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Movie } from 'src/app/model/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { Author } from 'src/app/model/author';
-import { debounceTime, finalize, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, finalize, startWith, switchMap, tap } from 'rxjs/operators';
 import { AuthorService } from 'src/app/services/author.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Observable } from 'rxjs';
+import { Tag } from 'src/app/model/tag';
 
 @Component({
-  selector: 'pbi-moviedialog',
-  templateUrl: './moviedialog.component.html'
+  selector: 'pbi-movie-dialog',
+  templateUrl: './movie-dialog.component.html'
 })
 export class MovieDialogComponent {
 
@@ -20,6 +23,8 @@ export class MovieDialogComponent {
   movie: Movie;
   filteredAuthors: Author[] = [];
   isLoading = false;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  tagsList: Observable<Tag[]>;
 
   constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
     private snack: MatSnackBar, public dialogRef: MatDialogRef<MovieDialogComponent>, private movies: MovieService, private authors: AuthorService,
@@ -30,8 +35,13 @@ export class MovieDialogComponent {
       subtitle: '',
       author: ['', Validators.required],
       linkId: ['', Validators.required],
-      valid: ''
+      valid: '',
+      tags: ''
     });
+
+    this.tagsList = this.movieForm.get('tags').valueChanges.pipe(
+      startWith(null),
+    );
 
     this.movieForm
       .get('author')
@@ -59,7 +69,8 @@ export class MovieDialogComponent {
         subtitle: this.movie.subtitle,
         author: this.movie.author,
         linkId: this.movie.linkId,
-        valid: this.movie.valid
+        valid: this.movie.valid,
+        tags: this.movie.tags
       });
     }
   }
@@ -70,6 +81,7 @@ export class MovieDialogComponent {
       this.movie.subtitle = this.movieForm.value.subtitle;
       this.movie.linkId = this.movieForm.value.linkId;
       this.movie.valid = this.movieForm.value.valid;
+      this.movie.tags = this.movieForm.value.tags;
 
       if (typeof this.movieForm.value.author === 'string' || this.movieForm.value.author instanceof String) {
         // TODO Create author
@@ -100,6 +112,10 @@ export class MovieDialogComponent {
 
   displayAuthor(author: Author) {
     if (author) { return author.name; }
+  }
+
+  addTag(event) {
+
   }
 
 }

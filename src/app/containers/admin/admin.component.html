@@ -1,10 +1,17 @@
 <pbi-navbar [buttons]="headerButtons"></pbi-navbar>
 <mat-sidenav-container>
   <mat-sidenav-content>
-    <div class="flex flex-col justify-center">
-      <div class="flex flex-row justify-center">
-        <pbi-manage-movie></pbi-manage-movie>
-      </div>
-    </div>
+    <mat-tab-group>
+      <mat-tab i18n-label label="Movies">
+        <div class="flex flex-row justify-center">
+          <pbi-manage-movie></pbi-manage-movie>
+        </div>
+      </mat-tab>
+      <mat-tab i18n-label label="Authors">
+        <div class="flex flex-row justify-center">
+          <pbi-manage-author></pbi-manage-author>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </mat-sidenav-content>
 </mat-sidenav-container>

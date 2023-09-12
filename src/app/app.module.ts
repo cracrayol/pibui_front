@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
 import { AppComponent } from './app.component';
@@ -31,14 +32,15 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { EditPlaylistComponent } from './components/editplaylist/editplaylist.component';
-import { ConfirmDialogComponent } from './components/confirmDialog/confirmDialog.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
-import { MovieDialogComponent } from './components/moviedialog/moviedialog.component';
-import { AuthorDialogComponent } from './components/authordialog/authordialog.component';
+import { MovieDialogComponent } from './components/admin/movie-dialog/movie-dialog.component';
+import { AuthorDialogComponent } from './components/admin/author-dialog/author-dialog.component';
 import { AdminComponent } from './containers/admin/admin.component';
 import { ManageMovieComponent } from './components/admin/manage-movie/manage-movie.component';
+import { ManageAuthorComponent } from './components/admin/manage-author/manage-author.component';
 
 @NgModule({
     declarations: [
@@ -55,13 +57,14 @@ import { ManageMovieComponent } from './components/admin/manage-movie/manage-mov
         LegalNoticeComponent,
         MovieDialogComponent,
         AuthorDialogComponent,
-        ManageMovieComponent
+        ManageMovieComponent,
+        ManageAuthorComponent
     ],
     imports: [
         AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,
         MatSidenavModule, MatButtonModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatButtonModule,
         MatCardModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
-        MatAutocompleteModule, MatMenuModule, MatCheckboxModule, MatPaginatorModule, MatTableModule, MatChipsModule, YouTubePlayerModule
+        MatAutocompleteModule, MatMenuModule, MatCheckboxModule, MatPaginatorModule, MatSortModule, MatTableModule, MatChipsModule, YouTubePlayerModule
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
     bootstrap: [AppComponent]

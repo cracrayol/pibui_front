@@ -11,19 +11,11 @@
     <div class="flex flex-col justify-center">
       <header>
         <div *ngIf="!movie" class="flex flex-row justify-center content-center">
-          <h2 class="alt" id='movieTitle' i18n>Loading...</h2>
+          <h2 class="alt" id='loadingMovie' i18n>Loading...</h2>
         </div>
         <div *ngIf="movie" class="flex flex-row justify-center content-center">
-          <h2 class="alt" id='movieTitle'><a class="cursor-pointer" (click)='searchAuthor()' i18n-matTooltip matTooltip="Search this author">{{ movie.author.name }}</a></h2>
-          <a mat-icon-button i18n-matTooltip matTooltip="Edit author" (click)='editAuthor()'
-            *ngIf="this.auth.getUser() && this.auth.getUser().isAdmin" color="primary">
-            <mat-icon>edit</mat-icon>
-          </a>
+          <h2 class="alt" id='authorName'><a class="cursor-pointer" (click)='searchAuthor()' i18n-matTooltip matTooltip="Search this author">{{ movie.author.name }}</a></h2>
           <h2 class="alt" id='movieTitle'> - {{ movie.title }}</h2>
-          <a mat-icon-button i18n-matTooltip matTooltip="Edit movie" (click)='editMovie()'
-            *ngIf="this.auth.getUser() && this.auth.getUser().isAdmin" color="primary">
-            <mat-icon>edit</mat-icon>
-          </a>
         </div>
         <div class="flex flex-row justify-center content-center">
           <h4 class="alt" id='movieSubtitle' *ngIf="movieSubtitle">{{ movieSubtitle }}</h4>

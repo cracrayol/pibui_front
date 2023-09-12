@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'pbi-confirm-dialog',
-  templateUrl: './confirmDialog.component.html'
+  templateUrl: './confirm-dialog.component.html'
 })
 export class ConfirmDialogComponent implements AfterViewChecked {
 
@@ -12,10 +12,6 @@ export class ConfirmDialogComponent implements AfterViewChecked {
   constructor(private ref: ChangeDetectorRef, public dialogRef: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.dialogText = data;
-  }
-
-  valid() {
-    this.dialogRef.close();
   }
 
   ngAfterViewChecked() {

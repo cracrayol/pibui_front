@@ -1,0 +1,67 @@
+<h1 mat-dialog-title *ngIf="movie === null; else editMovie" i18n>Add movie</h1>
+<ng-template #editMovie><h1 mat-dialog-title i18n>Edit movie</h1></ng-template>
+<mat-dialog-content>
+  <form [formGroup]="movieForm">
+    <div class="flex flex-row justify-center gap-2.5">
+      <mat-form-field class="grow shrink basis-1/2">
+        <mat-label i18n>Title</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+      <mat-form-field class="grow shrink basis-1/2">
+        <mat-label i18n>Subtitle</mat-label>
+        <input matInput formControlName="subtitle">
+      </mat-form-field>
+    </div>
+    <div class="flex flex-row justify-center gap-2.5">
+      <mat-form-field class="grow basis-1/2">
+        <mat-label i18n>Author</mat-label>
+        <input matInput formControlName="author" [matAutocomplete]="auto">
+      </mat-form-field>
+      <mat-form-field class="grow basis-1/2">
+        <mat-label i18n>Youtube ID</mat-label>
+        <input matInput formControlName="linkId">
+      </mat-form-field>
+    </div>
+    <div class="flex flex-row justify-start">
+      <mat-checkbox formControlName="valid" i18n>The movie is valid/visible</mat-checkbox>
+    </div>
+    <div class="flex flex-row justify-start">
+      <mat-form-field class="grow basis-1">
+        <mat-label i18n>Tags</mat-label>
+        <mat-chip-grid #chipGrid>
+          <mat-chip-row *ngFor="let tag of movie.tags">
+            {{tag.name}}
+            <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+          <input placeholder="New tag" #tagInput formControlName="tags"
+            [matChipInputFor]="chipGrid" [matAutocomplete]="autoTags"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="addTag($event)"/>
+          <mat-autocomplete #autoTags="matAutocomplete">
+            <mat-option *ngFor="let tag of tagsList | async" [value]="tag.id">
+              {{tag.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-chip-grid>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAuthor">
+    <mat-option *ngIf="isLoading" class="is-loading">
+      <mat-spinner diameter="30"></mat-spinner>
+    </mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let author of filteredAuthors" [value]="author">
+        <span>{{ author.name }}</span>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close i18n>Cancel</button>&nbsp;
+  <button mat-raised-button color="primary" (click)="save()" i18n>Save</button>
+</mat-dialog-actions>

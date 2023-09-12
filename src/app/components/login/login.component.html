@@ -12,13 +12,13 @@
         <br>
         <mat-form-field class="basis-4">
             <mat-label i18n>Password</mat-label>
-          <input matInput type="password" formControlName="password">
+          <input matInput type="password" formControlName="password" (keyup.enter)="login()">
         </mat-form-field>
       </form>
     </mat-tab>
     <mat-tab i18n-label label="Sign-up" #registerTab>
       <p i18n>
-        In order to connect, please enter your email and password.
+        In order to register, please enter your email and password.
       </p>
       <form [formGroup]="registerForm" class="flex flex-col">
         <mat-form-field class="basis-4">
@@ -33,7 +33,7 @@
         <br>
         <mat-form-field class="basis-4">
             <mat-label i18n>Repeat password</mat-label>
-          <input matInput type="password" formControlName="passwordCheck">
+          <input matInput type="password" formControlName="passwordCheck" (keyup.enter)="register()">
         </mat-form-field>
       </form>
     </mat-tab>
