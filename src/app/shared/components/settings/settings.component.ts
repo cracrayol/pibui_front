@@ -13,6 +13,7 @@ export class SettingsComponent implements AfterViewChecked, OnInit {
 
   deletionForm: UntypedFormGroup;
   passwordForm: UntypedFormGroup;
+  deleteChecked: boolean;
 
   constructor(private ref: ChangeDetectorRef, private fb: UntypedFormBuilder, public dialogRef: MatDialogRef<SettingsComponent>,
     public userService: UserService, public auth: AuthService, private snack: MatSnackBar) { }

@@ -16,7 +16,8 @@ export class MovieService {
   }
 
   getList(start: number, take: number, sort?: string, order?: string): Observable<Movie[]> {
-    return this.http.get<Movie[]>(environment.apiAddr + '/movie/', {params: {start, take, sort, order}});
+    let params = sort !== undefined ? {start, take, sort, order : order !== undefined ? order : 'ASC'} : {start, take};
+    return this.http.get<Movie[]>(environment.apiAddr + '/movie/', {params});
   }
 
   public put(movie: Movie): Observable<Movie> {

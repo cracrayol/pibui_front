@@ -7,8 +7,8 @@ import { AuthService } from '../../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
 import { Tag } from '../../model/tag';
-import { EditPlaylistComponent } from '../editplaylist/editplaylist.component';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { PlaylistDialogComponent } from '../playlist-dialog/playlist-dialog.component';
 
 @Component({
   selector: 'pbi-tags',
@@ -113,7 +113,7 @@ export class TagsComponent implements OnInit {
   }
 
   editPlaylistDialog(newPlaylist: boolean): void {
-    const dialogRef = this.dialog.open(EditPlaylistComponent, {
+    const dialogRef = this.dialog.open(PlaylistDialogComponent, {
       width: '500px',
       data: newPlaylist ? null : this.selected
     });

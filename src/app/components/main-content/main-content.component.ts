@@ -12,9 +12,9 @@ import { Movie } from 'src/app/model/movie';
 
 @Component({
   selector: 'pbi-index',
-  templateUrl: './mainPage.component.html'
+  templateUrl: './main-content.component.html'
 })
-export class MainPageComponent implements AfterViewInit, OnInit {
+export class MainContentComponent implements AfterViewInit, OnInit {
 
   @ViewChild('searchpanel', { static: true }) searchPanel: MatSidenav;
   @ViewChild(SearchComponent, { static: true }) searchCmp: SearchComponent;

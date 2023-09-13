@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginComponent } from '../login/login.component';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { SettingsComponent } from '../settings/settings.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'pbi-navbar',

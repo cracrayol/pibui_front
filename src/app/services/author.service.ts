@@ -20,7 +20,8 @@ export class AuthorService {
   }
 
   getList(start: number, take: number, sort?: string, order?: string): Observable<Author[]> {
-    return this.http.get<Author[]>(environment.apiAddr + '/author/', {params: {start, take, sort, order}});
+    let params = sort !== undefined ? {start, take, sort, order : order !== undefined ? order : 'ASC'} : {start, take};
+    return this.http.get<Author[]>(environment.apiAddr + '/author/', {params});
   }
 
   public delete(movie: Author): Observable<Author> {

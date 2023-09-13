@@ -1,22 +1,22 @@
 import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { map, merge, startWith, switchMap } from 'rxjs';
+import { Movie } from 'src/app/model/movie';
+import { MovieService } from 'src/app/services/movie.service';
+import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
-import { Author } from 'src/app/model/author';
-import { AuthorService } from 'src/app/services/author.service';
-import { AuthorDialogComponent } from '../author-dialog/author-dialog.component';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'pbi-manage-author',
-  templateUrl: './manage-author.component.html'
+  selector: 'pbi-manage-movie',
+  templateUrl: './manage-movie.component.html'
 })
-export class ManageAuthorComponent implements AfterViewInit {
+export class ManageMovieComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'name', 'subname', 'edit'];
-  data: Author[];
+  displayedColumns: string[] = ['id', 'title', 'subtitle', 'author', 'edit'];
+  data: Movie[];
 
   resultsLength = 0;
 
@@ -24,7 +24,7 @@ export class ManageAuthorComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
 
-  constructor(private authorService: AuthorService, public dialog: MatDialog) {
+  constructor(private movieService: MovieService, public dialog: MatDialog) {
   }
 
   ngAfterViewInit() {
@@ -32,7 +32,7 @@ export class ManageAuthorComponent implements AfterViewInit {
       .pipe(
         startWith({}),
         switchMap(() => {
-          return this.authorService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase());
+          return this.movieService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase());
         }),
         map(data => {
           if (data === null) {
@@ -57,10 +57,10 @@ export class ManageAuthorComponent implements AfterViewInit {
   /**
    * Open the "Edit movie" dialog for the current movie
    */
-  editAuthor(author: Author) {
-    const dialogRef = this.dialog.open(AuthorDialogComponent, {
+  editMovie(movie: Movie) {
+    const dialogRef = this.dialog.open(MovieDialogComponent, {
       width: '800px',
-      data: author
+      data: movie
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -70,16 +70,16 @@ export class ManageAuthorComponent implements AfterViewInit {
     });
   }
 
-  deleteAuthor(author: Author) {
+  deleteMovie(movie: Movie) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
-      data: $localize`Are you sure you want to delete this author and all of his movies ?`
+      data: $localize`Are you sure you want to delete this movie ?`
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        this.authorService.delete(author).subscribe(() => {
-          this.authorService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
+        this.movieService.delete(movie).subscribe(() => {
+          this.movieService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
           .subscribe(data => {
             this.data = data;
           });

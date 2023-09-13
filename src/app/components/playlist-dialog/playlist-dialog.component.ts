@@ -8,10 +8,10 @@ import { PlaylistService } from '../../services/playlist.service';
 import { Playlist, TagType } from '../../model/playlist';
 
 @Component({
-  selector: 'pbi-editplaylist',
-  templateUrl: './editplaylist.component.html',
+  selector: 'pbi-playlist-dialog',
+  templateUrl: './playlist-dialog.component.html',
 })
-export class EditPlaylistComponent implements AfterViewChecked {
+export class PlaylistDialogComponent implements AfterViewChecked {
 
   readonly TagType = TagType;
 
@@ -19,7 +19,7 @@ export class EditPlaylistComponent implements AfterViewChecked {
   playlist: Playlist;
 
   constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
-    private snack: MatSnackBar, public dialogRef: MatDialogRef<EditPlaylistComponent>, private playlists: PlaylistService,
+    private snack: MatSnackBar, public dialogRef: MatDialogRef<PlaylistDialogComponent>, private playlists: PlaylistService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.playlistForm = this.fb.group({
