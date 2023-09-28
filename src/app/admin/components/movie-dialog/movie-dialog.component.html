@@ -1,4 +1,4 @@
-<h1 mat-dialog-title *ngIf="movie === null; else editMovie" i18n>Add movie</h1>
+<h1 mat-dialog-title *ngIf="movie.id === undefined; else editMovie" i18n>Add movie</h1>
 <ng-template #editMovie><h1 mat-dialog-title i18n>Edit movie</h1></ng-template>
 <mat-dialog-content>
   <form [formGroup]="movieForm">
@@ -63,5 +63,5 @@
 
 <mat-dialog-actions>
   <button mat-raised-button mat-dialog-close i18n>Cancel</button>&nbsp;
-  <button mat-raised-button color="primary" (click)="save()" i18n>Save</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="this.movieForm.pristine || this.movieForm.invalid" i18n>Save</button>
 </mat-dialog-actions>

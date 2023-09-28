@@ -1,4 +1,4 @@
-<h1 mat-dialog-title *ngIf="author === null; else editAuthor" i18n>Add author</h1>
+<h1 mat-dialog-title *ngIf="author.id === undefined; else editAuthor" i18n>Add author</h1>
 <ng-template #editAuthor><h1 mat-dialog-title i18n>Edit author</h1></ng-template>
 <mat-dialog-content>
   <form [formGroup]="authorForm">
@@ -17,5 +17,5 @@
 
 <mat-dialog-actions>
   <button mat-raised-button mat-dialog-close i18n>Cancel</button>&nbsp;
-  <button mat-raised-button color="primary" (click)="save()" i18n>Save</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="this.authorForm.pristine || this.authorForm.invalid" i18n>Save</button>
 </mat-dialog-actions>

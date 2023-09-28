@@ -1,8 +1,8 @@
-import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { map, merge, startWith, switchMap } from 'rxjs';
+import { asyncScheduler, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Author } from 'src/app/model/author';
 import { AuthorService } from 'src/app/services/author.service';
@@ -28,8 +28,9 @@ export class ManageAuthorComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    merge(this.sort.sortChange, this.paginator.page)
+    scheduled([this.sort.sortChange, this.paginator.page], asyncScheduler)
       .pipe(
+        mergeAll(),
         startWith({}),
         switchMap(() => {
           return this.authorService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase());
@@ -52,6 +53,22 @@ export class ManageAuthorComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }*/
+  }
+
+  /**
+   * Open the "Edit movie" dialog for the current movie
+   */
+  addAuthor() {
+    const dialogRef = this.dialog.open(AuthorDialogComponent, {
+      width: '800px',
+      data: null
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+      } else {
+      }
+    });
   }
 
   /**

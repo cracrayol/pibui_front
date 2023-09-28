@@ -16,13 +16,6 @@ export class UserService {
     return this.http.put<User>(environment.apiAddr + '/user/' + user.id, user);
   }
 
-  public changePassword(user: User, oldPassword: String, newPassword: String): Observable<User> {
-    return this.http.put<User>(environment.apiAddr + '/user/' + user.id + '/changePassword', {
-      oldPassword,
-      newPassword
-    });
-  }
-
   public delete(user: User): Observable<User> {
     return this.http.delete<User>(environment.apiAddr + '/user/' + user.id);
   }

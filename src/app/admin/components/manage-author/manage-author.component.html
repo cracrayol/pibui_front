@@ -4,7 +4,7 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
     </mat-form-field>
     <span class="grow"></span>
-    <button mat-fab extended color="primary" class="self-center">
+    <button mat-fab extended color="primary" class="self-center" (click)='addAuthor()'>
         <mat-icon>add</mat-icon>
         Add Author
     </button>
@@ -15,19 +15,19 @@
 
         <!-- ID Column -->
         <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header="movie.id">ID</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="author.id">ID</th>
             <td mat-cell *matCellDef="let row"> {{row.id}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header="movie.title">Name</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="author.name">Name</th>
             <td mat-cell *matCellDef="let row"> {{row.name}} </td>
         </ng-container>
 
         <!-- Subname Column -->
         <ng-container matColumnDef="subname">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header="movie.subtitle">Subname</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="author.subname">Subname</th>
             <td mat-cell *matCellDef="let row"> {{row.subname}} </td>
         </ng-container>
 

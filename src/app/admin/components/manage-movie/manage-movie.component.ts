@@ -1,8 +1,8 @@
-import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTable, MatTableDataSource} from '@angular/material/table';
-import { map, merge, startWith, switchMap } from 'rxjs';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
+import { asyncScheduler, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
 import { Movie } from 'src/app/model/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
@@ -28,11 +28,12 @@ export class ManageMovieComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    merge(this.sort.sortChange, this.paginator.page)
+    scheduled([this.sort.sortChange, this.paginator.page], asyncScheduler)
       .pipe(
+        mergeAll(),
         startWith({}),
         switchMap(() => {
-          return this.movieService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase());
+          return this.movieService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase(), true);
         }),
         map(data => {
           if (data === null) {
@@ -61,6 +62,22 @@ export class ManageMovieComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(MovieDialogComponent, {
       width: '800px',
       data: movie
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+      } else {
+      }
+    });
+  }
+
+  /**
+   * Open the "Edit movie" dialog for the current movie
+   */
+  addMovie() {
+    const dialogRef = this.dialog.open(MovieDialogComponent, {
+      width: '800px',
+      data: null
     });
 
     dialogRef.afterClosed().subscribe(result => {

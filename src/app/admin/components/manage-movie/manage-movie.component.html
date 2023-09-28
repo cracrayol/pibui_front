@@ -4,7 +4,7 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
     </mat-form-field>
     <span class="grow"></span>
-    <button mat-fab extended color="primary" class="self-center">
+    <button mat-fab extended color="primary" class="self-center" (click)='addMovie()'>
         <mat-icon>add</mat-icon>
         Add movie
     </button>

@@ -63,7 +63,7 @@ export class MovieDialogComponent {
 
     this.movie = data;
 
-    if (this.movie) {
+    if (this.movie != null) {
       this.movieForm.setValue({
         title: this.movie.title,
         subtitle: this.movie.subtitle,
@@ -72,42 +72,39 @@ export class MovieDialogComponent {
         valid: this.movie.valid,
         tags: this.movie.tags
       });
+    } else {
+      this.movie = new Movie();
     }
   }
 
   save() {
-    if (this.movie) {
-      this.movie.title = this.movieForm.value.title;
-      this.movie.subtitle = this.movieForm.value.subtitle;
-      this.movie.linkId = this.movieForm.value.linkId;
-      this.movie.valid = this.movieForm.value.valid;
-      this.movie.tags = this.movieForm.value.tags;
+    this.movie.title = this.movieForm.value.title;
+    this.movie.subtitle = this.movieForm.value.subtitle;
+    this.movie.linkId = this.movieForm.value.linkId;
+    this.movie.valid = this.movieForm.value.valid;
+    this.movie.tags = this.movieForm.value.tags;
 
-      if (typeof this.movieForm.value.author === 'string' || this.movieForm.value.author instanceof String) {
-        // TODO Create author
-      } else {
-        this.movie.author = this.movieForm.value.author;
-      }
+    if (typeof this.movieForm.value.author === 'string' || this.movieForm.value.author instanceof String) {
+      // TODO Create author
+    } else {
+      this.movie.author = this.movieForm.value.author;
+    }
 
+    if (this.movie.id != null) {
       this.movies.put(this.movie).subscribe(() => {
         this.dialogRef.close(true);
         this.snack.open($localize`Updated !!`, '', {
           duration: 5000
         });
       });
-    }/* else {
-      this.playlist = {
-        name: this.playlistForm.value.name,
-        public: this.playlistForm.value.public
-      };
-
-      this.playlists.post(this.playlist).subscribe(result => {
-        this.dialogRef.close(result);
+    } else {
+      this.movies.post(this.movie).subscribe(() => {
+        this.dialogRef.close(true);
         this.snack.open($localize`Created !!`, '', {
           duration: 5000
         });
       });
-    }*/
+    }
   }
 
   displayAuthor(author: Author) {

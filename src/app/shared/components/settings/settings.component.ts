@@ -35,34 +35,42 @@ export class SettingsComponent implements AfterViewChecked, OnInit {
     const user = this.auth.getUser();
 
     if (user !== null && val.currentPassword && val.newPassword && val.newPasswordCheck && val.newPassword === val.newPasswordCheck) {
-      this.userService.changePassword(user, val.currentPassword, val.newPassword).subscribe(() => {
-        this.snack.open($localize`Password updated`, null, {
-          duration: 5000
-        });
-      }, (error) => {
-        // TODO Better error handling
-        this.snack.open($localize`Error during changing password !!`, null, {
-          duration: 5000
-        });
-      })
+      user.oldPassword = val.currentPassword;
+      user.password = val.newPassword;
+      this.userService.put(user).subscribe({
+        next:() => {
+          this.snack.open($localize`Password updated`, null, {
+            duration: 5000
+          });
+        },
+        error: () => {
+          // TODO Better error handling
+          this.snack.open($localize`Error during changing password !!`, null, {
+            duration: 5000
+          });
+        }
+      });
     }
   }
 
   deleteAccount() {
     const user = this.auth.getUser();
     if(user !== null) {
-      this.userService.delete(user).subscribe(() => {
-        this.auth.logout();
-        this.dialogRef.close();
-        this.snack.open($localize`Account deleted !!`, null, {
-          duration: 5000
-        });
-      }, (error) => {
-        // TODO Better error handling
-        this.snack.open($localize`Error during deletion !!`, null, {
-          duration: 5000
-        });
-      })
+      this.userService.delete(user).subscribe({
+        next:() => {
+          this.auth.logout();
+          this.dialogRef.close();
+          this.snack.open($localize`Account deleted !!`, null, {
+            duration: 5000
+          });
+        },
+        error: () => {
+          // TODO Better error handling
+          this.snack.open($localize`Error during deletion !!`, null, {
+            duration: 5000
+          });
+        }
+      });
     }
   }
 

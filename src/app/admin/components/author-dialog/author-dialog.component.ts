@@ -27,38 +27,36 @@ export class AuthorDialogComponent {
 
     this.author = data;
 
-    if (this.author) {
+    if (this.author != null) {
       this.authorForm.setValue({
         name: this.author.name,
         subname: this.author.subname
       });
+    } else {
+      this.author = new Author();
     }
   }
 
   save() {
-    if (this.author) {
       this.author.name = this.authorForm.value.name;
       this.author.subname = this.authorForm.value.subname;
 
+
+    if (this.author.id != null) {
       this.authors.put(this.author).subscribe(() => {
         this.dialogRef.close(true);
         this.snack.open($localize`Updated !!`, '', {
           duration: 5000
         });
       });
-    }/* else {
-      this.playlist = {
-        name: this.playlistForm.value.name,
-        public: this.playlistForm.value.public
-      };
-
-      this.playlists.post(this.playlist).subscribe(result => {
-        this.dialogRef.close(result);
+    } else {
+      this.authors.post(this.author).subscribe(() => {
+        this.dialogRef.close(true);
         this.snack.open($localize`Created !!`, '', {
           duration: 5000
         });
       });
-    }*/
+    }
   }
 
 }
