@@ -8,6 +8,7 @@ import { Author } from 'src/app/model/author';
 import { AuthorService } from 'src/app/services/author.service';
 import { AuthorDialogComponent } from '../author-dialog/author-dialog.component';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { Page } from 'src/app/model/page';
 
 @Component({
   selector: 'pbi-manage-author',
@@ -37,13 +38,16 @@ export class ManageAuthorComponent implements AfterViewInit {
         }),
         map(data => {
           if (data === null) {
-            return [];
+            return new Page<Author>()
           }
           this.resultsLength = 1000;
           return data;
         }),
       )
-      .subscribe(data => this.data = data);
+      .subscribe(data => {
+        this.data = data.data
+        this.resultsLength = data.total;
+      });
   }
 
   applyFilter(event: Event) {
@@ -98,7 +102,8 @@ export class ManageAuthorComponent implements AfterViewInit {
         this.authorService.delete(author).subscribe(() => {
           this.authorService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
           .subscribe(data => {
-            this.data = data;
+            this.data = data.data;
+            this.resultsLength = data.total;
           });
         });
       }

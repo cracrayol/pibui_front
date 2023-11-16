@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Author } from '../model/author';
+import { Page } from '../model/page';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,9 @@ export class AuthorService {
     return this.http.get<Author[]>(environment.apiAddr + '/author/search/' + name);
   }
 
-  public getList(start: number, take: number, sort?: string, order?: string): Observable<Author[]> {
+  public getList(start: number, take: number, sort?: string, order?: string): Observable<Page<Author>> {
     let params = sort !== undefined ? {start, take, sort, order : order !== undefined ? order : 'ASC'} : {start, take};
-    return this.http.get<Author[]>(environment.apiAddr + '/author/', {params});
+    return this.http.get<Page<Author>>(environment.apiAddr + '/author/', {params});
   }
 
   public post(author: Author): Observable<Author> {

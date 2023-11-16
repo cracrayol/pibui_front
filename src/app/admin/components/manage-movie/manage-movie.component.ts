@@ -8,6 +8,7 @@ import { MovieService } from 'src/app/services/movie.service';
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { Page } from 'src/app/model/page';
 
 @Component({
   selector: 'pbi-manage-movie',
@@ -37,13 +38,16 @@ export class ManageMovieComponent implements AfterViewInit {
         }),
         map(data => {
           if (data === null) {
-            return [];
+            return new Page<Movie>();
           }
           this.resultsLength = 1000;
           return data;
         }),
       )
-      .subscribe(data => this.data = data);
+      .subscribe(data => {
+        this.data = data.data;
+        this.resultsLength = data.total;
+      });
   }
 
   applyFilter(event: Event) {
@@ -98,7 +102,8 @@ export class ManageMovieComponent implements AfterViewInit {
         this.movieService.delete(movie).subscribe(() => {
           this.movieService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
           .subscribe(data => {
-            this.data = data;
+            this.data = data.data;
+            this.resultsLength = data.total;
           });
         });
       }
