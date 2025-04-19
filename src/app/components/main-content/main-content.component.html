@@ -23,7 +23,7 @@
       </header>
       <div class="flex flex-row justify-center">
         <div class="embed-responsive embed-responsive-16by9 basis-4/5">
-          <youtube-player (stateChange)="onStateChange($event)" (error)="onError($event)"></youtube-player>
+          <youtube-player (stateChange)="onStateChange($event)" (error)="onError($event)" [videoId]="movie?.linkId"></youtube-player>
         </div>
       </div>
     </div>

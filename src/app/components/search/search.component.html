@@ -6,7 +6,7 @@
     <mat-action-list style="flex-grow: 1; overflow: auto">
       <mat-list-item i18n *ngIf="showLatest">Movies newly added:</mat-list-item>
       <mat-list-item *ngIf="searching"><mat-spinner diameter="25"></mat-spinner>&nbsp;<span i18n>Searching...</span></mat-list-item>
-      <mat-list-item *ngFor="let item of ($data | async).data" (click)="play(item.id)" #item (mouseenter)="item.isOver = true" (mouseleave)="item.isOver = false">
+      <mat-list-item *ngFor="let item of ($data | async)?.data" (click)="play(item.id)" #item (mouseenter)="item.isOver = true" (mouseleave)="item.isOver = false">
         <img matListItemAvatar src="https://i1.ytimg.com/vi/{{item.linkId}}/mqdefault.jpg" [ngClass]="{'animate-spin': item.isOver}">
         <span matListItemTitle>{{item.title}}</span>
         <span matListItemLine>{{item.author.name}}</span>

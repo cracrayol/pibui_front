@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, HostListener, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, HostListener, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { SearchComponent } from '../../components/search/search.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -40,7 +40,7 @@ export class MainContentComponent implements AfterViewInit, OnInit {
   }];
 
   constructor(private movieService: MovieService, private title: Title, private location: Location,
-    private route: ActivatedRoute, public auth: AuthService, public dialog: MatDialog) {
+    private route: ActivatedRoute, public auth: AuthService, public dialog: MatDialog, cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -97,7 +97,6 @@ export class MainContentComponent implements AfterViewInit, OnInit {
     this.movieService.get(id).subscribe(
       movie => {
         this.movie = movie;
-        this.player.videoId = movie.linkId;
         this.player.playVideo();
 
         this.title.setTitle(movie.author.name + ' - ' + this.movie.title + ' - ' + 'Pibui');
