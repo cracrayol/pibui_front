@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { shareReplay, tap, map } from 'rxjs/operators';
 import { User } from '../model/user';
 import { environment } from '../../environments/environment';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
 

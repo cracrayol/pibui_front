@@ -20,7 +20,7 @@
             "outputPath": "dist/pibui-front",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -30,12 +30,9 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true,
             "allowedCommonJsDependencies": ["dayjs"]
           },
           "configurations": {
@@ -71,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "pibui-front:build"
+            "buildTarget": "pibui-front:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "pibui-front:build:production"
+              "buildTarget": "pibui-front:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pibui-front:build"
+            "buildTarget": "pibui-front:build"
           }
         },
         "test": {
