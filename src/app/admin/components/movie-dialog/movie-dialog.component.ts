@@ -36,7 +36,6 @@ export class MovieDialogComponent {
       subtitle: '',
       author: ['', Validators.required],
       linkId: ['', Validators.required],
-      valid: '',
       tags: '',
       tag: ''
     });
@@ -82,7 +81,6 @@ export class MovieDialogComponent {
         subtitle: this.movie.subtitle,
         author: this.movie.author,
         linkId: this.movie.linkId,
-        valid: this.movie.valid,
         tags: this.movie.tags,
         tag: ''
       });
@@ -95,7 +93,6 @@ export class MovieDialogComponent {
     this.movie.title = this.movieForm.value.title;
     this.movie.subtitle = this.movieForm.value.subtitle;
     this.movie.linkId = this.movieForm.value.linkId;
-    this.movie.valid = this.movieForm.value.valid;
     this.movie.tags = this.movieForm.value.tags;
 
     if (typeof this.movieForm.value.author === 'string' || this.movieForm.value.author instanceof String) {
@@ -104,6 +101,7 @@ export class MovieDialogComponent {
       this.movie.author = this.movieForm.value.author;
     }
 
+    // TODO error management
     if (this.movie.id != null) {
       this.movies.put(this.movie).subscribe(() => {
         this.dialogRef.close(true);

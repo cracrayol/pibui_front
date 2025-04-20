@@ -69,8 +69,8 @@ export class ManageAuthorComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-      } else {
+      if (result) {
+        this.refreshList();
       }
     });
   }
@@ -85,8 +85,8 @@ export class ManageAuthorComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-      } else {
+      if (result) {
+        this.refreshList();
       }
     });
   }
@@ -98,15 +98,19 @@ export class ManageAuthorComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.authorService.delete(author).subscribe(() => {
-          this.authorService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
-          .subscribe(data => {
-            this.data = data.data;
-            this.resultsLength = data.total;
-          });
+          this.refreshList();
         });
       }
     });
+  }
+
+  private refreshList() {
+    this.authorService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
+      .subscribe(data => {
+        this.data = data.data;
+        this.resultsLength = data.total;
+      });
   }
 }

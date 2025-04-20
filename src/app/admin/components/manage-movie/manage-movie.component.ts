@@ -69,9 +69,9 @@ export class ManageMovieComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-      } else {
-      }
+      if (result) {
+        this.refreshList();
+      } 
     });
   }
 
@@ -85,8 +85,8 @@ export class ManageMovieComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-      } else {
+      if (result) {
+        this.refreshList();
       }
     });
   }
@@ -100,13 +100,17 @@ export class ManageMovieComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.movieService.delete(movie).subscribe(() => {
-          this.movieService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
-          .subscribe(data => {
-            this.data = data.data;
-            this.resultsLength = data.total;
-          });
+          this.refreshList();
         });
       }
+    });
+  }
+
+  private refreshList() {
+    this.movieService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
+    .subscribe(data => {
+      this.data = data.data;
+      this.resultsLength = data.total;
     });
   }
 }

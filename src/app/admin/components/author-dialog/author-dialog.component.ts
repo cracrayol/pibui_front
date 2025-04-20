@@ -38,10 +38,10 @@ export class AuthorDialogComponent {
   }
 
   save() {
-      this.author.name = this.authorForm.value.name;
-      this.author.subname = this.authorForm.value.subname;
+    this.author.name = this.authorForm.value.name;
+    this.author.subname = this.authorForm.value.subname;
 
-
+    // TODO error management
     if (this.author.id != null) {
       this.authors.put(this.author).subscribe(() => {
         this.dialogRef.close(true);
