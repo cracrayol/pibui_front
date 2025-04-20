@@ -9,6 +9,7 @@ import { YouTubePlayer } from '@angular/youtube-player';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Movie } from 'src/app/model/movie';
+import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
 
 @Component({
   selector: 'pbi-index',
@@ -31,6 +32,8 @@ export class MainContentComponent implements AfterViewInit, OnInit {
     modestbranding: 1,
     iv_load_policy: 3
   }
+
+  currentDate = new Date();
 
   headerButtons = [{
     icon: 'search',
@@ -119,6 +122,12 @@ export class MainContentComponent implements AfterViewInit, OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.isMobile = event.target.innerWidth < 1024;
+  }
+
+  openLegalNotice() {
+    this.dialog.open(LegalNoticeComponent, {
+      width: '800px',
+    });
   }
 
 }

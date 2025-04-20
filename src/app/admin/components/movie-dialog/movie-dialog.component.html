@@ -31,17 +31,17 @@
         <mat-chip-grid #chipGrid>
           <mat-chip-row *ngFor="let tag of movie.tags">
             {{tag.name}}
-            <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+            <button matChipRemove [attr.aria-label]="'remove ' + tag.name" (click)="removeTag(tag)">
               <mat-icon>cancel</mat-icon>
             </button>
           </mat-chip-row>
-          <input placeholder="New tag" #tagInput formControlName="tags"
+          <input placeholder="New tag" #tagInput formControlName="tag"
             [matChipInputFor]="chipGrid" [matAutocomplete]="autoTags"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             (matChipInputTokenEnd)="addTag($event)"/>
-          <mat-autocomplete #autoTags="matAutocomplete">
-            <mat-option *ngFor="let tag of tagsList | async" [value]="tag.id">
-              {{tag.name}}
+          <mat-autocomplete #autoTags="matAutocomplete" (optionSelected)="addTag($event); tagInput.value = ''">
+            <mat-option *ngFor="let tag of tagsList" [value]="tag">
+              {{tag?.name}}
             </mat-option>
           </mat-autocomplete>
         </mat-chip-grid>

@@ -24,7 +24,8 @@ export class MovieDialogComponent {
   filteredAuthors: Author[] = [];
   isLoading = false;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  tagsList: Observable<Tag[]>;
+  tagsList: Tag[];
+  currentTag = '';
 
   constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
     private snack: MatSnackBar, public dialogRef: MatDialogRef<MovieDialogComponent>, private movies: MovieService, private authors: AuthorService,
@@ -36,12 +37,24 @@ export class MovieDialogComponent {
       author: ['', Validators.required],
       linkId: ['', Validators.required],
       valid: '',
-      tags: ''
+      tags: '',
+      tag: ''
     });
 
-    this.tagsList = this.movieForm.get('tags').valueChanges.pipe(
-      startWith(null),
-    );
+    this.movieForm.get('tag').valueChanges.pipe(
+      debounceTime(300),
+      tap(() => this.isLoading = true),
+      switchMap(value => {
+        if (value.length >= 3) {
+          return this.movies.searchTags(value)
+            .pipe(
+              finalize(() => this.isLoading = false),
+            )
+        }
+        this.isLoading = false;
+        return [];
+      })
+    ).subscribe(tags => this.tagsList = tags);
 
     this.movieForm
       .get('author')
@@ -70,7 +83,8 @@ export class MovieDialogComponent {
         author: this.movie.author,
         linkId: this.movie.linkId,
         valid: this.movie.valid,
-        tags: this.movie.tags
+        tags: this.movie.tags,
+        tag: ''
       });
     } else {
       this.movie = new Movie();
@@ -85,7 +99,7 @@ export class MovieDialogComponent {
     this.movie.tags = this.movieForm.value.tags;
 
     if (typeof this.movieForm.value.author === 'string' || this.movieForm.value.author instanceof String) {
-      // TODO Create author
+      this.movie.author = {name: this.movieForm.value.author};
     } else {
       this.movie.author = this.movieForm.value.author;
     }
@@ -112,7 +126,19 @@ export class MovieDialogComponent {
   }
 
   addTag(event) {
+    if(event.option) {
+      this.movieForm.patchValue({tags : [...this.movieForm.get('tags').value, event.option.value], tag: ''});
+      this.movie.tags = this.movieForm.get('tags').value;
+      event.option.deselect();
+    } else if(event.value) {
+      this.movieForm.patchValue({tags : [...this.movieForm.get('tags').value, {id: null, name: event.value}], tag: ''});
+      this.movie.tags = this.movieForm.get('tags').value;
+    }
+  }
 
+  removeTag(event) {
+    this.movie.tags.splice(this.movie.tags.indexOf(event), 1);
+    this.movieForm.patchValue({tags : this.movie.tags, tag: ''});
   }
 
 }

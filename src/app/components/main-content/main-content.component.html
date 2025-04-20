@@ -15,7 +15,7 @@
         </div>
         <div *ngIf="movie" class="flex flex-row justify-center content-center">
           <h2 class="alt" id='authorName'><a class="cursor-pointer" (click)='searchAuthor()' i18n-matTooltip matTooltip="Search this author">{{ movie.author.name }}</a></h2>
-          <h2 class="alt" id='movieTitle'> - {{ movie.title }}</h2>
+          <h2 class="alt" id='movieTitle'>&nbsp;- {{ movie.title }}</h2>
         </div>
         <div class="flex flex-row justify-center content-center">
           <h4 class="alt" id='movieSubtitle' *ngIf="movieSubtitle">{{ movieSubtitle }}</h4>
@@ -37,5 +37,12 @@
       </a>
     </div>
     <br>
+    <div class="text-center">
+      <a mat-button href="https://cracrayol.org" i18n>&copy; cracrayol / 2012-{{ currentDate | date:'yyyy'}}</a>
+      <span class="spacer"></span>
+      <a mat-button href="https://github.com/cracrayol/pibui_front" i18n>Source Code</a>
+      <a mat-button (click)="openLegalNotice()" i18n>Legal Notice</a>
+    </div>
+    
   </mat-sidenav-content>
 </mat-sidenav-container>

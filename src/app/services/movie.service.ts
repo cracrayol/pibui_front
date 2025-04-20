@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Movie } from '../model/movie';
 import { Page } from '../model/page';
+import { Tag } from '../model/tag';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export class MovieService {
 
   public delete(movie: Movie): Observable<Movie> {
     return this.http.delete<Movie>(environment.apiAddr + '/movie/' + movie.id);
+  }
+
+  public searchTags(name: string): Observable<Tag[]> {
+    return this.http.get<Tag[]>(environment.apiAddr + '/movie/tags/' + name);
   }
 
 }

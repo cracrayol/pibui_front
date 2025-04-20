@@ -12,10 +12,4 @@ export class AppComponent {
   currentDate = new Date();
 
   constructor(public dialog: MatDialog) { }
-
-  openLegalNotice() {
-    this.dialog.open(LegalNoticeComponent, {
-      width: '800px',
-    });
-  }
 }
