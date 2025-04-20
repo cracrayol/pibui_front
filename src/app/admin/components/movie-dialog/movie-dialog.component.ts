@@ -1,21 +1,29 @@
-import { Component, AfterViewChecked, ChangeDetectorRef, Inject } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Movie } from 'src/app/model/movie';
-import { MovieService } from 'src/app/services/movie.service';
+import { Router } from '@angular/router';
+import { debounceTime, finalize, switchMap, tap } from 'rxjs/operators';
 import { Author } from 'src/app/model/author';
-import { debounceTime, finalize, startWith, switchMap, tap } from 'rxjs/operators';
-import { AuthorService } from 'src/app/services/author.service';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { Observable } from 'rxjs';
+import { Movie } from 'src/app/model/movie';
 import { Tag } from 'src/app/model/tag';
+import { AuthorService } from 'src/app/services/author.service';
+import { MovieService } from 'src/app/services/movie.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'pbi-movie-dialog',
-  templateUrl: './movie-dialog.component.html'
+  templateUrl: './movie-dialog.component.html',
+    standalone: true,
+    imports: [MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatAutocompleteModule, MatChipsModule, MatIconModule, MatProgressSpinnerModule]
 })
 export class MovieDialogComponent {
 

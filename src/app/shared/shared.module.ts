@@ -20,7 +20,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
-    NavBarComponent,
     SettingsComponent,
     LoginComponent,
     ConfirmDialogComponent
@@ -37,7 +36,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule,
     MatButtonModule,
     RouterModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NavBarComponent
   ],
   exports: [
     NavBarComponent,

@@ -1,26 +1,33 @@
 <mat-toolbar class="navbar navbar-shadow" color="primary">
   <a mat-button routerLink="/">PIBUI</a>&nbsp;&nbsp;
   <span class="spacer"></span>
-  <button mat-icon-button (click)="button.click()" *ngFor="let button of buttons">
-    <mat-icon>{{ button.icon }}</mat-icon>
-  </button>
-  <button mat-button (click)="login()" *ngIf="!auth.isLoggedIn()">
-    <mat-icon>input</mat-icon>&nbsp;
-    <span i18n>Register/Sign-in</span>
-  </button>
-  <button mat-icon-button [matMenuTriggerFor]="appMenu" *ngIf="auth.isLoggedIn()">
-    <mat-icon aria-label="Account">account_circle</mat-icon>
-  </button>
+  @for(button of buttons; track button) {
+    <button mat-icon-button (click)="button.click()">
+      <mat-icon>{{ button.icon }}</mat-icon>
+    </button>
+  }
+  @if(!auth.isLoggedIn()) {
+    <button mat-button (click)="login()">
+      <mat-icon>input</mat-icon>&nbsp;
+      <span i18n>Register/Sign-in</span>
+    </button>
+  } @else {
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon aria-label="Account">account_circle</mat-icon>
+    </button>
+  }
 </mat-toolbar>
 <mat-menu #appMenu="matMenu">
   <button mat-menu-item (click)="openSettings()">
     <mat-icon>settings</mat-icon>&nbsp;
     <span i18n>Settings</span>
   </button>
-  <button mat-menu-item routerLink="/admin" *ngIf="auth.isLoggedIn() && auth.getUser().isAdmin">
-    <mat-icon>settings_applications</mat-icon>&nbsp;
-    <span i18n>Admin</span>
-  </button>
+  @if(auth.isLoggedIn() && auth.getUser().isAdmin) {
+    <button mat-menu-item routerLink="/admin">
+      <mat-icon>settings_applications</mat-icon>&nbsp;
+      <span i18n>Admin</span>
+    </button>
+  }
   <button mat-menu-item (click)="logout()">
     <mat-icon>power_settings_new</mat-icon>&nbsp;
     <span i18n>Logout</span>

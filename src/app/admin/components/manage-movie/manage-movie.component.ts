@@ -1,18 +1,25 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTable, MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { asyncScheduler, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
 import { Movie } from 'src/app/model/movie';
-import { MovieService } from 'src/app/services/movie.service';
-import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { Page } from 'src/app/model/page';
+import { MovieService } from 'src/app/services/movie.service';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 
 @Component({
   selector: 'pbi-manage-movie',
-  templateUrl: './manage-movie.component.html'
+  templateUrl: './manage-movie.component.html',
+  standalone: true,
+  imports: [MatFormFieldModule, MatIconModule, MatTableModule, MatSortModule, MatPaginatorModule, MatTooltipModule, MatButtonModule, MatInputModule]
 })
 export class ManageMovieComponent implements AfterViewInit {
 

@@ -1,6 +1,9 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Author } from 'src/app/model/author';
@@ -9,7 +12,9 @@ import { AuthorService } from 'src/app/services/author.service';
 
 @Component({
   selector: 'pbi-author-dialog',
-  templateUrl: './author-dialog.component.html'
+  templateUrl: './author-dialog.component.html',
+  standalone: true,
+  imports: [MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule]
 })
 export class AuthorDialogComponent {
 
