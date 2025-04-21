@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, HostListener, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, HostListener, ChangeDetectorRef } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { SearchComponent } from '../../components/search/search.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -22,7 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   standalone: true,
   imports: [NavBarComponent, MatSidenavModule, TagsComponent, SearchComponent, YouTubePlayerModule, MatIconModule, MatButtonModule, MatTooltipModule, CommonModule]
 })
-export class MainContentComponent implements AfterViewInit, OnInit {
+export class MainContentComponent implements AfterViewInit {
 
   @ViewChild('searchpanel', { static: true }) searchPanel: MatSidenav;
   @ViewChild(SearchComponent, { static: true }) searchCmp: SearchComponent;
@@ -32,7 +32,6 @@ export class MainContentComponent implements AfterViewInit, OnInit {
   movieSubtitle: string;
   cdJapanLink: string;
   isMobile = window.innerWidth < 1024;
-  apiLoaded = false;
   playerVars: YT.PlayerVars = {
     rel: 0,
     showinfo: 0,
@@ -51,16 +50,6 @@ export class MainContentComponent implements AfterViewInit, OnInit {
 
   constructor(private movieService: MovieService, private title: Title, private location: Location,
     private route: ActivatedRoute, public auth: AuthService, public dialog: MatDialog, cd: ChangeDetectorRef) {
-  }
-
-  ngOnInit() {
-    // Load the Youtube API
-    if (!this.apiLoaded) {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.body.appendChild(tag);
-      this.apiLoaded = true;
-    }
   }
 
   ngAfterViewInit() {
