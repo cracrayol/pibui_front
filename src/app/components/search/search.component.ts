@@ -7,10 +7,17 @@ import { Observable, fromEvent } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
 import { Page } from 'src/app/model/page';
 import { Movie } from 'src/app/model/movie';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'pbi-search',
-  templateUrl: './search.component.html'
+  templateUrl: './search.component.html',
+  standalone: true,
+  imports: [MatInputModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, CommonModule]
 })
 export class SearchComponent implements AfterViewInit, OnInit {
 

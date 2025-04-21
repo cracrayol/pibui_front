@@ -1,13 +1,18 @@
 import { Component, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'pbi-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  standalone: true,
+  imports: [MatDialogModule, MatTabsModule, MatInputModule, ReactiveFormsModule, MatButtonModule]
 })
 export class LoginComponent implements AfterViewChecked {
 

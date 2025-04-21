@@ -1,36 +1,44 @@
 <div class="flex flex-row m-2">
-  <mat-form-field *ngIf="auth.isLoggedIn()" class="grow">
-    <mat-select i18n-placeholder placeholder="Playlist" [value]="selected" (selectionChange)="selectPlaylist($event)">
-      <mat-option i18n>None</mat-option>
-      <mat-option *ngFor="let pl of $playlist | async" [value]="pl">
-        {{ pl.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  @if(auth.isLoggedIn()) {
+    <mat-form-field class="grow">
+      <mat-select i18n-placeholder placeholder="Playlist" [value]="selected" (selectionChange)="selectPlaylist($event)">
+        <mat-option i18n>None</mat-option>
+        @for(pl of $playlist | async; track pl.id) {
+          <mat-option [value]="pl">
+            {{ pl.name }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
 
-  <mat-menu #appMenu="matMenu">
-    <button mat-menu-item (click)="editPlaylistDialog(true)" i18n>Create</button>
-    <button mat-menu-item (click)="editPlaylistDialog(false)" *ngIf="selected" i18n>Edit</button>
-    <button mat-menu-item (click)="deletePlaylist()" *ngIf="selected" i18n>Remove</button>
-  </mat-menu>
-  <button mat-icon-button [matMenuTriggerFor]="appMenu" *ngIf="auth.isLoggedIn()">
-    <mat-icon>more_vert</mat-icon>
-  </button>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item (click)="editPlaylistDialog(true)" i18n>Create</button>
+      @if(selected) {
+        <button mat-menu-item (click)="editPlaylistDialog(false)" i18n>Edit</button>
+        <button mat-menu-item (click)="deletePlaylist()" i18n>Remove</button>
+      }
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  }
 </div>
 
 <mat-list style="flex-grow: 1; overflow: auto">
-  <mat-list-item *ngFor="let tag of tags">
-    <span class="flex flex-row items-center">
-      <label class="grow truncate" [title]="tag.name">{{tag.name}}</label>
-      <button mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 2) ? 'accent' : ''" (click)="set(tag, 2)">
-        <mat-icon aria-label="Mandatory">favorite</mat-icon>
-      </button>
-      <button mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 1) ? 'accent' : ''" (click)="set(tag, 1)">
-        <mat-icon aria-label="Optional">help</mat-icon>
-      </button>
-      <button mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 0) ? 'accent' : ''" (click)="set(tag, 0)">
-        <mat-icon aria-label="Forbidden">block</mat-icon>
-      </button>
-    </span>
-  </mat-list-item>
+  @for(tag of tags; track tag.id) {
+    <mat-list-item>
+      <span class="flex flex-row items-center">
+        <label class="grow truncate" [title]="tag.name">{{tag.name}}</label>
+        <button i18n-matTooltip matTooltip="Mandatory tag" mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 2) ? 'accent' : ''" (click)="set(tag, 2)">
+          <mat-icon aria-label="Mandatory">favorite</mat-icon>
+        </button>
+        <button i18n-matTooltip matTooltip="Allowed tag" mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 1) ? 'accent' : ''" (click)="set(tag, 1)">
+          <mat-icon aria-label="Optional">help</mat-icon>
+        </button>
+        <button i18n-matTooltip matTooltip="Forbidden tag" mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 0) ? 'accent' : ''" (click)="set(tag, 0)">
+          <mat-icon aria-label="Forbidden">block</mat-icon>
+        </button>
+      </span>
+    </mat-list-item>
+  }
 </mat-list>

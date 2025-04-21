@@ -41,6 +41,10 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button mat-dialog-close i18n>Cancel</button>
-  <button mat-raised-button color="primary" (click)="login()" i18n *ngIf="loginTab.isActive">Login</button>
-  <button mat-raised-button color="primary" (click)="register()" i18n *ngIf="registerTab.isActive">Register</button>
+  @if(loginTab.isActive) {
+    <button mat-raised-button color="primary" (click)="login()" i18n>Login</button>
+  }
+  @if(registerTab.isActive) {
+    <button mat-raised-button color="primary" (click)="register()" i18n>Register</button>
+  }
 </mat-dialog-actions>

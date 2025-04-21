@@ -4,13 +4,19 @@
 <mat-tab-group>
   <mat-tab i18n-label label="Movies">
     <mat-action-list style="flex-grow: 1; overflow: auto">
-      <mat-list-item i18n *ngIf="showLatest">Movies newly added:</mat-list-item>
-      <mat-list-item *ngIf="searching"><mat-spinner diameter="25"></mat-spinner>&nbsp;<span i18n>Searching...</span></mat-list-item>
-      <mat-list-item *ngFor="let item of ($data | async)?.data" (click)="play(item.id)" #item (mouseenter)="item.isOver = true" (mouseleave)="item.isOver = false">
-        <img matListItemAvatar src="https://i1.ytimg.com/vi/{{item.linkId}}/mqdefault.jpg" [ngClass]="{'animate-spin': item.isOver}">
-        <span matListItemTitle>{{item.title}}</span>
-        <span matListItemLine>{{item.author.name}}</span>
-      </mat-list-item>
+      @if(showLatest) {
+        <mat-list-item i18n>Movies newly added:</mat-list-item>
+      }
+      @if(searching) {
+        <mat-list-item><mat-spinner diameter="25"></mat-spinner>&nbsp;<span i18n>Searching...</span></mat-list-item>
+      }
+      @for(item of ($data | async)?.data; track item.id) {
+        <mat-list-item (click)="play(item.id)" #item (mouseenter)="item.isOver = true" (mouseleave)="item.isOver = false">
+          <img matListItemAvatar src="https://i1.ytimg.com/vi/{{item.linkId}}/mqdefault.jpg" [ngClass]="{'animate-spin': item.isOver}">
+          <span matListItemTitle>{{item.title}}</span>
+          <span matListItemLine>{{item.author.name}}</span>
+        </mat-list-item>
+      }
     </mat-action-list>
   </mat-tab>
   <mat-tab i18n-label label="Playlists">

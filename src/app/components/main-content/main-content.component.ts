@@ -1,19 +1,26 @@
 import { Component, ViewChild, AfterViewInit, HostListener, OnInit, ChangeDetectorRef } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { SearchComponent } from '../../components/search/search.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { Title } from '@angular/platform-browser';
-import { YouTubePlayer } from '@angular/youtube-player';
+import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Movie } from 'src/app/model/movie';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
+import { NavBarComponent } from '../navbar/navbar.component';
+import { TagsComponent } from '../tags/tags.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'pbi-index',
-  templateUrl: './main-content.component.html'
+  templateUrl: './main-content.component.html',
+  standalone: true,
+  imports: [NavBarComponent, MatSidenavModule, TagsComponent, SearchComponent, YouTubePlayerModule, MatIconModule, MatButtonModule, MatTooltipModule, CommonModule]
 })
 export class MainContentComponent implements AfterViewInit, OnInit {
 

@@ -12,7 +12,7 @@ import { asyncScheduler, map, mergeAll, scheduled, startWith, switchMap } from '
 import { Author } from 'src/app/model/author';
 import { Page } from 'src/app/model/page';
 import { AuthorService } from 'src/app/services/author.service';
-import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { AuthorDialogComponent } from '../author-dialog/author-dialog.component';
 
 @Component({

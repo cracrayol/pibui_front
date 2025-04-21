@@ -5,7 +5,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ManageAuthorComponent } from './components/manage-author/manage-author.component';
 import { ManageMovieComponent } from './components/manage-movie/manage-movie.component';
-import { NavBarComponent } from '../shared/components/navbar/navbar.component';
+import { NavBarComponent } from '../components/navbar/navbar.component';
 
 @Component({
   selector: 'pbi-admin',

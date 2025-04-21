@@ -10,16 +10,21 @@
   <mat-sidenav-content>
     <div class="flex flex-col justify-center">
       <header>
-        <div *ngIf="!movie" class="flex flex-row justify-center content-center">
-          <h2 class="alt" id='loadingMovie' i18n>Loading...</h2>
-        </div>
-        <div *ngIf="movie" class="flex flex-row justify-center content-center">
-          <h2 class="alt" id='authorName'><a class="cursor-pointer" (click)='searchAuthor()' i18n-matTooltip matTooltip="Search this author">{{ movie.author.name }}</a></h2>
-          <h2 class="alt" id='movieTitle'>&nbsp;- {{ movie.title }}</h2>
-        </div>
-        <div class="flex flex-row justify-center content-center">
-          <h4 class="alt" id='movieSubtitle' *ngIf="movieSubtitle">{{ movieSubtitle }}</h4>
-        </div>
+        @if(!movie) {
+          <div class="flex flex-row justify-center content-center">
+            <h2 class="alt" id='loadingMovie' i18n>Loading...</h2>
+          </div>
+        } @else {
+          <div class="flex flex-row justify-center content-center">
+            <h2 class="alt" id='authorName'><a class="cursor-pointer" (click)='searchAuthor()' i18n-matTooltip matTooltip="Search this author">{{ movie.author.name }}</a></h2>
+            <h2 class="alt" id='movieTitle'>&nbsp;- {{ movie.title }}</h2>
+          </div>
+          @if(movieSubtitle) {
+            <div class="flex flex-row justify-center content-center">
+              <h4 class="alt" id='movieSubtitle'>{{ movieSubtitle }}</h4>
+            </div>
+          }
+        }
       </header>
       <div class="flex flex-row justify-center">
         <div class="embed-responsive embed-responsive-16by9 basis-4/5">
@@ -32,9 +37,11 @@
         <mat-icon>skip_next</mat-icon>
       </a>
       &nbsp;
-      <a mat-raised-button i18n-matTooltip matTooltip="Tags" (click)='tagspanel.toggle()' *ngIf="isMobile">
-        <mat-icon>bookmark</mat-icon>
-      </a>
+      @if(isMobile) {
+        <a mat-raised-button i18n-matTooltip matTooltip="Tags" (click)='tagspanel.toggle()'>
+          <mat-icon>bookmark</mat-icon>
+        </a>
+      }
     </div>
     <br>
     <div class="text-center">

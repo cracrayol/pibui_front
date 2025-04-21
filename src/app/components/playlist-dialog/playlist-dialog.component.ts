@@ -1,15 +1,22 @@
 import { Component, AfterViewChecked, ChangeDetectorRef, Inject } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PlaylistService } from '../../services/playlist.service';
 import { Playlist, TagType } from '../../model/playlist';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'pbi-playlist-dialog',
   templateUrl: './playlist-dialog.component.html',
+  standalone: true,
+  imports: [MatDialogModule, MatInputModule, MatCheckboxModule, MatChipsModule, MatButtonModule, MatIconModule, ReactiveFormsModule]
 })
 export class PlaylistDialogComponent implements AfterViewChecked {
 

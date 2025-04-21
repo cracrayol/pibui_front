@@ -33,6 +33,10 @@
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-raised-button mat-dialog-close i18n>Cancel</button>
-    <button mat-raised-button color="primary" i18n *ngIf="changePasswordTab.isActive" (click)="changePassword()">Change password</button>
-    <button mat-raised-button color="warn" i18n *ngIf="deletionTab.isActive" [disabled]="!deleteChecked" (click)="deleteAccount()">Delete</button>
+    @if(changePasswordTab.isActive) {
+      <button mat-raised-button color="primary" i18n (click)="changePassword()">Change password</button>
+    }
+    @if(deletionTab.isActive) {
+      <button mat-raised-button color="warn" i18n [disabled]="!deleteChecked" (click)="deleteAccount()">Delete</button>
+    }
   </mat-dialog-actions>

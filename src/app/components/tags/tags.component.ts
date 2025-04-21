@@ -5,14 +5,22 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSelectChange } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { Tag } from '../../model/tag';
-import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { PlaylistDialogComponent } from '../playlist-dialog/playlist-dialog.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'pbi-tags',
-  templateUrl: './tags.component.html'
+  templateUrl: './tags.component.html',
+  standalone: true,
+  imports: [MatSelectModule, MatMenuModule, MatIconModule, MatListModule, MatButtonModule, MatTooltipModule, CommonModule]
 })
 export class TagsComponent implements OnInit {
 

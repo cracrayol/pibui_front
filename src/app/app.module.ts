@@ -26,24 +26,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
-import { SharedModule } from './shared/shared.module';
 import { PlaylistDialogComponent } from './components/playlist-dialog/playlist-dialog.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
+import { NavBarComponent } from './components/navbar/navbar.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { LoginComponent } from './components/login/login.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        SearchComponent,
-        TagsComponent,
-        MainContentComponent,
-        PlaylistDialogComponent,
-        LegalNoticeComponent,
     ],
     imports: [
         AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, ReactiveFormsModule,
         MatSidenavModule, MatButtonModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatButtonModule,
         MatListModule, MatTabsModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule, MatSelectModule,
-        MatAutocompleteModule, MatMenuModule, MatCheckboxModule, MatChipsModule, YouTubePlayerModule, SharedModule
+        MatAutocompleteModule, MatMenuModule, MatCheckboxModule, MatChipsModule, YouTubePlayerModule,
+        NavBarComponent, SettingsComponent, LoginComponent, ConfirmDialogComponent, LegalNoticeComponent,
+        SearchComponent, PlaylistDialogComponent, TagsComponent, MainContentComponent
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
     bootstrap: [AppComponent]

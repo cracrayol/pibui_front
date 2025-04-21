@@ -12,7 +12,7 @@ import { asyncScheduler, map, mergeAll, scheduled, startWith, switchMap } from '
 import { Movie } from 'src/app/model/movie';
 import { Page } from 'src/app/model/page';
 import { MovieService } from 'src/app/services/movie.service';
-import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 
 @Component({

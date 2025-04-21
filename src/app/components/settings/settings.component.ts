@@ -1,13 +1,19 @@
 import { Component, AfterViewChecked, ChangeDetectorRef, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'pbi-settings',
-  templateUrl: './settings.component.html'
+  templateUrl: './settings.component.html',
+  standalone: true,
+  imports: [MatDialogModule, MatTabsModule, MatInputModule, MatCheckboxModule, ReactiveFormsModule, MatButtonModule]
 })
 export class SettingsComponent implements AfterViewChecked, OnInit {
 

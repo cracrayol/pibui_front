@@ -1,5 +1,8 @@
-<h1 mat-dialog-title *ngIf="playlist === null; else editTitle" i18n>Add playlist</h1>
-<ng-template #editTitle><h1 mat-dialog-title i18n>Edit playlist</h1></ng-template>
+@if(playlist === null) {
+  <h1 mat-dialog-title i18n>Add playlist</h1>
+} @else {
+  <h1 mat-dialog-title i18n>Edit playlist</h1>
+}
 <mat-dialog-content>
   <form [formGroup]="playlistForm">
     <div class="flex flex-col justify-center">
@@ -7,41 +10,47 @@
         <input matInput i18n-placeholder placeholder="Name" formControlName="name">
       </mat-form-field>
       <mat-checkbox formControlName="public" i18n>The playlist is public</mat-checkbox>
-      <ng-container *ngIf="playlist !== null">
-        <ng-container *ngIf="playlist.mandatoryTags && playlist.mandatoryTags.length > 0">
+      @if(playlist !== null) {
+        @if(playlist.mandatoryTags && playlist.mandatoryTags.length > 0) {
           <mat-label i18n>Mandatory tags</mat-label>
           <mat-chip-listbox>
-            <mat-chip-row *ngFor="let tag of playlist.mandatoryTags" (removed)="removeTag(tag.id, TagType.MANDATORY)">
-              {{tag.name}}
-              <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
+            @for(tag of playlist.mandatoryTags; track tag.id) {
+              <mat-chip-row (removed)="removeTag(tag.id, TagType.MANDATORY)">
+                {{tag.name}}
+                <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            }
           </mat-chip-listbox>
-        </ng-container>
-        <ng-container *ngIf="playlist.allowedTags && playlist.allowedTags.length > 0">
+        }
+        @if(playlist.allowedTags && playlist.allowedTags.length > 0) {
           <mat-label i18n>Allowed tags</mat-label>
           <mat-chip-listbox>
-            <mat-chip-row *ngFor="let tag of playlist.allowedTags" (removed)="removeTag(tag.id, TagType.ALLOWED)">
-              {{tag.name}}
-              <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
+            @for(tag of playlist.allowedTags; track tag.id) {
+              <mat-chip-row (removed)="removeTag(tag.id, TagType.ALLOWED)">
+                {{tag.name}}
+                <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            }
           </mat-chip-listbox>
-        </ng-container>
-        <ng-container *ngIf="playlist.forbiddenTags && playlist.forbiddenTags.length > 0">
+        }
+        @if(playlist.forbiddenTags && playlist.forbiddenTags.length > 0) {
           <mat-label i18n>Forbidden tags</mat-label>
           <mat-chip-listbox>
-            <mat-chip-row *ngFor="let tag of playlist.forbiddenTags" (removed)="removeTag(tag.id, TagType.FORBIDDEN)">
-              {{tag.name}}
-              <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
+            @for(tag of playlist.forbiddenTags; track tag.id) {
+              <mat-chip-row (removed)="removeTag(tag.id, TagType.FORBIDDEN)">
+                {{tag.name}}
+                <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            }
           </mat-chip-listbox>
-        </ng-container>
-      </ng-container>
+        }
+      }
     </div>
   </form>
 </mat-dialog-content>
