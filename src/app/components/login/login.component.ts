@@ -9,10 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'pbi-login',
-  templateUrl: './login.component.html',
-  standalone: true,
-  imports: [MatDialogModule, MatTabsModule, MatInputModule, ReactiveFormsModule, MatButtonModule]
+    selector: 'pbi-login',
+    templateUrl: './login.component.html',
+    imports: [MatDialogModule, MatTabsModule, MatInputModule, ReactiveFormsModule, MatButtonModule]
 })
 export class LoginComponent implements AfterViewChecked {
 

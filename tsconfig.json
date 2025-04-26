@@ -3,9 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "sourceMap": true,
     "esModuleInterop": true,
-    "declaration": false,
     "module": "ES2022",
     "moduleResolution": "bundler",
     "experimentalDecorators": true,
@@ -13,10 +11,6 @@
     "target": "ES2022",
     "typeRoots": [
       "node_modules/@types"
-    ],
-    "lib": [
-      "ES2022",
-      "dom"
     ],
     "useDefineForClassFields": false
   },

@@ -20,9 +20,8 @@ import { MovieService } from 'src/app/services/movie.service';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'pbi-movie-dialog',
-  templateUrl: './movie-dialog.component.html',
-    standalone: true,
+    selector: 'pbi-movie-dialog',
+    templateUrl: './movie-dialog.component.html',
     imports: [MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatAutocompleteModule, MatChipsModule, MatIconModule, MatProgressSpinnerModule]
 })
 export class MovieDialogComponent {

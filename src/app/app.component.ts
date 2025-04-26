@@ -4,10 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'pbi-root',
-  templateUrl: './app.component.html',
-  standalone: true,
-  imports: [RouterOutlet]
+    selector: 'pbi-root',
+    templateUrl: './app.component.html',
+    imports: [RouterOutlet]
 })
 export class AppComponent {
 

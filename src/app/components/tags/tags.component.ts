@@ -17,10 +17,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'pbi-tags',
-  templateUrl: './tags.component.html',
-  standalone: true,
-  imports: [MatSelectModule, MatMenuModule, MatIconModule, MatListModule, MatButtonModule, MatTooltipModule, CommonModule]
+    selector: 'pbi-tags',
+    templateUrl: './tags.component.html',
+    imports: [MatSelectModule, MatMenuModule, MatIconModule, MatListModule, MatButtonModule, MatTooltipModule, CommonModule]
 })
 export class TagsComponent implements OnInit {
 

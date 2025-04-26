@@ -11,11 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'pbi-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-  standalone: true,
-  imports: [MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, RouterModule]
+    selector: 'pbi-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    imports: [MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, RouterModule]
 })
 export class NavBarComponent {
 

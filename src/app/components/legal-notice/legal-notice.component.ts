@@ -3,10 +3,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
-  selector: 'pbi-legal-notice',
-  templateUrl: './legal-notice.component.html',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule]
+    selector: 'pbi-legal-notice',
+    templateUrl: './legal-notice.component.html',
+    imports: [MatDialogModule, MatButtonModule]
 })
 export class LegalNoticeComponent {
 

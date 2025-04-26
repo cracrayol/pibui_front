@@ -16,9 +16,8 @@ import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confir
 import { AuthorDialogComponent } from '../author-dialog/author-dialog.component';
 
 @Component({
-  selector: 'pbi-manage-author',
-  templateUrl: './manage-author.component.html',
-    standalone: true,
+    selector: 'pbi-manage-author',
+    templateUrl: './manage-author.component.html',
     imports: [MatFormFieldModule, MatIconModule, MatTableModule, MatSortModule, MatPaginatorModule, MatTooltipModule, MatButtonModule, MatInputModule]
 })
 export class ManageAuthorComponent implements AfterViewInit {

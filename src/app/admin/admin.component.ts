@@ -8,10 +8,9 @@ import { ManageMovieComponent } from './components/manage-movie/manage-movie.com
 import { NavBarComponent } from '../components/navbar/navbar.component';
 
 @Component({
-  selector: 'pbi-admin',
-  templateUrl: './admin.component.html',
-  standalone: true,
-  imports: [MatSidenavModule, MatTabsModule, ManageAuthorComponent, ManageMovieComponent, NavBarComponent]
+    selector: 'pbi-admin',
+    templateUrl: './admin.component.html',
+    imports: [MatSidenavModule, MatTabsModule, ManageAuthorComponent, ManageMovieComponent, NavBarComponent]
 })
 export class AdminComponent {
 

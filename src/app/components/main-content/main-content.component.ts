@@ -17,10 +17,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'pbi-index',
-  templateUrl: './main-content.component.html',
-  standalone: true,
-  imports: [NavBarComponent, MatSidenavModule, TagsComponent, SearchComponent, YouTubePlayerModule, MatIconModule, MatButtonModule, MatTooltipModule, CommonModule]
+    selector: 'pbi-index',
+    templateUrl: './main-content.component.html',
+    imports: [NavBarComponent, MatSidenavModule, TagsComponent, SearchComponent, YouTubePlayerModule, MatIconModule, MatButtonModule, MatTooltipModule, CommonModule]
 })
 export class MainContentComponent implements AfterViewInit {
 

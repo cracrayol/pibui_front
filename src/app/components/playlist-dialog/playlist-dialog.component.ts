@@ -13,10 +13,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'pbi-playlist-dialog',
-  templateUrl: './playlist-dialog.component.html',
-  standalone: true,
-  imports: [MatDialogModule, MatInputModule, MatCheckboxModule, MatChipsModule, MatButtonModule, MatIconModule, ReactiveFormsModule]
+    selector: 'pbi-playlist-dialog',
+    templateUrl: './playlist-dialog.component.html',
+    imports: [MatDialogModule, MatInputModule, MatCheckboxModule, MatChipsModule, MatButtonModule, MatIconModule, ReactiveFormsModule]
 })
 export class PlaylistDialogComponent implements AfterViewChecked {
 

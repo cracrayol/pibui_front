@@ -14,10 +14,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'pbi-search',
-  templateUrl: './search.component.html',
-  standalone: true,
-  imports: [MatInputModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, CommonModule]
+    selector: 'pbi-search',
+    templateUrl: './search.component.html',
+    imports: [MatInputModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, CommonModule]
 })
 export class SearchComponent implements AfterViewInit, OnInit {
 

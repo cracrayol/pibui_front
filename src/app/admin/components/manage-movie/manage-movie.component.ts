@@ -16,10 +16,9 @@ import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confir
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 
 @Component({
-  selector: 'pbi-manage-movie',
-  templateUrl: './manage-movie.component.html',
-  standalone: true,
-  imports: [MatFormFieldModule, MatIconModule, MatTableModule, MatSortModule, MatPaginatorModule, MatTooltipModule, MatButtonModule, MatInputModule]
+    selector: 'pbi-manage-movie',
+    templateUrl: './manage-movie.component.html',
+    imports: [MatFormFieldModule, MatIconModule, MatTableModule, MatSortModule, MatPaginatorModule, MatTooltipModule, MatButtonModule, MatInputModule]
 })
 export class ManageMovieComponent implements AfterViewInit {
 

@@ -10,10 +10,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'pbi-settings',
-  templateUrl: './settings.component.html',
-  standalone: true,
-  imports: [MatDialogModule, MatTabsModule, MatInputModule, MatCheckboxModule, ReactiveFormsModule, MatButtonModule]
+    selector: 'pbi-settings',
+    templateUrl: './settings.component.html',
+    imports: [MatDialogModule, MatTabsModule, MatInputModule, MatCheckboxModule, ReactiveFormsModule, MatButtonModule]
 })
 export class SettingsComponent implements AfterViewChecked, OnInit {
 

@@ -11,10 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AuthorService } from 'src/app/services/author.service';
 
 @Component({
-  selector: 'pbi-author-dialog',
-  templateUrl: './author-dialog.component.html',
-  standalone: true,
-  imports: [MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule]
+    selector: 'pbi-author-dialog',
+    templateUrl: './author-dialog.component.html',
+    imports: [MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule]
 })
 export class AuthorDialogComponent {
 
