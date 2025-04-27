@@ -27,8 +27,8 @@
         }
       </header>
       <div class="flex flex-row justify-center">
-        <div class="embed-responsive embed-responsive-16by9 basis-4/5">
-          <youtube-player (stateChange)="onStateChange($event)" (error)="onError($event)" [videoId]="movie?.linkId"></youtube-player>
+        <div #youtubeDiv>
+          <youtube-player [width]="playerWidth" [height]="playerHeight" (stateChange)="onStateChange($event)" (error)="onError($event)" [videoId]="movie?.linkId" [playerVars]="{'autoplay':1}"></youtube-player>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
     </div>
     <br>
     <div class="text-center">
-      <a mat-button href="https://cracrayol.org" i18n>&copy; cracrayol / 2012-{{ currentDate | date:'yyyy'}}</a>
+      <a mat-button href="https://cracrayol.org">&copy; cracrayol / 2012-{{ currentDate | date:'yyyy'}}</a>
       <span class="spacer"></span>
       <a mat-button href="https://github.com/cracrayol/pibui_front" i18n>Source Code</a>
       <a mat-button (click)="openLegalNotice()" i18n>Legal Notice</a>

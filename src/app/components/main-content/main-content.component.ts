@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, HostListener, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, HostListener, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { SearchComponent } from '../../components/search/search.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -26,11 +26,14 @@ export class MainContentComponent implements AfterViewInit {
   @ViewChild('searchpanel', { static: true }) searchPanel: MatSidenav;
   @ViewChild(SearchComponent, { static: true }) searchCmp: SearchComponent;
   @ViewChild(YouTubePlayer, { static: true }) player: YouTubePlayer;
+  @ViewChild('youtubeDiv', { static: true }) youtubeDiv: ElementRef<HTMLElement>;
 
   movie: Movie;
   movieSubtitle: string;
   cdJapanLink: string;
   isMobile = window.innerWidth < 1024;
+  playerWidth = 0;
+  playerHeight = 0;
   playerVars: YT.PlayerVars = {
     rel: 0,
     showinfo: 0,
@@ -52,6 +55,9 @@ export class MainContentComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.playerWidth = this.youtubeDiv.nativeElement.parentElement.clientWidth * 0.8;
+    this.playerHeight = this.playerWidth * 9 / 16;
+
     // Load a specific movie if there's an ID in the URL
     this.route.paramMap.subscribe((params: ParamMap) => {
       if (params.has('id')) {
@@ -117,6 +123,8 @@ export class MainContentComponent implements AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.isMobile = event.target.innerWidth < 1024;
+    this.playerWidth = this.youtubeDiv.nativeElement.parentElement.clientWidth * 0.8;
+    this.playerHeight = this.playerWidth * 9 / 16;
   }
 
   openLegalNotice() {
