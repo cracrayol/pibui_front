@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pibui-front2": {
+    "pibui-front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -18,7 +18,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/pibui-front2",
+            "outputPath": "dist/pibui-front",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -56,7 +56,13 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "localize": ["fr"]
+              "localize": ["fr"],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -65,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "pibui-front2:build:production"
+              "buildTarget": "pibui-front:build:production"
             },
             "development": {
-              "buildTarget": "pibui-front2:build:development"
+              "buildTarget": "pibui-front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "pibui-front2:build"
+            "buildTarget": "pibui-front:build"
           }
         },
         "test": {

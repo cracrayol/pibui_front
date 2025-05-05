@@ -1,28 +1,27 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { debounceTime, map, tap } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
 import { Page } from 'src/app/model/page';
-import { Movie } from 'src/app/model/movie';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
+import { Movie } from 'src/app/model/movie';
 
 @Component({
     selector: 'pbi-search',
     templateUrl: './search.component.html',
     imports: [MatInputModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, CommonModule]
 })
-export class SearchComponent implements AfterViewInit, OnInit {
+export class SearchComponent implements AfterViewInit {
 
   // TODO Lazy loading of the list
 
-  $data: Observable<Page<any>>;
+  $data: Observable<Page<Movie>> = this.movies.getList('', 0, 30, 'movie.id', 'DESC');
   showLatest = false;
   searching = false;
   @ViewChild('searchValue', { static: true }) searchField: ElementRef<HTMLInputElement>;
@@ -30,11 +29,6 @@ export class SearchComponent implements AfterViewInit, OnInit {
   @Output() itemSelected = new EventEmitter<number>();
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private movies: MovieService) { }
-
-  ngOnInit(): void {
-    // Load latest movies
-    this.$data = this.movies.getList(0, 30);
-  }
 
   ngAfterViewInit() {
     fromEvent(this.searchField.nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
@@ -49,13 +43,12 @@ export class SearchComponent implements AfterViewInit, OnInit {
     if (search.length >= 3) {
       this.showLatest = false;
       this.searching = true;
-      let url = '/search/' + search;
-      this.$data = this.http.get<Page<Movie>>(environment.apiAddr + url).pipe(tap(() => {
+      this.$data = this.movies.getList(search, 0, 30, 'movie.title', 'ASC').pipe(tap(() => {
         this.showLatest = search.length === 0;
         this.searching = false;
       }));
     } else if(search.length === 0) {
-      this.$data = this.movies.getList(0, 30);
+      this.$data = this.movies.getList('', 0, 30, 'movie.id', 'DESC');
     }
   }
 

@@ -8,4 +8,5 @@ export class Movie {
   linkId?: string;
   author?: Author;
   tags?: Tag[];
+  isOver: boolean;
 }

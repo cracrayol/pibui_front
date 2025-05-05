@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,7 +8,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { asyncScheduler, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
+import { asyncScheduler, debounceTime, fromEvent, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
 import { Movie } from 'src/app/model/movie';
 import { Page } from 'src/app/model/page';
 import { MovieService } from 'src/app/services/movie.service';
@@ -30,17 +30,21 @@ export class ManageMovieComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild('searchValue', { static: true }) searchField: ElementRef<HTMLInputElement>;
 
   constructor(private movieService: MovieService, public dialog: MatDialog) {
   }
 
   ngAfterViewInit() {
+    fromEvent(this.searchField.nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
+          this.refreshList();
+        });
     scheduled([this.sort.sortChange, this.paginator.page], asyncScheduler)
       .pipe(
         mergeAll(),
         startWith({}),
         switchMap(() => {
-          return this.movieService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase(), true);
+          return this.movieService.getList('', this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase(), true);
         }),
         map(data => {
           if (data === null) {
@@ -113,7 +117,7 @@ export class ManageMovieComponent implements AfterViewInit {
   }
 
   private refreshList() {
-    this.movieService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
+    this.movieService.getList(this.searchField.nativeElement.value, this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
     .subscribe(data => {
       this.data = data.data;
       this.resultsLength = data.total;
