@@ -41,12 +41,12 @@ export class SearchComponent implements AfterViewInit {
     if (search.length >= 3) {
       this.showLatest = false;
       this.searching = true;
-      this.$data = this.movies.getList(search, 0, 30, 'movie.title', 'ASC').pipe(tap(() => {
+      this.$data = this.movies.getList(search, 0, 100, 'movie.title', 'ASC').pipe(tap(() => {
         this.showLatest = search.length === 0;
         this.searching = false;
       }));
     } else if(search.length === 0) {
-      this.$data = this.movies.getList('', 0, 30, 'movie.id', 'DESC');
+      this.$data = this.movies.getList('', 0, 100, 'movie.id', 'DESC');
     }
   }
 

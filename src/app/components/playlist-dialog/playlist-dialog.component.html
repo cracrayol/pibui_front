@@ -11,45 +11,9 @@
       </mat-form-field>
       <mat-checkbox formControlName="public" i18n>The playlist is public</mat-checkbox>
       @if(playlist !== null) {
-        @if(playlist.mandatoryTags && playlist.mandatoryTags.length > 0) {
-          <mat-label i18n>Mandatory tags</mat-label>
-          <mat-chip-listbox>
-            @for(tag of playlist.mandatoryTags; track tag.id) {
-              <mat-chip-row (removed)="removeTag(tag.id, TagType.MANDATORY)">
-                {{tag.name}}
-                <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
-                  <mat-icon>cancel</mat-icon>
-                </button>
-              </mat-chip-row>
-            }
-          </mat-chip-listbox>
-        }
-        @if(playlist.allowedTags && playlist.allowedTags.length > 0) {
-          <mat-label i18n>Allowed tags</mat-label>
-          <mat-chip-listbox>
-            @for(tag of playlist.allowedTags; track tag.id) {
-              <mat-chip-row (removed)="removeTag(tag.id, TagType.ALLOWED)">
-                {{tag.name}}
-                <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
-                  <mat-icon>cancel</mat-icon>
-                </button>
-              </mat-chip-row>
-            }
-          </mat-chip-listbox>
-        }
-        @if(playlist.forbiddenTags && playlist.forbiddenTags.length > 0) {
-          <mat-label i18n>Forbidden tags</mat-label>
-          <mat-chip-listbox>
-            @for(tag of playlist.forbiddenTags; track tag.id) {
-              <mat-chip-row (removed)="removeTag(tag.id, TagType.FORBIDDEN)">
-                {{tag.name}}
-                <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
-                  <mat-icon>cancel</mat-icon>
-                </button>
-              </mat-chip-row>
-            }
-          </mat-chip-listbox>
-        }
+        <app-tag-autocomplete [(tags)]="playlist.mandatoryTags" placeholder="Mandatory tags"></app-tag-autocomplete>
+        <app-tag-autocomplete [(tags)]="playlist.allowedTags" placeholder="Allowed tags"></app-tag-autocomplete>
+        <app-tag-autocomplete [(tags)]="playlist.forbiddenTags" placeholder="Forbidden tags"></app-tag-autocomplete>
       }
     </div>
   </form>

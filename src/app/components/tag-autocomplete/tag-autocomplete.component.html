@@ -1,0 +1,23 @@
+<mat-form-field style="width: 100%;">
+  <mat-chip-grid #chipGrid>
+    @for(tag of tags(); track tag.name) {
+      <mat-chip-row>
+        {{tag.name}}
+        <button matChipRemove [attr.aria-label]="'remove ' + tag.name" (click)="removeTag(tag)">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+    }
+    <input [placeholder]="placeholder()" #tagInput
+      [matChipInputFor]="chipGrid" [matAutocomplete]="autoTags"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="addTag($event)"/>
+    <mat-autocomplete #autoTags="matAutocomplete" (optionSelected)="addTag($event); tagInput.value = ''">
+      @for(tag of tagsList; track tag.id) {
+        <mat-option [value]="tag">
+          {{tag?.name}}
+        </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-chip-grid>
+</mat-form-field>

@@ -9,11 +9,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { TagAutocompleteComponent } from '../tag-autocomplete/tag-autocomplete.component';
 
 @Component({
     selector: 'pbi-playlist-dialog',
     templateUrl: './playlist-dialog.component.html',
-    imports: [MatDialogModule, MatInputModule, MatCheckboxModule, MatChipsModule, MatButtonModule, MatIconModule, ReactiveFormsModule]
+    imports: [TagAutocompleteComponent, MatDialogModule, MatInputModule, MatCheckboxModule, MatChipsModule, MatButtonModule, MatIconModule, ReactiveFormsModule]
 })
 export class PlaylistDialogComponent implements AfterViewChecked {
   private fb = inject(UntypedFormBuilder);

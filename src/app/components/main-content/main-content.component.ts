@@ -89,7 +89,7 @@ export class MainContentComponent implements AfterViewInit {
 
   searchAuthor() {
     this.searchPanel.open();
-    const search = '"' + this.movie.author.name + '"';
+    const search = this.movie.author.name;
     this.searchCmp.searchField.nativeElement.value = search;
     this.searchCmp.search(search);
   }
