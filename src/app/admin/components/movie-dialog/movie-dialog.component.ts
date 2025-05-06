@@ -70,7 +70,7 @@ export class MovieDialogComponent {
         tap(() => this.isLoading = true),
         switchMap(value => {
           if ((<string>value).length >= 3) {
-            return this.authors.get(value)
+            return this.authors.get(value, 0, 20, 'name', 'ASC')
               .pipe(
                 finalize(() => this.isLoading = false),
               )
@@ -78,7 +78,7 @@ export class MovieDialogComponent {
           this.isLoading = false;
           return [];
         })
-      ).subscribe(authors => this.filteredAuthors = authors);
+      ).subscribe(authors => this.filteredAuthors = authors.data);
 
     this.movie = data;
 

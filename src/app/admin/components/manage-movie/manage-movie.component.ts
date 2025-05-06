@@ -44,7 +44,7 @@ export class ManageMovieComponent implements AfterViewInit {
         mergeAll(),
         startWith({}),
         switchMap(() => {
-          return this.movieService.getList('', this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase(), true);
+          return this.movieService.getList(this.searchField.nativeElement.value, this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase(), true);
         }),
         map(data => {
           if (data === null) {
@@ -58,15 +58,6 @@ export class ManageMovieComponent implements AfterViewInit {
         this.data = data.data;
         this.resultsLength = data.total;
       });
-  }
-
-  applyFilter(event: Event) {
-    /*const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }*/
   }
 
   /**

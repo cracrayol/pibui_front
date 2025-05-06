@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,7 +8,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { asyncScheduler, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
+import { asyncScheduler, debounceTime, fromEvent, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
 import { Author } from 'src/app/model/author';
 import { Page } from 'src/app/model/page';
 import { AuthorService } from 'src/app/services/author.service';
@@ -30,17 +30,22 @@ export class ManageAuthorComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild('searchValue', { static: true }) searchField: ElementRef<HTMLInputElement>;
 
   constructor(private authorService: AuthorService, public dialog: MatDialog) {
   }
 
   ngAfterViewInit() {
+    fromEvent(this.searchField.nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
+      this.refreshList();
+    });
+
     scheduled([this.sort.sortChange, this.paginator.page], asyncScheduler)
       .pipe(
         mergeAll(),
         startWith({}),
         switchMap(() => {
-          return this.authorService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase());
+          return this.authorService.get(this.searchField.nativeElement.value, this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase());
         }),
         map(data => {
           if (data === null) {
@@ -54,15 +59,6 @@ export class ManageAuthorComponent implements AfterViewInit {
         this.data = data.data
         this.resultsLength = data.total;
       });
-  }
-
-  applyFilter(event: Event) {
-    /*const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }*/
   }
 
   /**
@@ -113,7 +109,7 @@ export class ManageAuthorComponent implements AfterViewInit {
   }
 
   private refreshList() {
-    this.authorService.getList(this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
+    this.authorService.get(this.searchField.nativeElement.value, this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
       .subscribe(data => {
         this.data = data.data;
         this.resultsLength = data.total;
