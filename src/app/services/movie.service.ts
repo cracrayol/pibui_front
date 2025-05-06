@@ -13,8 +13,8 @@ export class MovieService {
   private http = inject(HttpClient);
 
 
-  public get(id: number = -1): Observable<Movie> {
-    return this.http.get<Movie>(environment.apiAddr + '/movie/' + id);
+  public get(id: number = -1, lastOnError = false): Observable<Movie> {
+    return this.http.get<Movie>(environment.apiAddr + '/movie/' + id + '?lastOnError=' + lastOnError);
   }
 
   public getList(filter: string, start: number, take: number, sort?: string, order?: string, all?: boolean): Observable<Page<Movie>> {

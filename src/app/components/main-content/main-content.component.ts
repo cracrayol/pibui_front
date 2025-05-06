@@ -78,8 +78,7 @@ export class MainContentComponent implements AfterViewInit {
   }
 
   onError(event: YT.OnErrorEvent) {
-    // TODO log error
-    this.playNextVideo();
+    this.playNextVideo(-1, true);
   }
 
   playSearchedItem(id: number) {
@@ -99,8 +98,8 @@ export class MainContentComponent implements AfterViewInit {
    * Load a movie from the given id. If id is -1, take a movie randomly, based on selected playlist.
    * @param id Id of a movie
    */
-  playNextVideo(id: number = -1) {
-    this.movieService.get(id).subscribe(
+  playNextVideo(id: number = -1, lastOnError = false) {
+    this.movieService.get(id, lastOnError).subscribe(
       movie => {
         this.movie = movie;
         this.player.playVideo();
