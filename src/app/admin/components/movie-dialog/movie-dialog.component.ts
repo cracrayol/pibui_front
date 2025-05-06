@@ -1,6 +1,6 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { ChangeDetectorRef, Component, Inject } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, inject, Inject } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -10,14 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { debounceTime, finalize, switchMap, tap } from 'rxjs/operators';
 import { Author } from 'src/app/model/author';
 import { Movie } from 'src/app/model/movie';
 import { Tag } from 'src/app/model/tag';
 import { AuthorService } from 'src/app/services/author.service';
 import { MovieService } from 'src/app/services/movie.service';
-import { AuthService } from '../../../services/auth.service';
 
 @Component({
     selector: 'pbi-movie-dialog',
@@ -26,18 +24,21 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class MovieDialogComponent {
 
-  movieForm: UntypedFormGroup;
-  movie: Movie;
+  movieForm: FormGroup;
   filteredAuthors: Author[] = [];
   isLoading = false;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagsList: Tag[];
   currentTag = '';
 
-  constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
-    private snack: MatSnackBar, public dialogRef: MatDialogRef<MovieDialogComponent>, private movies: MovieService, private authors: AuthorService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+  movie = inject<Movie>(MAT_DIALOG_DATA);
+  movieService = inject(MovieService);
+  authorService = inject(AuthorService);
+  snack = inject(MatSnackBar);
+  dialogRef = inject(MatDialogRef<MovieDialogComponent>);
+  fb = inject(FormBuilder);
 
+  constructor() {
     this.movieForm = this.fb.group({
       title: ['', Validators.required],
       subtitle: '',
@@ -52,7 +53,7 @@ export class MovieDialogComponent {
       tap(() => this.isLoading = true),
       switchMap(value => {
         if (value.length >= 3) {
-          return this.movies.searchTags(value)
+          return this.movieService.searchTags(value)
             .pipe(
               finalize(() => this.isLoading = false),
             )
@@ -70,7 +71,7 @@ export class MovieDialogComponent {
         tap(() => this.isLoading = true),
         switchMap(value => {
           if ((<string>value).length >= 3) {
-            return this.authors.get(value, 0, 20, 'name', 'ASC')
+            return this.authorService.get(value, 0, 20, 'name', 'ASC')
               .pipe(
                 finalize(() => this.isLoading = false),
               )
@@ -79,8 +80,6 @@ export class MovieDialogComponent {
           return [];
         })
       ).subscribe(authors => this.filteredAuthors = authors.data);
-
-    this.movie = data;
 
     if (this.movie != null) {
       this.movieForm.setValue({
@@ -110,14 +109,14 @@ export class MovieDialogComponent {
 
     // TODO error management
     if (this.movie.id != null) {
-      this.movies.put(this.movie).subscribe(() => {
+      this.movieService.put(this.movie).subscribe(() => {
         this.dialogRef.close(true);
         this.snack.open($localize`Updated !!`, '', {
           duration: 5000
         });
       });
     } else {
-      this.movies.post(this.movie).subscribe(() => {
+      this.movieService.post(this.movie).subscribe(() => {
         this.dialogRef.close(true);
         this.snack.open($localize`Created !!`, '', {
           duration: 5000

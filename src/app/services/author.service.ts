@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
@@ -9,8 +9,8 @@ import { Page } from '../model/page';
   providedIn: 'root'
 })
 export class AuthorService {
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
 
   public get(filter: string, start: number, take: number, sort?: string, order?: string): Observable<Page<Author>> {
     let params = sort !== undefined ? {filter, start, take, sort, order : order !== undefined ? order : 'ASC'} : {filter, start, take};

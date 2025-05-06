@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
@@ -17,10 +17,12 @@ import { RouterModule } from '@angular/router';
     imports: [MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, RouterModule]
 })
 export class NavBarComponent {
+  dialog = inject(MatDialog);
+  auth = inject(AuthService);
+  private snack = inject(MatSnackBar);
+
 
   @Input() buttons: any[];
-
-  constructor(public dialog: MatDialog, public auth: AuthService, private snack: MatSnackBar) { }
 
   openSettings() {
     this.dialog.open(SettingsComponent, {

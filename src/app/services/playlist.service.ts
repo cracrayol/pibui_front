@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Playlist } from '../model/playlist';
@@ -8,9 +8,8 @@ import { Playlist } from '../model/playlist';
   providedIn: 'root'
 })
 export class PlaylistService {
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {
-  }
 
   public getAll(): Observable<Playlist[]> {
     return this.http.get<Playlist[]>(environment.apiAddr + '/playlist');

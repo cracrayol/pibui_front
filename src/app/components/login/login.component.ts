@@ -1,6 +1,5 @@
-import { Component, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewChecked, ChangeDetectorRef, inject } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,12 +13,17 @@ import { MatButtonModule } from '@angular/material/button';
     imports: [MatDialogModule, MatTabsModule, MatInputModule, ReactiveFormsModule, MatButtonModule]
 })
 export class LoginComponent implements AfterViewChecked {
+  private fb = inject(UntypedFormBuilder);
+  private auth = inject(AuthService);
+  private ref = inject(ChangeDetectorRef);
+  private snack = inject(MatSnackBar);
+  dialogRef = inject<MatDialogRef<LoginComponent>>(MatDialogRef);
+
 
   loginForm: UntypedFormGroup;
   registerForm: UntypedFormGroup;
 
-  constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
-    private snack: MatSnackBar, public dialogRef: MatDialogRef<LoginComponent>) {
+  constructor() {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { shareReplay, tap, map } from 'rxjs/operators';
 import { User } from '../model/user';
 import { environment } from '../../environments/environment';
@@ -11,11 +11,11 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private userService = inject(UserService);
+
 
   private user: User;
-
-  constructor(private http: HttpClient, private userService: UserService) {
-  }
 
   login(email: string, password: string): Observable<User> {
     return this.http.post<User>(environment.apiAddr + '/login', { email, password })

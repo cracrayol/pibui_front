@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,16 +24,15 @@ export class ManageMovieComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['id', 'title', 'subtitle', 'author', 'edit'];
   data: Movie[];
-
   resultsLength = 0;
+
+  movieService = inject(MovieService);
+  dialog = inject(MatDialog);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
   @ViewChild('searchValue', { static: true }) searchField: ElementRef<HTMLInputElement>;
-
-  constructor(private movieService: MovieService, public dialog: MatDialog) {
-  }
 
   ngAfterViewInit() {
     fromEvent(this.searchField.nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {

@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, AfterViewChecked, ChangeDetectorRef, OnInit, inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,13 +15,17 @@ import { MatButtonModule } from '@angular/material/button';
     imports: [MatDialogModule, MatTabsModule, MatInputModule, MatCheckboxModule, ReactiveFormsModule, MatButtonModule]
 })
 export class SettingsComponent implements AfterViewChecked, OnInit {
+  private ref = inject(ChangeDetectorRef);
+  private fb = inject(UntypedFormBuilder);
+  dialogRef = inject<MatDialogRef<SettingsComponent>>(MatDialogRef);
+  userService = inject(UserService);
+  auth = inject(AuthService);
+  private snack = inject(MatSnackBar);
+
 
   deletionForm: UntypedFormGroup;
   passwordForm: UntypedFormGroup;
   deleteChecked: boolean;
-
-  constructor(private ref: ChangeDetectorRef, private fb: UntypedFormBuilder, public dialogRef: MatDialogRef<SettingsComponent>,
-    public userService: UserService, public auth: AuthService, private snack: MatSnackBar) { }
 
   ngOnInit() {
     this.passwordForm = this.fb.group({

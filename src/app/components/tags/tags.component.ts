@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Playlist, TagType } from '../../model/playlist';
 import { PlaylistService } from '../../services/playlist.service';
 import { Observable } from 'rxjs';
@@ -22,15 +22,17 @@ import { CommonModule } from '@angular/common';
     imports: [MatSelectModule, MatMenuModule, MatIconModule, MatListModule, MatButtonModule, MatTooltipModule, CommonModule]
 })
 export class TagsComponent implements OnInit {
+  playlistService = inject(PlaylistService);
+  auth = inject(AuthService);
+  dialog = inject(MatDialog);
+
 
   @Input() tags: Tag[];
   selected: Playlist;
   $playlist: Observable<Playlist[]>;
 
-  constructor(public playlist: PlaylistService, public auth: AuthService, public dialog: MatDialog) { }
-
   ngOnInit() {
-    this.$playlist = this.playlist.getAll().pipe(tap((playlists: Playlist[]) => {
+    this.$playlist = this.playlistService.getAll().pipe(tap((playlists: Playlist[]) => {
       playlists.forEach((pl: Playlist) => {
         if (this.auth.getUser().currentPlaylistId && this.auth.getUser().currentPlaylistId === pl.id) {
           this.selected = pl;
@@ -86,7 +88,7 @@ export class TagsComponent implements OnInit {
         }
       }
     }
-    this.playlist.put(currentPlaylist).subscribe(() => {
+    this.playlistService.put(currentPlaylist).subscribe(() => {
       this.selected.forbiddenTags = currentPlaylist.forbiddenTags;
       this.selected.allowedTags = currentPlaylist.allowedTags;
       this.selected.mandatoryTags = currentPlaylist.mandatoryTags;
@@ -127,7 +129,7 @@ export class TagsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result != null) {
-        this.$playlist = this.playlist.getAll().pipe(tap((playlists: Playlist[]) => {
+        this.$playlist = this.playlistService.getAll().pipe(tap((playlists: Playlist[]) => {
           playlists.forEach((pl: Playlist) => {
             if (this.auth.getUser().currentPlaylistId && this.auth.getUser().currentPlaylistId === pl.id) {
               this.selected = pl;
@@ -146,9 +148,9 @@ export class TagsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        this.playlist.delete(this.selected).subscribe(() => {
+        this.playlistService.delete(this.selected).subscribe(() => {
           this.selected = null;
-          this.$playlist = this.playlist.getAll();
+          this.$playlist = this.playlistService.getAll();
         });
       }
     });

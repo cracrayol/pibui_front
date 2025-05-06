@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
@@ -10,8 +10,8 @@ import { Tag } from '../model/tag';
   providedIn: 'root'
 })
 export class MovieService {
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
 
   public get(id: number = -1): Observable<Movie> {
     return this.http.get<Movie>(environment.apiAddr + '/movie/' + id);

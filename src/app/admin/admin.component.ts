@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -13,14 +13,14 @@ import { NavBarComponent } from '../components/navbar/navbar.component';
     imports: [MatSidenavModule, MatTabsModule, ManageAuthorComponent, ManageMovieComponent, NavBarComponent]
 })
 export class AdminComponent {
+  auth = inject(AuthService);
+  dialog = inject(MatDialog);
+
 
   isMobile = window.innerWidth < 1024;
 
   headerButtons = [{
   }];
-
-  constructor(public auth: AuthService, public dialog: MatDialog) {
-  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {

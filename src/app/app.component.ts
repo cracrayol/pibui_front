@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LegalNoticeComponent } from './components/legal-notice/legal-notice.component';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterOutlet } from '@angular/router';
@@ -9,8 +9,8 @@ import { RouterOutlet } from '@angular/router';
     imports: [RouterOutlet]
 })
 export class AppComponent {
+  dialog = inject(MatDialog);
+
 
   currentDate = new Date();
-
-  constructor(public dialog: MatDialog) { }
 }

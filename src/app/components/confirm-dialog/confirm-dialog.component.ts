@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, ChangeDetectorRef, Inject } from '@angular/core';
+import { Component, AfterViewChecked, ChangeDetectorRef, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
@@ -8,13 +8,9 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/materia
     imports: [MatDialogModule, MatButtonModule]
 })
 export class ConfirmDialogComponent implements AfterViewChecked {
-
-  public dialogText: String;
-
-  constructor(private ref: ChangeDetectorRef, public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.dialogText = data;
-  }
+  private ref = inject(ChangeDetectorRef);
+  dialogRef = inject<MatDialogRef<ConfirmDialogComponent>>(MatDialogRef);
+  dialogText = inject<string>(MAT_DIALOG_DATA);
 
   ngAfterViewChecked() {
     // Avoid ExpressionChangedAfterItHasBeenCheckedError

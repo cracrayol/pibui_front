@@ -1,7 +1,5 @@
-import { Component, AfterViewChecked, ChangeDetectorRef, Inject } from '@angular/core';
+import { Component, AfterViewChecked, ChangeDetectorRef, inject } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PlaylistService } from '../../services/playlist.service';
@@ -18,22 +16,26 @@ import { MatIconModule } from '@angular/material/icon';
     imports: [MatDialogModule, MatInputModule, MatCheckboxModule, MatChipsModule, MatButtonModule, MatIconModule, ReactiveFormsModule]
 })
 export class PlaylistDialogComponent implements AfterViewChecked {
+  private fb = inject(UntypedFormBuilder);
+  private ref = inject(ChangeDetectorRef);
+  private snack = inject(MatSnackBar);
+  dialogRef = inject<MatDialogRef<PlaylistDialogComponent>>(MatDialogRef);
+  private playlistService = inject(PlaylistService);
+  inputPlaylist = inject<Playlist>(MAT_DIALOG_DATA);
+
 
   readonly TagType = TagType;
 
   playlistForm: UntypedFormGroup;
   playlist: Playlist;
 
-  constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router: Router, private ref: ChangeDetectorRef,
-    private snack: MatSnackBar, public dialogRef: MatDialogRef<PlaylistDialogComponent>, private playlists: PlaylistService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-
+  constructor() {
     this.playlistForm = this.fb.group({
       name: ['', Validators.required],
       public: ''
     });
 
-    this.playlist = structuredClone(data);
+    this.playlist = structuredClone(this.inputPlaylist);
 
     if (this.playlist) {
       this.playlistForm.setValue({
@@ -48,7 +50,7 @@ export class PlaylistDialogComponent implements AfterViewChecked {
       this.playlist.name = this.playlistForm.value.name;
       this.playlist.public = this.playlistForm.value.public;
 
-      this.playlists.put(this.playlist).subscribe((result) => {
+      this.playlistService.put(this.playlist).subscribe((result) => {
         this.dialogRef.close(result);
         this.snack.open($localize`Updated !!`, '', {
           duration: 5000
@@ -60,7 +62,7 @@ export class PlaylistDialogComponent implements AfterViewChecked {
         public: this.playlistForm.value.public
       };
 
-      this.playlists.post(this.playlist).subscribe(result => {
+      this.playlistService.post(this.playlist).subscribe(result => {
         this.dialogRef.close(result);
         this.snack.open($localize`Created !!`, '', {
           duration: 5000

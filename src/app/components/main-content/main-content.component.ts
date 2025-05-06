@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, HostListener, ChangeDetectorRef, ElementRef } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, HostListener, ChangeDetectorRef, ElementRef, inject } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { SearchComponent } from '../../components/search/search.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -22,6 +22,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     imports: [NavBarComponent, MatSidenavModule, TagsComponent, SearchComponent, YouTubePlayerModule, MatIconModule, MatButtonModule, MatTooltipModule, CommonModule]
 })
 export class MainContentComponent implements AfterViewInit {
+  private movieService = inject(MovieService);
+  private title = inject(Title);
+  private location = inject(Location);
+  private route = inject(ActivatedRoute);
+  auth = inject(AuthService);
+  dialog = inject(MatDialog);
+
 
   @ViewChild('searchpanel', { static: true }) searchPanel: MatSidenav;
   @ViewChild(SearchComponent, { static: true }) searchCmp: SearchComponent;
@@ -30,7 +37,6 @@ export class MainContentComponent implements AfterViewInit {
 
   movie: Movie;
   movieSubtitle: string;
-  cdJapanLink: string;
   isMobile = window.innerWidth < 1024;
   playerWidth = 0;
   playerHeight = 0;
@@ -49,10 +55,6 @@ export class MainContentComponent implements AfterViewInit {
       this.searchPanel.toggle();
     }
   }];
-
-  constructor(private movieService: MovieService, private title: Title, private location: Location,
-    private route: ActivatedRoute, public auth: AuthService, public dialog: MatDialog, cd: ChangeDetectorRef) {
-  }
 
   ngAfterViewInit() {
     this.playerWidth = this.youtubeDiv.nativeElement.parentElement.clientWidth * 0.8;

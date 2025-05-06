@@ -1,6 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef, OnInit, inject } from '@angular/core';
 import { debounceTime, map, tap } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
@@ -18,6 +16,8 @@ import { Movie } from 'src/app/model/movie';
     imports: [MatInputModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, CommonModule]
 })
 export class SearchComponent implements AfterViewInit {
+  private movies = inject(MovieService);
+
 
   // TODO Lazy loading of the list
 
@@ -27,8 +27,6 @@ export class SearchComponent implements AfterViewInit {
   @ViewChild('searchValue', { static: true }) searchField: ElementRef<HTMLInputElement>;
   @Input() selectionIcon: string;
   @Output() itemSelected = new EventEmitter<number>();
-
-  constructor(private http: HttpClient, private route: ActivatedRoute, private movies: MovieService) { }
 
   ngAfterViewInit() {
     fromEvent(this.searchField.nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
