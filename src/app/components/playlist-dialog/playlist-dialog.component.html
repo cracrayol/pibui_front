@@ -9,12 +9,10 @@
       <mat-form-field>
         <input matInput i18n-placeholder placeholder="Name" formControlName="name">
       </mat-form-field>
-      <mat-checkbox formControlName="public" i18n>The playlist is public</mat-checkbox>
-      @if(playlist !== null) {
-        <app-tag-autocomplete [(tags)]="playlist.mandatoryTags" placeholder="Mandatory tags"></app-tag-autocomplete>
-        <app-tag-autocomplete [(tags)]="playlist.allowedTags" placeholder="Allowed tags"></app-tag-autocomplete>
-        <app-tag-autocomplete [(tags)]="playlist.forbiddenTags" placeholder="Forbidden tags"></app-tag-autocomplete>
-      }
+      <!--<mat-checkbox formControlName="public" i18n>The playlist is public</mat-checkbox>-->
+      <app-tag-autocomplete [(tags)]="playlist.mandatoryTags" placeholder="Mandatory tags"></app-tag-autocomplete>
+      <app-tag-autocomplete [(tags)]="playlist.allowedTags" placeholder="Allowed tags"></app-tag-autocomplete>
+      <app-tag-autocomplete [(tags)]="playlist.forbiddenTags" placeholder="Forbidden tags"></app-tag-autocomplete>
     </div>
   </form>
 </mat-dialog-content>

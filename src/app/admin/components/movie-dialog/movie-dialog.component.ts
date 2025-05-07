@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { debounceTime, finalize, switchMap, tap } from 'rxjs/operators';
+import { TagAutocompleteComponent } from 'src/app/components/tag-autocomplete/tag-autocomplete.component';
 import { Author } from 'src/app/model/author';
 import { Movie } from 'src/app/model/movie';
 import { Tag } from 'src/app/model/tag';
@@ -20,7 +21,7 @@ import { MovieService } from 'src/app/services/movie.service';
 @Component({
     selector: 'pbi-movie-dialog',
     templateUrl: './movie-dialog.component.html',
-    imports: [MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatAutocompleteModule, MatChipsModule, MatIconModule, MatProgressSpinnerModule]
+    imports: [TagAutocompleteComponent, MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatAutocompleteModule, MatChipsModule, MatIconModule, MatProgressSpinnerModule]
 })
 export class MovieDialogComponent {
 

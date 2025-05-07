@@ -362,16 +362,6 @@
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7657641795821591142" datatype="html">
-        <source>
-          <x id="INTERPOLATION" equiv-text="{{ currentDate | date:'yyyy'}}"></x>
-        </source>
-        <target state="needs-translation"></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/main-content/main-content.component.html</context>
-          <context context-type="linenumber">48,49</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="4352526755847379280" datatype="html">
         <source>Source Code</source>
         <target state="needs-review-translation">Code source</target>
@@ -430,7 +420,7 @@
       </trans-unit>
       <trans-unit id="5123397280103607848" datatype="html">
         <source>Add playlist</source>
-        <target state="needs-review-translation">Ajouter une playlist</target>
+        <target state="needs-review-translation">Créer une playlist</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
           <context context-type="linenumber">2,3</context>
@@ -450,30 +440,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
           <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2836541785464752504" datatype="html">
-        <source>Mandatory tags</source>
-        <target state="needs-review-translation">Mots-clés obligatoires</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6168557661412196408" datatype="html">
-        <source>Allowed tags</source>
-        <target state="needs-review-translation">Mots-clés autorisés</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5175691571705994747" datatype="html">
-        <source>Forbidden tags</source>
-        <target state="needs-review-translation">Mots-clés interdits</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
-          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4580988005648117665" datatype="html">
@@ -690,6 +656,58 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/tags/tags.component.ts</context>
           <context context-type="linenumber">145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8829497237648100098" datatype="html" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+        <source>Filter</source>
+        <target state="">Filtrer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1179644633378349006" datatype="html" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Add Author </source>
+        <target state=""><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Ajouter un artiste </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">8,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8040881171107393560" datatype="html" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+        <source>ID</source>
+        <target state="">ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="571559318874154726" datatype="html" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+        <source>No data matching the filter &quot;<x id="INTERPOLATION" equiv-text="{{ searchValue.value}}"/>&quot;</source>
+        <target state="">Aucun résultat avec le filtre &quot;<x id="INTERPOLATION" equiv-text="{{ searchValue.value}}"/>&quot;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3233064906087894160" datatype="html" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Add movie </source>
+        <target state=""><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Ajouter un clip </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">8,11</context>
         </context-group>
       </trans-unit>
     </body>

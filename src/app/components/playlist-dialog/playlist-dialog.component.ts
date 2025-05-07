@@ -36,21 +36,28 @@ export class PlaylistDialogComponent implements AfterViewChecked {
       public: ''
     });
 
-    this.playlist = structuredClone(this.inputPlaylist);
+    this.playlist = this.inputPlaylist != null ? structuredClone(this.inputPlaylist) : {};
 
-    if (this.playlist) {
+    if (this.inputPlaylist != null) {
+      this.playlist = structuredClone(this.inputPlaylist);
       this.playlistForm.setValue({
         name: this.playlist.name,
         public: this.playlist.public
       });
+    } else {
+      this.playlist = {
+        mandatoryTags: [],
+        allowedTags: [],
+        forbiddenTags: [],
+      };
     }
   }
 
   save() {
-    if (this.playlist) {
-      this.playlist.name = this.playlistForm.value.name;
-      this.playlist.public = this.playlistForm.value.public;
+    this.playlist.name = this.playlistForm.value.name;
+    this.playlist.public = this.playlistForm.value.public;
 
+    if (this.playlist.id != null) {
       this.playlistService.put(this.playlist).subscribe((result) => {
         this.dialogRef.close(result);
         this.snack.open($localize`Updated !!`, '', {
@@ -58,11 +65,6 @@ export class PlaylistDialogComponent implements AfterViewChecked {
         });
       });
     } else {
-      this.playlist = {
-        name: this.playlistForm.value.name,
-        public: this.playlistForm.value.public
-      };
-
       this.playlistService.post(this.playlist).subscribe(result => {
         this.dialogRef.close(result);
         this.snack.open($localize`Created !!`, '', {

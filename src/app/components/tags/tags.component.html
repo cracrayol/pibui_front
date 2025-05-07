@@ -1,6 +1,6 @@
 <div class="flex flex-row m-2">
   @if(auth.isLoggedIn()) {
-    <mat-form-field class="grow">
+    <mat-form-field class="grow mr-2">
       <mat-select i18n-placeholder placeholder="Playlist" [value]="selected" (selectionChange)="selectPlaylist($event)">
         <mat-option i18n>None</mat-option>
         @for(pl of $playlist | async; track pl.id) {

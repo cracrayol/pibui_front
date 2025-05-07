@@ -45,6 +45,10 @@
           <context context-type="linenumber">10</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
@@ -55,6 +59,10 @@
           <context context-type="sourcefile">src/app/admin/components/author-dialog/author-dialog.component.html</context>
           <context context-type="linenumber">14</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="2159130950882492111" datatype="html">
         <source>Cancel</source>
@@ -64,7 +72,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/confirm-dialog/confirm-dialog.component.html</context>
@@ -76,7 +84,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">23</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/settings/settings.component.html</context>
@@ -91,41 +99,70 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
-          <context context-type="linenumber">73,74</context>
+          <context context-type="linenumber">50,51</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
-          <context context-type="linenumber">60,61</context>
+          <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6603858138958982824" datatype="html">
         <source>Updated !!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/author-dialog/author-dialog.component.ts</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.ts</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">115</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.ts</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8781716375472096599" datatype="html">
         <source>Created !!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/author-dialog/author-dialog.component.ts</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">56</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.ts</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">122</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.ts</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8829497237648100098" datatype="html">
+        <source>Filter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1179644633378349006" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Add Author </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">8,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8040881171107393560" datatype="html">
+        <source>ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4316921164447176767" datatype="html">
@@ -135,11 +172,62 @@
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="571559318874154726" datatype="html">
+        <source>No data matching the filter &quot;<x id="INTERPOLATION" equiv-text="{{ searchValue.value}}"/>&quot;</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2951517889094230790" datatype="html">
         <source>Are you sure you want to delete this author and all of his movies ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/manage-author/manage-author.component.ts</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3233064906087894160" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>add<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Add movie </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">8,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5701618810648052610" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1137319519199859335" datatype="html">
+        <source>Subtitle</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7071470734400948493" datatype="html">
+        <source>Author</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8048382118055116792" datatype="html">
@@ -164,7 +252,7 @@
         <source>Are you sure you want to delete this movie ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/manage-movie/manage-movie.component.ts</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3380668345439043022" datatype="html">
@@ -174,43 +262,11 @@
           <context context-type="linenumber">2,3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5701618810648052610" datatype="html">
-        <source>Title</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1137319519199859335" datatype="html">
-        <source>Subtitle</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7071470734400948493" datatype="html">
-        <source>Author</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5132780032558365412" datatype="html">
         <source>Youtube ID</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
           <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7886570921510760899" datatype="html">
-        <source>Tags</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/main-content/main-content.component.html</context>
-          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8998179362936748717" datatype="html">
@@ -296,14 +352,14 @@
         <source>Logged in !!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/login/login.component.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2602512984686027267" datatype="html">
         <source>Registered !!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/login/login.component.ts</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3894950702316166331" datatype="html">
@@ -327,11 +383,11 @@
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7657641795821591142" datatype="html">
-        <source>© cracrayol / 2012-<x id="INTERPOLATION" equiv-text="{{ currentDate | date:&apos;yyyy&apos;}}"/></source>
+      <trans-unit id="7886570921510760899" datatype="html">
+        <source>Tags</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/main-content/main-content.component.html</context>
-          <context context-type="linenumber">48,49</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4352526755847379280" datatype="html">
@@ -380,7 +436,7 @@
         <source>Logged out !!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/navbar/navbar.component.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5123397280103607848" datatype="html">
@@ -402,27 +458,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
           <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2836541785464752504" datatype="html">
-        <source>Mandatory tags</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6168557661412196408" datatype="html">
-        <source>Allowed tags</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5175691571705994747" datatype="html">
-        <source>Forbidden tags</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/playlist-dialog/playlist-dialog.component.html</context>
-          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4580988005648117665" datatype="html">
@@ -527,28 +562,28 @@
         <source>Password updated</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/settings/settings.component.ts</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3479684349083171858" datatype="html">
         <source>Error during changing password !!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/settings/settings.component.ts</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2074664422710428315" datatype="html">
         <source>Account deleted !!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/settings/settings.component.ts</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1809060825165769297" datatype="html">
         <source>Error during deletion !!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/settings/settings.component.ts</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5344791164491756179" datatype="html">
@@ -611,7 +646,7 @@
         <source>Are you sure you want to delete this playlist ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/tags/tags.component.ts</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">146</context>
         </context-group>
       </trans-unit>
     </body>
