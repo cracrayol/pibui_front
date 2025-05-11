@@ -46,14 +46,14 @@ export class AuthorDialogComponent {
     if (this.author.id != null) {
       this.authorService.put(this.author).subscribe(() => {
         this.dialogRef.close(true);
-        this.snack.open($localize`Updated !!`, '', {
+        this.snack.open($localize`Author successfully updated.`, '', {
           duration: 5000
         });
       });
     } else {
       this.authorService.post(this.author).subscribe(() => {
         this.dialogRef.close(true);
-        this.snack.open($localize`Created !!`, '', {
+        this.snack.open($localize`Author successfully created.`, '', {
           duration: 5000
         });
       });

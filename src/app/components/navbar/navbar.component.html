@@ -1,7 +1,7 @@
 <mat-toolbar class="navbar navbar-shadow" color="primary">
   <a mat-button routerLink="/">PIBUI</a>&nbsp;&nbsp;
   <span class="spacer"></span>
-  @for(button of buttons; track button) {
+  @for(button of buttons(); track button) {
     <button mat-icon-button (click)="button.click()">
       <mat-icon>{{ button.icon }}</mat-icon>
     </button>

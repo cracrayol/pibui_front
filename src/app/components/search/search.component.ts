@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef, OnInit, inject } from '@angular/core';
-import { debounceTime, map, tap } from 'rxjs/operators';
+import { Component, AfterViewInit, ElementRef, inject, output, viewChild } from '@angular/core';
+import { debounceTime, tap } from 'rxjs/operators';
 import { Observable, fromEvent } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
 import { Page } from 'src/app/model/page';
@@ -18,19 +18,15 @@ import { Movie } from 'src/app/model/movie';
 export class SearchComponent implements AfterViewInit {
   private movies = inject(MovieService);
 
-
-  // TODO Lazy loading of the list
-
   $data: Observable<Page<Movie>> = this.movies.getList('', 0, 30, 'movie.id', 'DESC');
   showLatest = false;
   searching = false;
-  @ViewChild('searchValue', { static: true }) searchField: ElementRef<HTMLInputElement>;
-  @Input() selectionIcon: string;
-  @Output() itemSelected = new EventEmitter<number>();
+  searchField = viewChild<ElementRef<HTMLInputElement>>('searchValue');
+  itemSelected = output<number>();
 
   ngAfterViewInit() {
-    fromEvent(this.searchField.nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
-      this.search(this.searchField.nativeElement.value);
+    fromEvent(this.searchField().nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
+      this.search(this.searchField().nativeElement.value);
     });
   }
 

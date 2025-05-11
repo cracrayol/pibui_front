@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, viewChild, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,23 +28,22 @@ export class ManageAuthorComponent implements AfterViewInit {
 
   authorService = inject(AuthorService);
   dialog = inject(MatDialog);
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<any>;
-  @ViewChild('searchValue', { static: true }) searchField: ElementRef<HTMLInputElement>;
+  paginator = viewChild(MatPaginator);
+  sort = viewChild(MatSort);
+  table = viewChild(MatTable);
+  searchField = viewChild<ElementRef<HTMLInputElement>>('searchValue');
 
   ngAfterViewInit() {
-    fromEvent(this.searchField.nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
+    fromEvent(this.searchField().nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
       this.refreshList();
     });
 
-    scheduled([this.sort.sortChange, this.paginator.page], asyncScheduler)
+    scheduled([this.sort().sortChange, this.paginator().page], asyncScheduler)
       .pipe(
         mergeAll(),
         startWith({}),
         switchMap(() => {
-          return this.authorService.get(this.searchField.nativeElement.value, this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase());
+          return this.authorService.get(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase());
         }),
         map(data => {
           if (data === null) {
@@ -108,7 +107,7 @@ export class ManageAuthorComponent implements AfterViewInit {
   }
 
   private refreshList() {
-    this.authorService.get(this.searchField.nativeElement.value, this.paginator.pageIndex * this.paginator.pageSize, this.paginator.pageSize, this.sort.active, this.sort.direction.toUpperCase())
+    this.authorService.get(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase())
       .subscribe(data => {
         this.data = data.data;
         this.resultsLength = data.total;

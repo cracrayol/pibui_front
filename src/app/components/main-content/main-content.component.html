@@ -5,7 +5,7 @@
     <pbi-tags [tags]="movie?.tags"></pbi-tags>
   </mat-sidenav>
   <mat-sidenav #searchpanel position="end" mode="over" style="width: 340px">
-    <pbi-search (itemSelected)="playSearchedItem($event)" selectionIcon="play_circle_outline"></pbi-search>
+    <pbi-search (itemSelected)="playSearchedItem($event)"></pbi-search>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="flex flex-col justify-center">
@@ -16,14 +16,12 @@
           </div>
         } @else {
           <div class="flex flex-row justify-center content-center">
-            <h2 class="alt" id='authorName'><a class="cursor-pointer" (click)='searchAuthor()' i18n-matTooltip matTooltip="Search this author">{{ movie.author.name }}</a></h2>
-            <h2 class="alt" id='movieTitle'>&nbsp;- {{ movie.title }}</h2>
+            <h2 class="alt" id='authorName'><a class="cursor-pointer" (click)='searchAuthor()' i18n-matTooltip matTooltip="Search this author">{{ getAuthorName() }}</a></h2>
+            <h2 class="alt" id='movieTitle'>&nbsp;- {{ getMovieTitle() }}</h2>
+            @if(movie.subtitle != '' || movie.author.subname != '') {
+              <h2 id='switchDisplay'>&nbsp;<a class="cursor-pointer" (click)='this.showSub = !this.showSub' i18n-matTooltip matTooltip="Show japanese"><mat-icon>{{ showSub ? 'toggle_on' : 'toggle_off' }}</mat-icon></a></h2>
+            }
           </div>
-          @if(movieSubtitle) {
-            <div class="flex flex-row justify-center content-center">
-              <h4 class="alt" id='movieSubtitle'>{{ movieSubtitle }}</h4>
-            </div>
-          }
         }
       </header>
       <div class="flex flex-row justify-center">

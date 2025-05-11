@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, HostListener, ChangeDetectorRef, ElementRef, inject } from '@angular/core';
+import { Component, AfterViewInit, HostListener, ElementRef, inject, viewChild } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { SearchComponent } from '../../components/search/search.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -29,12 +29,12 @@ export class MainContentComponent implements AfterViewInit {
   auth = inject(AuthService);
   dialog = inject(MatDialog);
 
+  youtubeDiv = viewChild<ElementRef<HTMLElement>>('youtubeDiv');
+  searchPanel = viewChild<MatSidenav>('searchpanel');
+  player = viewChild(YouTubePlayer);
+  searchCmp = viewChild(SearchComponent);
 
-  @ViewChild('searchpanel', { static: true }) searchPanel: MatSidenav;
-  @ViewChild(SearchComponent, { static: true }) searchCmp: SearchComponent;
-  @ViewChild(YouTubePlayer, { static: true }) player: YouTubePlayer;
-  @ViewChild('youtubeDiv', { static: true }) youtubeDiv: ElementRef<HTMLElement>;
-
+  showSub = false;
   movie: Movie;
   movieSubtitle: string;
   isMobile = window.innerWidth < 1024;
@@ -52,12 +52,12 @@ export class MainContentComponent implements AfterViewInit {
   headerButtons = [{
     icon: 'search',
     click: () => {
-      this.searchPanel.toggle();
+      this.searchPanel().toggle();
     }
   }];
 
   ngAfterViewInit() {
-    this.playerWidth = this.youtubeDiv.nativeElement.parentElement.clientWidth * 0.8;
+    this.playerWidth = this.youtubeDiv().nativeElement.parentElement.clientWidth * 0.8;
     this.playerHeight = this.playerWidth * 9 / 16;
 
     // Load a specific movie if there's an ID in the URL
@@ -82,16 +82,16 @@ export class MainContentComponent implements AfterViewInit {
   }
 
   playSearchedItem(id: number) {
-    this.searchPanel.close();
+    this.searchPanel().close();
     this.playNextVideo(id);
     scrollTo(0, 0);
   }
 
   searchAuthor() {
-    this.searchPanel.open();
+    this.searchPanel().open();
     const search = this.movie.author.name;
-    this.searchCmp.searchField.nativeElement.value = search;
-    this.searchCmp.search(search);
+    this.searchCmp().searchField().nativeElement.value = search;
+    this.searchCmp().search(search);
   }
 
   /**
@@ -102,7 +102,7 @@ export class MainContentComponent implements AfterViewInit {
     this.movieService.get(id, lastOnError).subscribe(
       movie => {
         this.movie = movie;
-        this.player.playVideo();
+        this.player().playVideo();
 
         this.title.setTitle(movie.author.name + ' - ' + this.movie.title + ' - ' + 'Pibui');
 
@@ -124,7 +124,7 @@ export class MainContentComponent implements AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.isMobile = event.target.innerWidth < 1024;
-    this.playerWidth = this.youtubeDiv.nativeElement.parentElement.clientWidth * 0.8;
+    this.playerWidth = this.youtubeDiv().nativeElement.parentElement.clientWidth * 0.8;
     this.playerHeight = this.playerWidth * 9 / 16;
   }
 
@@ -132,6 +132,20 @@ export class MainContentComponent implements AfterViewInit {
     this.dialog.open(LegalNoticeComponent, {
       width: '800px',
     });
+  }
+
+  getAuthorName() {
+    if(this.showSub && this.movie.author.subname != '') {
+      return this.movie.author.subname;
+    }
+    return this.movie.author.name;
+  }
+
+  getMovieTitle() {
+    if(this.showSub && this.movie.subtitle != '') {
+      return this.movie.subtitle;
+    }
+    return this.movie.title;
   }
 
 }

@@ -1,4 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, Inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -112,17 +113,30 @@ export class MovieDialogComponent {
     if (this.movie.id != null) {
       this.movieService.put(this.movie).subscribe(() => {
         this.dialogRef.close(true);
-        this.snack.open($localize`Updated !!`, '', {
+        this.snack.open($localize`Movie successfully updated.`, '', {
           duration: 5000
         });
       });
     } else {
-      this.movieService.post(this.movie).subscribe(() => {
-        this.dialogRef.close(true);
-        this.snack.open($localize`Created !!`, '', {
-          duration: 5000
+      this.movieService.post(this.movie).subscribe({
+          next: () => {
+            this.dialogRef.close();
+            this.snack.open($localize`Movie successfully created.`, '', {
+              duration: 5000,
+              verticalPosition: 'top',
+              horizontalPosition: 'right'
+            });
+          },
+          error: (error: HttpErrorResponse) => {
+            if(error.error.code == 'ER_DUP_ENTRY') {
+              this.snack.open($localize`⚠️ Movie already in database (maybe disabled).`, '', {
+                duration: 5000,
+                verticalPosition: 'top',
+                horizontalPosition: 'right'
+              });
+            }
+          }
         });
-      });
     }
   }
 

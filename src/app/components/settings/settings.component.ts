@@ -1,5 +1,5 @@
 import { Component, AfterViewChecked, ChangeDetectorRef, OnInit, inject } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
@@ -16,15 +16,14 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SettingsComponent implements AfterViewChecked, OnInit {
   private ref = inject(ChangeDetectorRef);
-  private fb = inject(UntypedFormBuilder);
+  private fb = inject(FormBuilder);
   dialogRef = inject<MatDialogRef<SettingsComponent>>(MatDialogRef);
   userService = inject(UserService);
   auth = inject(AuthService);
   private snack = inject(MatSnackBar);
 
-
-  deletionForm: UntypedFormGroup;
-  passwordForm: UntypedFormGroup;
+  deletionForm: FormGroup;
+  passwordForm: FormGroup;
   deleteChecked: boolean;
 
   ngOnInit() {

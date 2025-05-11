@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, input } from '@angular/core';
 import { Playlist, TagType } from '../../model/playlist';
 import { PlaylistService } from '../../services/playlist.service';
 import { Observable } from 'rxjs';
@@ -27,7 +27,7 @@ export class TagsComponent implements OnInit {
   dialog = inject(MatDialog);
 
 
-  @Input() tags: Tag[];
+  tags = input.required<Tag[]>();
   selected: Playlist;
   $playlist: Observable<Playlist[]>;
 

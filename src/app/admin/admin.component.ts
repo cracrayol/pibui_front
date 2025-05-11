@@ -16,7 +16,6 @@ export class AdminComponent {
   auth = inject(AuthService);
   dialog = inject(MatDialog);
 
-
   isMobile = window.innerWidth < 1024;
 
   headerButtons = [{
