@@ -1,4 +1,4 @@
-import { Component, Input, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
@@ -17,8 +17,8 @@ import { RouterModule } from '@angular/router';
     imports: [MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, RouterModule]
 })
 export class NavBarComponent {
-  dialog = inject(MatDialog);
-  auth = inject(AuthService);
+  private dialog = inject(MatDialog);
+  authService = inject(AuthService);
   private snack = inject(MatSnackBar);
 
   buttons = input<any>();
@@ -34,7 +34,7 @@ export class NavBarComponent {
   }
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
     this.snack.open($localize`Logged out !!`, null, {
       duration: 5000
     });

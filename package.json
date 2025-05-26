@@ -1,7 +1,7 @@
 {
   "name": "pibui-front",
   "version": "1.0.0",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,7 +11,7 @@
     "e2e": "ng e2e",
     "i18n": "ng extract-i18n --output-path src/locale/",
     "build-prod-en": "ng build --configuration production",
-    "build-prod-fr": "ng build --i18nFile=src/locale/messages.fr.xlf --i18nFormat=xlf --i18nLocale=fr --configuration production"
+    "build-prod-fr": "ng build --localize --configuration production"
   },
   "private": true,
   "dependencies": {

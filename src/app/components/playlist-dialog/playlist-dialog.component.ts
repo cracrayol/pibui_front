@@ -1,5 +1,5 @@
 import { Component, AfterViewChecked, ChangeDetectorRef, inject } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PlaylistService } from '../../services/playlist.service';
@@ -17,17 +17,16 @@ import { TagAutocompleteComponent } from '../tag-autocomplete/tag-autocomplete.c
     imports: [TagAutocompleteComponent, MatDialogModule, MatInputModule, MatCheckboxModule, MatChipsModule, MatButtonModule, MatIconModule, ReactiveFormsModule]
 })
 export class PlaylistDialogComponent implements AfterViewChecked {
-  private fb = inject(UntypedFormBuilder);
+  private fb = inject(FormBuilder);
   private ref = inject(ChangeDetectorRef);
   private snack = inject(MatSnackBar);
-  dialogRef = inject<MatDialogRef<PlaylistDialogComponent>>(MatDialogRef);
+  private dialogRef = inject<MatDialogRef<PlaylistDialogComponent>>(MatDialogRef);
   private playlistService = inject(PlaylistService);
-  inputPlaylist = inject<Playlist>(MAT_DIALOG_DATA);
-
+  private inputPlaylist = inject<Playlist>(MAT_DIALOG_DATA);
 
   readonly TagType = TagType;
 
-  playlistForm: UntypedFormGroup;
+  playlistForm: FormGroup;
   playlist: Playlist;
 
   constructor() {

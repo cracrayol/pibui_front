@@ -6,7 +6,6 @@ import { CommonModule, Location } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
 import { Title } from '@angular/platform-browser';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
-import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Movie } from 'src/app/model/movie';
 import { LegalNoticeComponent } from '../legal-notice/legal-notice.component';
@@ -26,8 +25,7 @@ export class MainContentComponent implements AfterViewInit {
   private title = inject(Title);
   private location = inject(Location);
   private route = inject(ActivatedRoute);
-  auth = inject(AuthService);
-  dialog = inject(MatDialog);
+  private dialog = inject(MatDialog);
 
   youtubeDiv = viewChild<ElementRef<HTMLElement>>('youtubeDiv');
   searchPanel = viewChild<MatSidenav>('searchpanel');

@@ -6,7 +6,7 @@
       <mat-icon>{{ button.icon }}</mat-icon>
     </button>
   }
-  @if(!auth.isLoggedIn()) {
+  @if(!authService.isLoggedIn()) {
     <button mat-button (click)="login()">
       <mat-icon>input</mat-icon>&nbsp;
       <span i18n>Register/Sign-in</span>
@@ -22,7 +22,7 @@
     <mat-icon>settings</mat-icon>&nbsp;
     <span i18n>Settings</span>
   </button>
-  @if(auth.isLoggedIn() && auth.getUser().isAdmin) {
+  @if(authService.isLoggedIn() && authService.getUser().isAdmin) {
     <button mat-menu-item routerLink="/admin">
       <mat-icon>settings_applications</mat-icon>&nbsp;
       <span i18n>Admin</span>

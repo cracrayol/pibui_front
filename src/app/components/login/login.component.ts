@@ -6,7 +6,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { Error } from 'src/app/model/error';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -16,7 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements AfterViewChecked {
   private fb = inject(FormBuilder);
-  private auth = inject(AuthService);
+  private authService = inject(AuthService);
   private ref = inject(ChangeDetectorRef);
   private snack = inject(MatSnackBar);
   dialogRef = inject<MatDialogRef<LoginComponent>>(MatDialogRef);
@@ -41,7 +40,7 @@ export class LoginComponent implements AfterViewChecked {
     const val = this.loginForm.value;
 
     if (val.email && val.password) {
-      this.auth.login(val.email, val.password)
+      this.authService.login(val.email, val.password)
         .subscribe(
         () => {
           this.dialogRef.close();
@@ -57,7 +56,7 @@ export class LoginComponent implements AfterViewChecked {
     const val = this.registerForm.value;
 
     if (val.email && val.password && val.passwordCheck && val.password === val.passwordCheck) {
-      this.auth.register(val.email, val.password)
+      this.authService.register(val.email, val.password)
         .subscribe({
           next: () => {
             this.dialogRef.close();

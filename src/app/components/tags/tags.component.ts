@@ -22,10 +22,10 @@ import { CommonModule } from '@angular/common';
     imports: [MatSelectModule, MatMenuModule, MatIconModule, MatListModule, MatButtonModule, MatTooltipModule, CommonModule]
 })
 export class TagsComponent implements OnInit {
-  playlistService = inject(PlaylistService);
-  auth = inject(AuthService);
-  dialog = inject(MatDialog);
-
+  private playlistService = inject(PlaylistService);
+  private dialog = inject(MatDialog);
+  
+  authService = inject(AuthService);
 
   tags = input.required<Tag[]>();
   selected: Playlist;
@@ -34,7 +34,7 @@ export class TagsComponent implements OnInit {
   ngOnInit() {
     this.$playlist = this.playlistService.getAll().pipe(tap((playlists: Playlist[]) => {
       playlists.forEach((pl: Playlist) => {
-        if (this.auth.getUser().currentPlaylistId && this.auth.getUser().currentPlaylistId === pl.id) {
+        if (this.authService.getUser().currentPlaylistId && this.authService.getUser().currentPlaylistId === pl.id) {
           this.selected = pl;
         }
       });
@@ -112,13 +112,13 @@ export class TagsComponent implements OnInit {
 
   selectPlaylist(change: MatSelectChange) {
     if (change.value) {
-      this.auth.getUser().currentPlaylistId = change.value.id;
+      this.authService.getUser().currentPlaylistId = change.value.id;
       this.selected = change.value;
     } else {
-      this.auth.getUser().currentPlaylistId = null;
+      this.authService.getUser().currentPlaylistId = null;
       this.selected = null;
     }
-    this.auth.saveUser();
+    this.authService.saveUser();
   }
 
   editPlaylistDialog(newPlaylist: boolean): void {
@@ -131,7 +131,7 @@ export class TagsComponent implements OnInit {
       if(result != null) {
         this.$playlist = this.playlistService.getAll().pipe(tap((playlists: Playlist[]) => {
           playlists.forEach((pl: Playlist) => {
-            if (this.auth.getUser().currentPlaylistId && this.auth.getUser().currentPlaylistId === pl.id) {
+            if (this.authService.getUser().currentPlaylistId && this.authService.getUser().currentPlaylistId === pl.id) {
               this.selected = pl;
             }
           });

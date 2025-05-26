@@ -1,5 +1,5 @@
 <div class="flex flex-row m-2">
-  @if(auth.isLoggedIn()) {
+  @if(authService.isLoggedIn()) {
     <mat-form-field class="grow mr-2">
       <mat-select i18n-placeholder placeholder="Playlist" [value]="selected" (selectionChange)="selectPlaylist($event)">
         <mat-option i18n>None</mat-option>
@@ -29,13 +29,13 @@
     <mat-list-item>
       <span class="flex flex-row items-center">
         <label class="grow truncate" [title]="tag.name">{{tag.name}}</label>
-        <button i18n-matTooltip matTooltip="Mandatory tag" mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 2) ? 'accent' : ''" (click)="set(tag, 2)">
+        <button i18n-matTooltip matTooltip="Mandatory tag" mat-icon-button [disabled]="!authService.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 2) ? 'accent' : ''" (click)="set(tag, 2)">
           <mat-icon aria-label="Mandatory">favorite</mat-icon>
         </button>
-        <button i18n-matTooltip matTooltip="Allowed tag" mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 1) ? 'accent' : ''" (click)="set(tag, 1)">
+        <button i18n-matTooltip matTooltip="Allowed tag" mat-icon-button [disabled]="!authService.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 1) ? 'accent' : ''" (click)="set(tag, 1)">
           <mat-icon aria-label="Optional">help</mat-icon>
         </button>
-        <button i18n-matTooltip matTooltip="Forbidden tag" mat-icon-button [disabled]="!auth.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 0) ? 'accent' : ''" (click)="set(tag, 0)">
+        <button i18n-matTooltip matTooltip="Forbidden tag" mat-icon-button [disabled]="!authService.isLoggedIn() || !selected" [color]="isTagSet(tag.id, 0) ? 'accent' : ''" (click)="set(tag, 0)">
           <mat-icon aria-label="Forbidden">block</mat-icon>
         </button>
       </span>

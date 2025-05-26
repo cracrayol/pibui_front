@@ -16,10 +16,10 @@ import { Movie } from 'src/app/model/movie';
     imports: [MatInputModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, CommonModule]
 })
 export class SearchComponent implements AfterViewInit {
-  private movies = inject(MovieService);
+  private movieService = inject(MovieService);
 
-  $data: Observable<Page<Movie>> = this.movies.getList('', 0, 30, 'movie.id', 'DESC');
-  showLatest = false;
+  $data: Observable<Page<Movie>> = this.movieService.getList('', 0, 30, 'movie.id', 'DESC');
+  showLatest = true;
   searching = false;
   searchField = viewChild<ElementRef<HTMLInputElement>>('searchValue');
   itemSelected = output<number>();
@@ -34,16 +34,11 @@ export class SearchComponent implements AfterViewInit {
    * Run the search
    */
   search(search) {
-    if (search.length >= 3) {
-      this.showLatest = false;
-      this.searching = true;
-      this.$data = this.movies.getList(search, 0, 100, 'movie.title', 'ASC').pipe(tap(() => {
-        this.showLatest = search.length === 0;
-        this.searching = false;
-      }));
-    } else if(search.length === 0) {
-      this.$data = this.movies.getList('', 0, 100, 'movie.id', 'DESC');
-    }
+    this.searching = true;
+    this.$data = this.movieService.getList(search.length >= 3 ? search : '', 0, 100, 'movie.title', 'ASC').pipe(tap(() => {
+      this.showLatest = search.length < 3;
+      this.searching = false;
+    }));
   }
 
   /**

@@ -17,9 +17,9 @@ import { MatButtonModule } from '@angular/material/button';
 export class SettingsComponent implements AfterViewChecked, OnInit {
   private ref = inject(ChangeDetectorRef);
   private fb = inject(FormBuilder);
-  dialogRef = inject<MatDialogRef<SettingsComponent>>(MatDialogRef);
-  userService = inject(UserService);
-  auth = inject(AuthService);
+  private dialogRef = inject<MatDialogRef<SettingsComponent>>(MatDialogRef);
+  private userService = inject(UserService);
+  private auth = inject(AuthService);
   private snack = inject(MatSnackBar);
 
   deletionForm: FormGroup;

@@ -1,12 +1,11 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, inject, input, model, viewChild, ViewChild } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { debounceTime, fromEvent, switchMap, tap } from 'rxjs';
+import { debounceTime, fromEvent } from 'rxjs';
 import { Tag } from 'src/app/model/tag';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -16,8 +15,7 @@ import { MovieService } from 'src/app/services/movie.service';
   templateUrl: './tag-autocomplete.component.html'
 })
 export class TagAutocompleteComponent implements AfterViewInit {
-
-  movieService = inject(MovieService);
+  private movieService = inject(MovieService);
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagsList: Tag[];
