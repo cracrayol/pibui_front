@@ -14,11 +14,14 @@ import { TagsComponent } from '../tags/tags.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'pbi-index',
     templateUrl: './main-content.component.html',
-    imports: [NavBarComponent, MatSidenavModule, TagsComponent, SearchComponent, YouTubePlayerModule, MatIconModule, MatButtonModule, MatTooltipModule, CommonModule]
+    imports: [NavBarComponent, MatSidenavModule, TagsComponent, SearchComponent, YouTubePlayerModule, MatIconModule, MatButtonModule, MatTooltipModule,
+        CommonModule, MatSlideToggleModule, FormsModule]
 })
 export class MainContentComponent implements AfterViewInit {
   private movieService = inject(MovieService);

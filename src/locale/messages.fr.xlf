@@ -734,6 +734,14 @@
           <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="489844404897890427" datatype="html">
+        <source>Fullscreen</source>
+        <target state="needs-review-translation">Plein écran</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/main-content/main-content.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8338048671249153244" datatype="html" xmlns="urn:oasis:names:tc:xliff:document:1.2">
         <source>Show japanese</source>
         <target state="needs-review-translation">Afficher en japonais</target>

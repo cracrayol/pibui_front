@@ -19,18 +19,22 @@
             <h2 class="alt" id='authorName'><a class="cursor-pointer" (click)='searchAuthor()' i18n-matTooltip matTooltip="Search this author">{{ getAuthorName() }}</a></h2>
             <h2 class="alt" id='movieTitle'>&nbsp;- {{ getMovieTitle() }}</h2>
             @if(movie.subtitle != '' || movie.author.subname != '') {
-              <h2 id='switchDisplay'>&nbsp;<a class="cursor-pointer" (click)='this.showSub = !this.showSub' i18n-matTooltip matTooltip="Show japanese"><mat-icon [ngStyle]="{color: showSub ? 'red' : null}">{{ showSub ? 'toggle_on' : 'toggle_off' }}</mat-icon></a></h2>
+              <h2>&nbsp;<mat-slide-toggle [(ngModel)]="showSub" i18n-matTooltip matTooltip="Show japanese"></mat-slide-toggle></h2>
             }
           </div>
         }
       </header>
       <div class="flex flex-row justify-center">
         <div #youtubeDiv>
-          <youtube-player [width]="playerWidth" [height]="playerHeight" (stateChange)="onStateChange($event)" (error)="onError($event)" [videoId]="movie?.linkId" [playerVars]="{'autoplay':1}"></youtube-player>
+          <youtube-player [width]="playerWidth" [height]="playerHeight" (stateChange)="onStateChange($event)" (error)="onError($event)" [videoId]="movie?.linkId" [playerVars]="{'autoplay':1, fs:0}"></youtube-player>
         </div>
       </div>
     </div>
     <div class="flex flex-row justify-center" style="margin-top: 10px">
+      <a mat-raised-button i18n-matTooltip matTooltip="Fullscreen" mdTooltipPosition="left" (click)='player().requestFullscreen();'>
+        <mat-icon>fullscreen</mat-icon>
+      </a>
+      &nbsp;
       <a mat-raised-button i18n-matTooltip matTooltip="Next" mdTooltipPosition="left" (click)='playNextVideo()'>
         <mat-icon>skip_next</mat-icon>
       </a>
