@@ -9,24 +9,24 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { asyncScheduler, debounceTime, fromEvent, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
-import { Author } from 'src/app/model/author';
+import { Tag } from 'src/app/model/tag';
 import { Page } from 'src/app/model/page';
-import { AuthorService } from 'src/app/services/author.service';
+import { TagService } from 'src/app/services/tag.service';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
-import { AuthorDialogComponent } from '../author-dialog/author-dialog.component';
+import { TagDialogComponent } from '../tag-dialog/tag-dialog.component';
 
 @Component({
-    selector: 'pbi-manage-author',
-    templateUrl: './manage-author.component.html',
+    selector: 'pbi-tag-manage',
+    templateUrl: './tag-manage.component.html',
     imports: [MatFormFieldModule, MatIconModule, MatTableModule, MatSortModule, MatPaginatorModule, MatTooltipModule, MatButtonModule, MatInputModule]
 })
-export class ManageAuthorComponent implements AfterViewInit {
+export class TagManageComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'name', 'subname', 'edit'];
-  data: Author[];
+  displayedColumns: string[] = ['id', 'name', 'edit'];
+  data: Tag[];
   resultsLength = 0;
 
-  authorService = inject(AuthorService);
+  tagService = inject(TagService);
   dialog = inject(MatDialog);
   paginator = viewChild(MatPaginator);
   sort = viewChild(MatSort);
@@ -43,11 +43,11 @@ export class ManageAuthorComponent implements AfterViewInit {
         mergeAll(),
         startWith({}),
         switchMap(() => {
-          return this.authorService.get(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase());
+          return this.tagService.get(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase());
         }),
         map(data => {
           if (data === null) {
-            return new Page<Author>()
+            return new Page<Tag>()
           }
           this.resultsLength = 1000;
           return data;
@@ -62,8 +62,8 @@ export class ManageAuthorComponent implements AfterViewInit {
   /**
    * Open the "Edit movie" dialog for the current movie
    */
-  addAuthor() {
-    const dialogRef = this.dialog.open(AuthorDialogComponent, {
+  addTag() {
+    const dialogRef = this.dialog.open(TagDialogComponent, {
       width: '800px',
       data: null
     });
@@ -78,10 +78,10 @@ export class ManageAuthorComponent implements AfterViewInit {
   /**
    * Open the "Edit movie" dialog for the current movie
    */
-  editAuthor(author: Author) {
-    const dialogRef = this.dialog.open(AuthorDialogComponent, {
+  editTag(tag: Tag) {
+    const dialogRef = this.dialog.open(TagDialogComponent, {
       width: '800px',
-      data: author
+      data: tag
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -91,15 +91,15 @@ export class ManageAuthorComponent implements AfterViewInit {
     });
   }
 
-  deleteAuthor(author: Author) {
+  deleteTag(tag: Tag) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '300px',
-      data: $localize`Are you sure you want to delete this author and all of his movies ?`
+      data: $localize`Are you sure you want to delete this tag?`
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.authorService.delete(author).subscribe(() => {
+        this.tagService.delete(tag).subscribe(() => {
           this.refreshList();
         });
       }
@@ -107,7 +107,7 @@ export class ManageAuthorComponent implements AfterViewInit {
   }
 
   private refreshList() {
-    this.authorService.get(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase())
+    this.tagService.get(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase())
       .subscribe(data => {
         this.data = data.data;
         this.resultsLength = data.total;

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, viewChild, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,13 +16,13 @@ import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confir
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 
 @Component({
-    selector: 'pbi-manage-movie',
-    templateUrl: './manage-movie.component.html',
+    selector: 'pbi-movie-manage',
+    templateUrl: './movie-manage.component.html',
     imports: [MatFormFieldModule, MatIconModule, MatTableModule, MatSortModule, MatPaginatorModule, MatTooltipModule, MatButtonModule, MatInputModule]
 })
-export class ManageMovieComponent implements AfterViewInit {
+export class MovieManageComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'title', 'subtitle', 'author', 'edit'];
+  displayedColumns: string[] = ['id', 'title', 'subtitle', 'author', 'youtubeId', 'edit'];
   data: Movie[];
   resultsLength = 0;
 
@@ -61,16 +61,18 @@ export class ManageMovieComponent implements AfterViewInit {
   /**
    * Open the "Edit movie" dialog for the current movie
    */
-  editMovie(movie: Movie) {
-    const dialogRef = this.dialog.open(MovieDialogComponent, {
-      width: '800px',
-      data: movie
-    });
+  async editMovie(movie: Movie) {
+    this.movieService.get(movie.id).subscribe(result => {
+      const dialogRef = this.dialog.open(MovieDialogComponent, {
+        width: '800px',
+        data: result 
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.refreshList();
-      } 
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.refreshList();
+        } 
+      });
     });
   }
 

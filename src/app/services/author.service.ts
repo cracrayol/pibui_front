@@ -25,8 +25,8 @@ export class AuthorService {
     return this.http.put<Author>(environment.apiAddr + '/author/' + author.id, author);
   }
 
-  public delete(movie: Author): Observable<Author> {
-    return this.http.delete<Author>(environment.apiAddr + '/author/' + movie.id);
+  public delete(author: Author): Observable<Author> {
+    return this.http.delete<Author>(environment.apiAddr + '/author/' + author.id);
   }
 
 }

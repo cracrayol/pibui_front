@@ -3,14 +3,15 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ManageAuthorComponent } from './components/manage-author/manage-author.component';
-import { ManageMovieComponent } from './components/manage-movie/manage-movie.component';
+import { AuthorManageComponent } from './components/author-manage/author-manage.component';
+import { TagManageComponent } from './components/tag-manage/tag-manage.component';
 import { NavBarComponent } from '../components/navbar/navbar.component';
+import { MovieManageComponent } from './components/movie-manage/movie-manage.component';
 
 @Component({
     selector: 'pbi-admin',
     templateUrl: './admin.component.html',
-    imports: [MatSidenavModule, MatTabsModule, ManageAuthorComponent, ManageMovieComponent, NavBarComponent]
+    imports: [MatSidenavModule, MatTabsModule, AuthorManageComponent, MovieManageComponent, NavBarComponent, TagManageComponent]
 })
 export class AdminComponent {
   auth = inject(AuthService);
