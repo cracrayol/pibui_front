@@ -26,20 +26,25 @@ export class TagAutocompleteComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     fromEvent(this.tagInput().nativeElement, 'keyup').pipe(debounceTime(500)).subscribe(() => {
-      this.movieService.searchTags(this.tagInput().nativeElement.value)
-        .subscribe(data => {
-          this.tagsList = data;
-        });
+      this.tagsList = [];
+      if (this.tagInput().nativeElement.value.length >= 2) {
+        this.movieService.searchTags(this.tagInput().nativeElement.value)
+          .subscribe(data => {
+            this.tagsList = data;
+          });
+      }
     });
   }
 
   addTag(event) {
-    if(event.option) {
+    if (event.option) {
       this.tags().push(event.option.value);
       event.option.deselect();
-    } else if(this.allowNew() && event.value) {
-      this.tags().push({id: null, name: event.value});
+    } else if (this.allowNew() && event.value) {
+      this.tags().push({ id: null, name: event.value });
+      this.tagInput().nativeElement.value = '';
     }
+    this.tagsList = [];
   }
 
   removeTag(event) {

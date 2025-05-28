@@ -18,7 +18,7 @@ import { Movie } from 'src/app/model/movie';
 export class SearchComponent implements AfterViewInit {
   private movieService = inject(MovieService);
 
-  $data: Observable<Page<Movie>> = this.movieService.getList('', 0, 30, 'movie.id', 'DESC');
+  $data: Observable<Page<Movie>> = this.movieService.getList('', 0, 100, 'movie.id', 'DESC');
   showLatest = true;
   searching = false;
   searchField = viewChild<ElementRef<HTMLInputElement>>('searchValue');

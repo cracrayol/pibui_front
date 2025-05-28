@@ -23,6 +23,10 @@
           <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/movie-manage/movie-manage.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/main-content/main-content.component.html</context>
           <context context-type="linenumber">44</context>
         </context-group>
@@ -195,7 +199,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-manage/movie-manage.component.html</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="linenumber">70,71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/tag-manage/tag-manage.component.html</context>
@@ -224,7 +228,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-manage/movie-manage.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5701618810648052610" datatype="html">
@@ -275,21 +279,21 @@
         <source>Movie successfully updated.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.ts</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9013311627956501302" datatype="html">
         <source>Movie successfully created.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.ts</context>
-          <context context-type="linenumber">124</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6117356857824045758" datatype="html">
         <source>⚠️ Movie already in database (maybe disabled).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.ts</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3233064906087894160" datatype="html">
@@ -303,14 +307,14 @@
         <source>Delete movie</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-manage/movie-manage.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5930228536063881446" datatype="html">
         <source>Are you sure you want to delete this movie ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/movie-manage/movie-manage.component.ts</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6560126119609945418" datatype="html">
@@ -335,14 +339,14 @@
         <source>Tag successfully updated.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/tag-dialog/tag-dialog.component.ts</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5718362070001066863" datatype="html">
         <source>Tag successfully created.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/components/tag-dialog/tag-dialog.component.ts</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3793645278306284317" datatype="html">

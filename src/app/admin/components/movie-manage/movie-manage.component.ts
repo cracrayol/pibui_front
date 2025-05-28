@@ -14,6 +14,7 @@ import { Page } from 'src/app/model/page';
 import { MovieService } from 'src/app/services/movie.service';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
+import { Tag } from 'src/app/model/tag';
 
 @Component({
     selector: 'pbi-movie-manage',
@@ -22,7 +23,7 @@ import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 })
 export class MovieManageComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'title', 'subtitle', 'author', 'youtubeId', 'edit'];
+  displayedColumns: string[] = ['id', 'title', 'subtitle', 'author', 'youtubeId', 'tags', 'edit'];
   data: Movie[];
   resultsLength = 0;
 
@@ -105,6 +106,10 @@ export class MovieManageComponent implements AfterViewInit {
         });
       }
     });
+  }
+
+  formatTags(tags: Tag[]) {
+    return tags.map(tag => { return tag.name; }).join(", ");
   }
 
   private refreshList() {

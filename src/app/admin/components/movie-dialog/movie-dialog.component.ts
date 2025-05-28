@@ -46,7 +46,6 @@ export class MovieDialogComponent {
       subtitle: '',
       author: ['', Validators.required],
       linkId: ['', Validators.required],
-      tags: '',
       tag: ''
     });
 
@@ -89,11 +88,11 @@ export class MovieDialogComponent {
         subtitle: this.movie.subtitle,
         author: this.movie.author,
         linkId: this.movie.linkId,
-        tags: this.movie.tags,
         tag: ''
       });
     } else {
       this.movie = new Movie();
+      this.movie.tags = [];
     }
   }
 
@@ -101,7 +100,6 @@ export class MovieDialogComponent {
     this.movie.title = this.movieForm.value.title;
     this.movie.subtitle = this.movieForm.value.subtitle;
     this.movie.linkId = this.movieForm.value.linkId;
-    this.movie.tags = this.movieForm.value.tags;
 
     if (typeof this.movieForm.value.author === 'string' || this.movieForm.value.author instanceof String) {
       this.movie.author = {name: this.movieForm.value.author};
@@ -120,7 +118,7 @@ export class MovieDialogComponent {
     } else {
       this.movieService.post(this.movie).subscribe({
           next: () => {
-            this.dialogRef.close();
+            this.dialogRef.close(true);
             this.snack.open($localize`Movie successfully created.`, '', {
               duration: 5000,
               verticalPosition: 'top',
