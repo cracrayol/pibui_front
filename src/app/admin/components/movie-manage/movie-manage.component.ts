@@ -15,17 +15,20 @@ import { MovieService } from 'src/app/services/movie.service';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 import { Tag } from 'src/app/model/tag';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
     selector: 'pbi-movie-manage',
     templateUrl: './movie-manage.component.html',
-    imports: [MatFormFieldModule, MatIconModule, MatTableModule, MatSortModule, MatPaginatorModule, MatTooltipModule, MatButtonModule, MatInputModule]
+    imports: [MatFormFieldModule, MatIconModule, MatTableModule, MatSortModule, MatPaginatorModule, MatTooltipModule,
+        MatButtonModule, MatInputModule, MatSlideToggleModule]
 })
 export class MovieManageComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['id', 'title', 'subtitle', 'author', 'youtubeId', 'tags', 'edit'];
   data: Movie[];
   resultsLength = 0;
+  notValidated = false;
 
   movieService = inject(MovieService);
   dialog = inject(MatDialog);
@@ -35,28 +38,15 @@ export class MovieManageComponent implements AfterViewInit {
   searchField = viewChild<ElementRef<HTMLInputElement>>('searchValue');
 
   ngAfterViewInit() {
-    fromEvent(this.searchField().nativeElement, 'keyup').pipe(debounceTime(500)).subscribe((data: any) => {
-          this.refreshList();
-        });
-    scheduled([this.sort().sortChange, this.paginator().page], asyncScheduler)
-      .pipe(
-        mergeAll(),
-        startWith({}),
-        switchMap(() => {
-          return this.movieService.getList(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase());
-        }),
-        map(data => {
-          if (data === null) {
-            return new Page<Movie>();
-          }
-          this.resultsLength = 1000;
-          return data;
-        }),
-      )
-      .subscribe(data => {
-        this.data = data.data;
-        this.resultsLength = data.total;
-      });
+    fromEvent(this.searchField().nativeElement, 'keyup').pipe(debounceTime(500)).subscribe(() => {
+      this.refreshList();
+    });
+    scheduled([this.sort().sortChange, this.paginator().page], asyncScheduler).pipe(
+      mergeAll(),
+      startWith({})
+    ).subscribe(() => {
+      this.refreshList();
+    });
   }
 
   /**
@@ -112,8 +102,14 @@ export class MovieManageComponent implements AfterViewInit {
     return tags.map(tag => { return tag.name; }).join(", ");
   }
 
+  showUnvalidated() {
+    this.notValidated = !this.notValidated;
+    this.paginator().firstPage();
+    this.refreshList();
+  }
+
   private refreshList() {
-    this.movieService.getList(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase())
+    this.movieService.getList(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase(), this.notValidated)
     .subscribe(data => {
       this.data = data.data;
       this.resultsLength = data.total;

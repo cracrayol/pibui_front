@@ -17,8 +17,8 @@ export class MovieService {
     return this.http.get<Movie>(environment.apiAddr + '/movie/' + id + '?lastOnError=' + lastOnError);
   }
 
-  public getList(filter: string, start: number, take: number, sort?: string, order?: string): Observable<Page<Movie>> {
-    let params = sort !== undefined ? {filter, start, take, sort, order : order !== undefined ? order : 'ASC'} : {filter, start, take};
+  public getList(filter: string, start: number, take: number, sort?: string, order?: string, notValidated?: boolean): Observable<Page<Movie>> {
+    let params = sort !== undefined ? {filter, start, take, sort, order : order !== undefined ? order : 'ASC', notValidated} : {filter, start, take, notValidated};
     return this.http.get<Page<Movie>>(environment.apiAddr + '/movie/', {params});
   }
 

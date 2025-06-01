@@ -822,6 +822,22 @@
           <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6626575455077326326" datatype="html">
+        <source>Validated</source>
+        <target state="needs-review-translation">Validé</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/movie-dialog/movie-dialog.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9061552438347392612" datatype="html">
+        <source>Not validated</source>
+        <target state="needs-review-translation">Non validés</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/components/movie-manage/movie-manage.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

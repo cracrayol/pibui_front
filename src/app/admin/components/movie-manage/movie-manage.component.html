@@ -3,6 +3,7 @@
         <mat-label i18n>Filter</mat-label>
         <input matInput placeholder="Ex. Mia" #searchValue>
     </mat-form-field>
+    <mat-slide-toggle [checked]="notValidated" (click)='showUnvalidated()' class="pl-4 self-center" i18n>Not validated</mat-slide-toggle>
     <span class="grow"></span>
     <button mat-fab extended color="primary" class="self-center" (click)='addMovie()' i18n>
         <mat-icon>add</mat-icon>
@@ -40,7 +41,7 @@
         <!-- Youtube ID Column -->
         <ng-container matColumnDef="youtubeId">
             <th mat-header-cell *matHeaderCellDef mat-sort-header="movie.linkId" i18n>Youtube ID</th>
-            <td mat-cell *matCellDef="let row"> {{row.linkId}} </td>
+            <td mat-cell *matCellDef="let row"><a matButton href="https://www.youtube.com/watch?v={{row.linkId}}" target="_blank">{{row.linkId}}</a></td>
         </ng-container>
 
         <!-- Tags Column -->

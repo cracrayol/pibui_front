@@ -4,6 +4,7 @@ import { Component, inject, Inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,13 +17,15 @@ import { TagAutocompleteComponent } from 'src/app/components/tag-autocomplete/ta
 import { Author } from 'src/app/model/author';
 import { Movie } from 'src/app/model/movie';
 import { Tag } from 'src/app/model/tag';
+import { AuthService } from 'src/app/services/auth.service';
 import { AuthorService } from 'src/app/services/author.service';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
     selector: 'pbi-movie-dialog',
     templateUrl: './movie-dialog.component.html',
-    imports: [TagAutocompleteComponent, MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatAutocompleteModule, MatChipsModule, MatIconModule, MatProgressSpinnerModule]
+    imports: [TagAutocompleteComponent, MatDialogModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule,
+      MatButtonModule, MatAutocompleteModule, MatChipsModule, MatIconModule, MatProgressSpinnerModule, MatCheckboxModule]
 })
 export class MovieDialogComponent {
 
@@ -36,6 +39,7 @@ export class MovieDialogComponent {
   movie = inject<Movie>(MAT_DIALOG_DATA);
   movieService = inject(MovieService);
   authorService = inject(AuthorService);
+  authService = inject(AuthService);
   snack = inject(MatSnackBar);
   dialogRef = inject(MatDialogRef<MovieDialogComponent>);
   fb = inject(FormBuilder);
@@ -46,6 +50,7 @@ export class MovieDialogComponent {
       subtitle: '',
       author: ['', Validators.required],
       linkId: ['', Validators.required],
+      validated: '',
       tag: ''
     });
 
@@ -88,11 +93,13 @@ export class MovieDialogComponent {
         subtitle: this.movie.subtitle,
         author: this.movie.author,
         linkId: this.movie.linkId,
+        validated: this.movie.validated,
         tag: ''
       });
     } else {
       this.movie = new Movie();
       this.movie.tags = [];
+      this.movieForm.patchValue({validated: this.authService.getUser().isAdmin});
     }
   }
 
@@ -100,6 +107,7 @@ export class MovieDialogComponent {
     this.movie.title = this.movieForm.value.title;
     this.movie.subtitle = this.movieForm.value.subtitle;
     this.movie.linkId = this.movieForm.value.linkId;
+    this.movie.validated = this.movieForm.value.validated;
 
     if (typeof this.movieForm.value.author === 'string' || this.movieForm.value.author instanceof String) {
       this.movie.author = {name: this.movieForm.value.author};

@@ -25,6 +25,11 @@
         <input matInput formControlName="linkId">
       </mat-form-field>
     </div>
+    @if(authService.getUser().isAdmin) {
+      <div class="flex flex-row justify-start">
+        <mat-checkbox formControlName="validated" i18n>Validated</mat-checkbox>
+      </div>
+    }
     <div class="flex flex-row justify-start">
       <app-tag-autocomplete [(tags)]="movie.tags" placeholder="Tags" [allowNew]="true" class="grow basis-1"></app-tag-autocomplete>  
     </div>

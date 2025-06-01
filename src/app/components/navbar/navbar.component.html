@@ -18,6 +18,10 @@
   }
 </mat-toolbar>
 <mat-menu #appMenu="matMenu">
+  <button mat-menu-item (click)="addMovie()">
+    <mat-icon>add</mat-icon>&nbsp;
+    <span i18n>Add movie</span>
+  </button>
   <button mat-menu-item (click)="openSettings()">
     <mat-icon>settings</mat-icon>&nbsp;
     <span i18n>Settings</span>
