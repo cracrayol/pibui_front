@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { MovieDialogComponent } from 'src/app/admin/components/movie-dialog/movie-dialog.component';
+import { MovieDialogComponent } from 'src/app/components/movie-dialog/movie-dialog.component';
 
 @Component({
     selector: 'pbi-navbar',

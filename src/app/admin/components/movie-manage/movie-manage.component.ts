@@ -13,7 +13,7 @@ import { Movie } from 'src/app/model/movie';
 import { Page } from 'src/app/model/page';
 import { MovieService } from 'src/app/services/movie.service';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
-import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
+import { MovieDialogComponent } from '../../../components/movie-dialog/movie-dialog.component';
 import { Tag } from 'src/app/model/tag';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
