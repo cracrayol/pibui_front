@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Syntaxe de la recherche</h2>
+<mat-dialog-content class="mat-typography">
+    <div>
+        <p>Par défaut, Pibui recherche les titres/artistes ayant au moins un des mots cités.<br>
+            Mais différents opérateurs permettent d'affiner la recherche :</p>
+        <ul class="list-disc">
+            <li>+ : Le mot qui suit doit obligatoirement figurer dans touts les résultats obtenus.</li>
+            <li>- : Le mot qui suit ne peut apparaître dans aucun des résultats retournés.</li>
+            <li>* : Le caractère de remplacement, qui indique zéro ou plusieurs caractères. Il ne peut apparaître qu'à la fin d'un mot.</li>
+            <li>" : Tout ce qui est entre guillemets est considéré comme un tout.</li>
+        </ul>
+    </div><br>
+    <div>
+        <p>Donc, par exemple :</p>
+        <ul class="list-disc">
+            <li>Pour trouver les titres/artistes qui contiennent Good et/ou Morning : Good Morning</li>
+            <li>Pour trouver les titres/artistes qui contiennent Good mais pas Morning : +Good -Morning</li>
+            <li>Pour trouver les titres/artistes qui contiennent exactement Good Morning : "Good Morning"</li>
+            <li>Pour trouver les titres/artistes dont un mot commence par Morn : Morn*</li>
+        </ul>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

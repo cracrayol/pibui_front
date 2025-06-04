@@ -27,7 +27,7 @@
     <span i18n>Settings</span>
   </button>
   @if(authService.isLoggedIn() && authService.getUser().isAdmin) {
-    <button mat-menu-item routerLink="/admin">
+    <button mat-menu-item routerLink="/admin/movie-manage">
       <mat-icon>settings_applications</mat-icon>&nbsp;
       <span i18n>Admin</span>
     </button>

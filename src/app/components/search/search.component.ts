@@ -9,14 +9,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { Movie } from 'src/app/model/movie';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { SearchHelpComponent } from '../search-help/search-help.component';
 
 @Component({
     selector: 'pbi-search',
     templateUrl: './search.component.html',
-    imports: [MatInputModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, CommonModule]
+    imports: [MatInputModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, CommonModule, MatIconModule]
 })
 export class SearchComponent implements AfterViewInit {
   private movieService = inject(MovieService);
+  private dialog = inject(MatDialog);
 
   $data: Observable<Page<Movie>> = this.movieService.getList('', 0, 100, 'movie.id', 'DESC');
   showLatest = true;
@@ -48,6 +52,10 @@ export class SearchComponent implements AfterViewInit {
    */
   play(id: number) {
     this.itemSelected.emit(id);
+  }
+
+  showHelp() {
+    this.dialog.open(SearchHelpComponent);
   }
 
 }
