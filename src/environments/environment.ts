@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiAddr: 'https://beta.pibui.org'
+  apiAddr: 'https://pibui.org'
 };

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, viewChild, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,11 +8,11 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { asyncScheduler, debounceTime, fromEvent, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
+import { asyncScheduler, debounceTime, fromEvent, mergeAll, scheduled, startWith } from 'rxjs';
 import { Author } from 'src/app/model/author';
-import { Page } from 'src/app/model/page';
 import { AuthorService } from 'src/app/services/author.service';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
+import { Filter } from 'src/app/model/filter';
 import { AuthorDialogComponent } from '../author-dialog/author-dialog.component';
 
 @Component({
@@ -41,22 +41,10 @@ export class AuthorManageComponent implements AfterViewInit {
     scheduled([this.sort().sortChange, this.paginator().page], asyncScheduler)
       .pipe(
         mergeAll(),
-        startWith({}),
-        switchMap(() => {
-          return this.authorService.get(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase());
-        }),
-        map(data => {
-          if (data === null) {
-            return new Page<Author>()
-          }
-          this.resultsLength = 1000;
-          return data;
-        }),
-      )
-      .subscribe(data => {
-        this.data = data.data
-        this.resultsLength = data.total;
-      });
+        startWith({})
+    ).subscribe(() => {
+      this.refreshList();
+    });
   }
 
   /**
@@ -107,7 +95,15 @@ export class AuthorManageComponent implements AfterViewInit {
   }
 
   private refreshList() {
-    this.authorService.get(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase())
+      const filter: Filter = {
+        filter: this.searchField().nativeElement.value,
+        start: this.paginator().pageIndex * this.paginator().pageSize,
+        take: this.paginator().pageSize,
+        sort: this.sort().active,
+        order: this.sort().direction === 'desc' ? 'DESC' : 'ASC'
+      };
+  
+    this.authorService.get(filter)
       .subscribe(data => {
         this.data = data.data;
         this.resultsLength = data.total;

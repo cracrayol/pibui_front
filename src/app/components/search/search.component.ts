@@ -12,6 +12,7 @@ import { Movie } from 'src/app/model/movie';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchHelpComponent } from '../search-help/search-help.component';
+import { Filter } from 'src/app/model/filter';
 
 @Component({
     selector: 'pbi-search',
@@ -22,7 +23,7 @@ export class SearchComponent implements AfterViewInit {
   private movieService = inject(MovieService);
   private dialog = inject(MatDialog);
 
-  $data: Observable<Page<Movie>> = this.movieService.getList('', 0, 100, 'movie.id', 'DESC');
+  $data: Observable<Page<Movie>> = this.movieService.getList({filter: '', start: 0, take: 100, sort: 'movie.id', order: 'DESC'});
   showLatest = true;
   searching = false;
   searchField = viewChild<ElementRef<HTMLInputElement>>('searchValue');
@@ -39,7 +40,19 @@ export class SearchComponent implements AfterViewInit {
    */
   search(search) {
     this.searching = true;
-    this.$data = this.movieService.getList(search.length >= 3 ? search : '', 0, 100, 'movie.title', 'ASC').pipe(tap(() => {
+    const filter: Filter = {start: 0, take: 100};
+
+    if (search.length >= 3) {
+      filter.filter = search;
+      filter.sort = 'movie.title';
+      filter.order = 'ASC';
+    } else {
+      filter.filter = '';
+      filter.sort = 'movie.id';
+      filter.order = 'DESC';
+    }
+
+    this.$data = this.movieService.getList(filter).pipe(tap(() => {
       this.showLatest = search.length < 3;
       this.searching = false;
     }));

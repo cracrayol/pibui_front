@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Page } from '../model/page';
 import { Tag } from '../model/tag';
+import { Filter } from '../model/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,8 @@ export class TagService {
   private http = inject(HttpClient);
 
 
-  public get(filter: string, start: number, take: number, sort?: string, order?: string): Observable<Page<Tag>> {
-    let params = sort !== undefined ? {filter, start, take, sort, order : order !== undefined ? order : 'ASC'} : {filter, start, take};
-    return this.http.get<Page<Tag>>(environment.apiAddr + '/tag/', {params});
+  public get(filter: Filter): Observable<Page<Tag>> {
+    return this.http.get<Page<Tag>>(environment.apiAddr + '/tag/', {params: <any>filter});
   }
 
   public post(tag: Tag): Observable<Tag> {

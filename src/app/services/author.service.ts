@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Author } from '../model/author';
 import { Page } from '../model/page';
+import { Filter } from '../model/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,8 @@ export class AuthorService {
   private http = inject(HttpClient);
 
 
-  public get(filter: string, start: number, take: number, sort?: string, order?: string): Observable<Page<Author>> {
-    let params = sort !== undefined ? {filter, start, take, sort, order : order !== undefined ? order : 'ASC'} : {filter, start, take};
-    return this.http.get<Page<Author>>(environment.apiAddr + '/author/', {params});
+  public get(filter: Filter): Observable<Page<Author>> {
+    return this.http.get<Page<Author>>(environment.apiAddr + '/author/', {params: <any>filter});
   }
 
   public post(author: Author): Observable<Author> {

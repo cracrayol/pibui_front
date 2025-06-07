@@ -5,17 +5,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { asyncScheduler, debounceTime, fromEvent, map, mergeAll, scheduled, startWith, switchMap } from 'rxjs';
-import { Movie } from 'src/app/model/movie';
-import { Page } from 'src/app/model/page';
-import { MovieService } from 'src/app/services/movie.service';
+import { asyncScheduler, debounceTime, fromEvent, mergeAll, scheduled, startWith } from 'rxjs';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
-import { MovieDialogComponent } from '../../../components/movie-dialog/movie-dialog.component';
+import { Movie } from 'src/app/model/movie';
+import { MovieService } from 'src/app/services/movie.service';
 import { Tag } from 'src/app/model/tag';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { Filter } from 'src/app/model/filter';
+import { MovieDialogComponent } from 'src/app/components/movie-dialog/movie-dialog.component';
 
 @Component({
     selector: 'pbi-movie-manage',
@@ -109,7 +109,16 @@ export class MovieManageComponent implements AfterViewInit {
   }
 
   private refreshList() {
-    this.movieService.getList(this.searchField().nativeElement.value, this.paginator().pageIndex * this.paginator().pageSize, this.paginator().pageSize, this.sort().active, this.sort().direction.toUpperCase(), this.notValidated)
+    const filter: Filter = {
+      filter: this.searchField().nativeElement.value,
+      start: this.paginator().pageIndex * this.paginator().pageSize,
+      take: this.paginator().pageSize,
+      sort: this.sort().active,
+      order: this.sort().direction === 'desc' ? 'DESC' : 'ASC',
+      notValidated: this.notValidated
+    };
+
+    this.movieService.getList(filter)
     .subscribe(data => {
       this.data = data.data;
       this.resultsLength = data.total;

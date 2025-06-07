@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Movie } from '../model/movie';
 import { Page } from '../model/page';
 import { Tag } from '../model/tag';
+import { Filter } from '../model/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,8 @@ export class MovieService {
     return this.http.get<Movie>(environment.apiAddr + '/movie/' + id + '?lastOnError=' + lastOnError);
   }
 
-  public getList(filter: string, start: number, take: number, sort?: string, order?: string, notValidated?: boolean): Observable<Page<Movie>> {
-    let params = sort !== undefined ? {filter, start, take, sort, order : order !== undefined ? order : 'ASC', notValidated} : {filter, start, take, notValidated};
-    return this.http.get<Page<Movie>>(environment.apiAddr + '/movie/', {params});
+  public getList(filter: Filter): Observable<Page<Movie>> {
+    return this.http.get<Page<Movie>>(environment.apiAddr + '/movie/', {params: <any>filter});
   }
 
   public put(movie: Movie): Observable<Movie> {

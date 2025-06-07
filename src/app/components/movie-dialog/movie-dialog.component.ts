@@ -1,7 +1,7 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject, Inject } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { debounceTime, finalize, switchMap, tap } from 'rxjs/operators';
 import { TagAutocompleteComponent } from 'src/app/components/tag-autocomplete/tag-autocomplete.component';
 import { Author } from 'src/app/model/author';
+import { Filter } from 'src/app/model/filter';
 import { Movie } from 'src/app/model/movie';
 import { Tag } from 'src/app/model/tag';
 import { AuthService } from 'src/app/services/auth.service';
@@ -77,7 +78,14 @@ export class MovieDialogComponent {
         tap(() => this.isLoading = true),
         switchMap(value => {
           if ((<string>value).length >= 3) {
-            return this.authorService.get(value, 0, 20, 'name', 'ASC')
+            const filter: Filter = {
+              filter: value,
+              start: 0,
+              take: 25,
+              sort: 'name',
+              order: 'ASC'
+            };
+            return this.authorService.get(filter)
               .pipe(
                 finalize(() => this.isLoading = false),
               )
