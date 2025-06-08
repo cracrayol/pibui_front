@@ -1,5 +1,5 @@
 <pbi-navbar [buttons]="headerButtons"></pbi-navbar>
-<mat-sidenav-container>
+<mat-sidenav-container class="min-h-full">
   <mat-sidenav #tagspanel [mode]="isMobile ? 'over' : 'side'" style="width: 300px" class="navbar-shadow"
     [opened]="!isMobile" [disableClose]="!isMobile">
     <pbi-tags [tags]="movie?.tags"></pbi-tags>
@@ -7,7 +7,7 @@
   <mat-sidenav #searchpanel position="end" mode="over" style="width: 340px">
     <pbi-search (itemSelected)="playSearchedItem($event)"></pbi-search>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content style="overflow:hidden">
     <div class="flex flex-col justify-center">
       <header>
         @if(!movie) {
